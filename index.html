@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stargazing in the UAE</title>
+  <meta name="description" content="An interactive guide to stargazing, constellations and celestial navigation in the United Arab Emirates.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Animated star background for the whole page -->
+  <canvas id="space" aria-hidden="true"></canvas>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- Section progress (right edge) -->
+  <nav class="dots" aria-label="Sections"></nav>
+
+  <!-- Orbital menu (bottom right) -->
+  <div class="orbit-menu" id="orbitMenu">
+    <button class="orbit-core" id="orbitToggle" aria-expanded="false" aria-label="Open menu">
+      <span class="planet"></span><span class="ring"></span>
+    </button>
+    <ul class="orbit-items"></ul>
+  </div>
+
+  <!-- ============ 1. HERO ============ -->
+  <header id="home" class="hero section" data-title="Home" data-icon="✦">
+    <div class="dunes" aria-hidden="true">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path class="dune d3" d="M0,230 C200,170 380,250 560,215 C760,175 900,240 1100,205 C1250,180 1360,210 1440,200 L1440,320 L0,320Z"/>
+        <path class="dune d2" d="M0,260 C160,225 330,280 520,250 C720,220 880,285 1080,255 C1240,232 1350,260 1440,250 L1440,320 L0,320Z"/>
+        <path class="dune d1" d="M0,290 C220,262 420,305 640,285 C860,265 1020,305 1240,288 C1340,280 1400,292 1440,288 L1440,320 L0,320Z"/>
+      </svg>
+    </div>
+    <div class="hero-inner">
+      <p class="eyebrow">MYP Personal Project</p>
+      <h1 class="glitch" data-text="A Guide to Stargazing in the UAE">A Guide to Stargazing<br>in the <span class="grad">UAE</span></h1>
+      <p class="lead">Learn to read the night sky over the desert: find constellations, navigate by the stars, and pick the darkest places in the Emirates.</p>
+      <button class="btn-launch" id="launch"><span>Launch</span><i aria-hidden="true">🚀</i></button>
+      <p class="hint">or scroll to explore</p>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ 2. SKY EXPLORER (planisphere) ============ -->
+    <section id="sky" class="section" data-title="Sky Explorer" data-icon="✶">
+      <div class="sec-head reveal">
+        <span class="sec-num">01</span>
+        <h2>Interactive Sky Explorer</h2>
+        <p>A live map of the whole sky above the UAE. The edge of the circle is the horizon and the centre is straight overhead. <strong>Drag the sky</strong> to turn time, <strong>click a constellation</strong> to learn about it, or switch on Quiz mode to test yourself.</p>
+      </div>
+
+      <div class="sky-wrap reveal">
+        <div class="sky-stage glass">
+          <canvas id="planisphere" aria-label="Star map of the sky above the UAE"></canvas>
+          <div class="sky-hud">
+            <span id="skyClock">--</span>
+            <span id="skyPlace">--</span>
+          </div>
+          <div class="quiz-banner" id="quizBanner" hidden>
+            <span>Find: <strong id="quizTarget">—</strong></span>
+            <span>Score: <strong id="quizScore">0 / 0</strong></span>
+          </div>
+        </div>
+
+        <aside class="sky-side">
+          <div class="glass controls">
+            <label>Location
+              <select id="placeSel"></select>
+            </label>
+            <label>Date <input type="date" id="dateIn"></label>
+            <label>Time (UAE) <output id="timeOut">21:00</output>
+              <input type="range" id="timeIn" min="0" max="1439" step="5" value="1260">
+            </label>
+            <div class="btn-row">
+              <button class="chip" id="nowBtn">Now</button>
+              <button class="chip" id="playBtn">▶ Play night</button>
+              <button class="chip" id="quizBtn">🎯 Quiz mode</button>
+            </div>
+            <div class="toggles">
+              <label><input type="checkbox" id="tLines" checked> Lines</label>
+              <label><input type="checkbox" id="tNames" checked> Names</label>
+              <label><input type="checkbox" id="tGrid"> Grid</label>
+              <label><input type="checkbox" id="tEcl"> Ecliptic</label>
+            </div>
+          </div>
+
+          <div class="glass info-card" id="infoCard">
+            <div class="info-empty">
+              <div class="pulse-star">✶</div>
+              <p>Click a constellation on the map or pick one below.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+      <div class="con-chips reveal" id="conChips"></div>
+    </section>
+
+    <!-- ============ 3. CELESTIAL NAVIGATION ============ -->
+    <section id="navigation" class="section" data-title="Navigation" data-icon="🧭">
+      <div class="sec-head reveal">
+        <span class="sec-num">02</span>
+        <h2>Celestial Navigation</h2>
+        <p>Before GPS, sailors and desert travellers used the stars to find direction. Arab navigators of the Gulf were masters of this. Work through each mission below.</p>
+      </div>
+      <div class="missions reveal">
+        <div class="mission-tabs" role="tablist"></div>
+        <div class="mission-body glass">
+          <svg id="navSvg" viewBox="0 0 600 380" role="img" aria-label="Navigation diagram"></svg>
+          <div class="mission-text">
+            <h3 id="mTitle"></h3>
+            <p id="mText"></p>
+            <div id="mControls"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4. CELESTIAL COORDINATES ============ -->
+    <section id="coordinates" class="section" data-title="Coordinates" data-icon="⌖">
+      <div class="sec-head reveal">
+        <span class="sec-num">03</span>
+        <h2>Celestial Coordinates</h2>
+        <p>Every star has an address. Tap a card to flip it, then drag the star in the dome to see how altitude and azimuth change.</p>
+      </div>
+      <div class="coord-grid">
+        <div class="flip-grid reveal" id="flipGrid"></div>
+        <div class="dome-box glass reveal">
+          <h3>Try it: Altitude & Azimuth</h3>
+          <svg id="dome" viewBox="0 0 320 320" aria-label="Sky dome, drag the star"></svg>
+          <div class="dome-read">
+            <div><span>Altitude</span><strong id="altOut">45°</strong></div>
+            <div><span>Azimuth</span><strong id="azOut">135° SE</strong></div>
+          </div>
+          <p class="small">You are lying on your back with your head to the north. The centre is the zenith; the edge is the horizon.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5. UAE MAP ============ -->
+    <section id="map" class="section" data-title="UAE Map" data-icon="📍">
+      <div class="sec-head reveal">
+        <span class="sec-num">04</span>
+        <h2>Where to Stargaze in the UAE</h2>
+        <p>Click a location to fly to it. Switch on the light-pollution layer to see why the best sites are far from the coast.</p>
+      </div>
+      <div class="map-wrap reveal">
+        <div class="loc-list" id="locList"></div>
+        <div class="map-box glass">
+          <div id="uaeMap"></div>
+          <label class="map-toggle"><input type="checkbox" id="glowToggle" checked> City light glow</label>
+        </div>
+      </div>
+      <p class="note reveal">Darkness ratings are approximate. Check them on <a href="https://www.lightpollutionmap.info" target="_blank" rel="noopener">lightpollutionmap.info</a> before you travel.</p>
+    </section>
+
+    <!-- ============ 6. LIGHT POLLUTION & CONDITIONS ============ -->
+    <section id="conditions" class="section" data-title="Conditions" data-icon="💡">
+      <div class="sec-head reveal">
+        <span class="sec-num">05</span>
+        <h2>Light Pollution & Conditions</h2>
+        <p>Slide from the city to the deep desert and watch the stars appear. The Bortle scale rates sky darkness from 1 (darkest) to 9 (city centre).</p>
+      </div>
+      <div class="lp-wrap reveal">
+        <div class="lp-sky glass">
+          <canvas id="lpCanvas"></canvas>
+          <div class="lp-label"><span id="lpClass">Bortle 9</span><small id="lpName"></small></div>
+        </div>
+        <div class="lp-side">
+          <input type="range" id="bortle" min="1" max="9" value="9" aria-label="Bortle class">
+          <div class="lp-scale"><span>🏜 Desert</span><span>🏙 Downtown</span></div>
+          <div class="glass lp-info">
+            <p id="lpText"></p>
+            <p><strong>UAE example:</strong> <span id="lpUae"></span></p>
+            <p><strong>Faintest star you can see:</strong> magnitude <span id="lpLimit"></span></p>
+          </div>
+          <div class="factors">
+            <button class="factor" data-f="humidity">💧<span>Humidity</span></button>
+            <button class="factor" data-f="dust">🌪<span>Dust & haze</span></button>
+            <button class="factor" data-f="moon">🌕<span>The Moon</span></button>
+            <button class="factor" data-f="heat">🌡<span>Heat</span></button>
+            <button class="factor" data-f="eyes">👁<span>Dark-adapted eyes</span></button>
+          </div>
+          <div class="glass factor-info" id="factorInfo">Tap a factor to see how it affects stargazing in the UAE.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 7. SKY CALENDAR ============ -->
+    <section id="calendar" class="section" data-title="Sky Calendar" data-icon="🗓">
+      <div class="sec-head reveal">
+        <span class="sec-num">06</span>
+        <h2>The UAE Sky Calendar</h2>
+        <p>Spin the wheel to pick a month. See what is up in the evening, which events to watch for, and what the weather is usually like.</p>
+      </div>
+      <div class="cal-wrap reveal">
+        <div class="wheel" id="wheel">
+          <div class="wheel-ring" id="wheelRing"></div>
+          <div class="wheel-center">
+            <span class="wc-month" id="wcMonth">Jan</span>
+            <span class="wc-stars" id="wcStars"></span>
+          </div>
+        </div>
+        <div class="glass cal-info">
+          <h3 id="calTitle"></h3>
+          <p><strong>Evening sky:</strong></p>
+          <div class="tagline" id="calCons"></div>
+          <p><strong>Event:</strong> <span id="calEvent"></span></p>
+          <p><strong>Conditions:</strong> <span id="calWeather"></span></p>
+          <button class="chip" id="calView">See this sky in the Sky Explorer ↑</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 8. TOOLS & APPS ============ -->
+    <section id="tools" class="section" data-title="Tools & Apps" data-icon="🔭">
+      <div class="sec-head reveal">
+        <span class="sec-num">07</span>
+        <h2>Tools & Technology</h2>
+        <p>Modern astronomy relies on digital star maps, location systems and large databases. These are the tools worth knowing.</p>
+      </div>
+      <div class="tool-grid reveal" id="toolGrid"></div>
+    </section>
+
+    <!-- ============ 9. SKILLS RUBRIC (placeholder) ============ -->
+    <section id="rubric" class="section" data-title="Skills Rubric" data-icon="📈">
+      <div class="sec-head reveal">
+        <span class="sec-num">08</span>
+        <h2>My Astronomy Skills Rubric</h2>
+        <p>How my skills grew from the beginning to the end of the project.</p>
+      </div>
+      <div class="rubric-frame reveal">
+        <div class="rubric-orbs">
+          <div class="orb"><span>Celestial coordinates</span></div>
+          <div class="orb"><span>Constellation identification</span></div>
+          <div class="orb"><span>Constellation mapping</span></div>
+          <div class="orb"><span>Navigation using stars</span></div>
+        </div>
+        <div class="rubric-stages">
+          <div class="stage glass"><h4>Beginning</h4><p class="placeholder">Results coming soon</p></div>
+          <div class="stage glass"><h4>During</h4><p class="placeholder">Results coming soon</p></div>
+          <div class="stage glass"><h4>End</h4><p class="placeholder">Results coming soon</p></div>
+        </div>
+        <div class="coming">🛰 Under construction. This section will be filled in with the skills rubric.</div>
+      </div>
+    </section>
+
+    <!-- ============ 10. ABOUT ============ -->
+    <section id="about" class="section" data-title="About" data-icon="🪐">
+      <div class="sec-head reveal">
+        <span class="sec-num">09</span>
+        <h2>About This Project</h2>
+      </div>
+      <div class="about-grid reveal">
+        <article class="glass tilt">
+          <h3>🎯 Learning goal</h3>
+          <p>To deepen my knowledge of celestial navigation and constellation mapping across the UAE, and to measure my progress with a personal astronomy skills rubric.</p>
+        </article>
+        <article class="glass tilt">
+          <h3>🌍 Global context</h3>
+          <p><strong>Scientific and technical innovation.</strong> This website uses digital tools to make scientific knowledge about the night sky easy to explore for anyone, even with no background in astronomy.</p>
+        </article>
+        <article class="glass tilt">
+          <h3>✨ Why the UAE?</h3>
+          <p>Star visibility in the UAE changes a lot with artificial light, buildings, location, humidity and dust. Comparing sites shows how the environment shapes what we can see.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ 11. SOURCES (placeholder) ============ -->
+    <section id="sources" class="section" data-title="Sources" data-icon="📚">
+      <div class="sec-head reveal">
+        <span class="sec-num">10</span>
+        <h2>Sources</h2>
+        <p>The full bibliography will be added here.</p>
+      </div>
+      <div class="glass sources-box reveal">
+        <p class="placeholder">Bibliography coming soon.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>A Guide to Stargazing in the UAE · MYP Personal Project</p>
+    <button class="chip" id="toTop">Back to orbit ↑</button>
+  </footer>
+
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/background.js"></script>
+  <script src="js/planisphere.js"></script>
+  <script src="js/sections.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
