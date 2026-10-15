@@ -302,7 +302,7 @@ const Sky = (() => {
   return {
     state, setTime, select, showBest, uaeParts, fromUae, visibility, compass,
     on(f) { listeners.push(f); },
-    setPlace(key) { state.place = PLACES[key]; emit("time", state.ms); },
+    setPlace(place) { state.place = place; emit("time", state.ms); },
     toggle(key, v) { state[key] = v; },
     play(v) { state.playing = v; },
     quizStart() { state.quiz = { target: null, score: 0, total: 0 }; state.selected = null; quizNext(); },

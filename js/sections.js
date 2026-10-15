@@ -311,7 +311,8 @@ const UAEMap = (() => {
   function popup(l) {
     return `<h4>${l.name}</h4><b>${l.emirate}</b> · Bortle ≈ ${l.bortle}<br>
       <b>Elevation:</b> ${l.elev}<br><b>Getting there:</b> ${l.drive}<br>
-      <p>${l.why}</p><p><b>Tip:</b> ${l.tips}</p>`;
+      <p>${l.why}</p><p><b>Tip:</b> ${l.tips}</p>
+      <button class="chip" onclick="viewSkyFrom(${LOCATIONS.indexOf(l)})">✶ See the sky from here</button>`;
   }
 
   function init() {

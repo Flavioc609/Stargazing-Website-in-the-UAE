@@ -72,26 +72,80 @@
   /* =======================================================
      SKY EXPLORER controls
      ======================================================= */
-  const placeSel = $("#placeSel"), dateIn = $("#dateIn"), timeIn = $("#timeIn"), timeOut = $("#timeOut");
-  Object.entries(PLACES).forEach(([k, p]) => placeSel.add(new Option(`${p.name} (${p.lat.toFixed(1)}°N)`, k)));
-  placeSel.onchange = () => Sky.setPlace(placeSel.value);
-
+  const timeIn = $("#timeIn"), timeOut = $("#timeOut");
   const pad = n => String(n).padStart(2, "0");
+
+  // Step 1: place (stargazing sites from the map, or custom coordinates)
+  const placeGrid = $("#placeGrid");
+  const placeBtns = LOCATIONS.map((l, i) => {
+    const b = document.createElement("button");
+    b.className = "place-card";
+    b.innerHTML = `<strong>${l.name}</strong><small>${l.emirate}</small><span>${l.lat.toFixed(2)}°N · ${l.lon.toFixed(2)}°E</span>`;
+    b.onclick = () => pickPlace({ name: l.name, lat: l.lat, lon: l.lon }, i);
+    placeGrid.appendChild(b);
+    return b;
+  });
+  function pickPlace(place, index) {
+    Sky.setPlace(place);
+    placeBtns.forEach((b, k) => b.classList.toggle("active", k === index));
+  }
+  window.viewSkyFrom = i => {
+    const l = LOCATIONS[i];
+    pickPlace({ name: l.name, lat: l.lat, lon: l.lon }, i);
+    document.getElementById("sky").scrollIntoView({ behavior: "smooth" });
+  };
+  $("#coordBtn").onclick = () => {
+    const lat = parseFloat($("#latIn").value), lon = parseFloat($("#lonIn").value), msg = $("#coordMsg");
+    if (!(lat >= 22.6 && lat <= 26.1 && lon >= 51.5 && lon <= 56.4)) {
+      msg.textContent = "Those coordinates are outside the UAE. Use latitude 22.6–26.1 °N and longitude 51.5–56.4 °E.";
+      msg.style.color = "#ff9c9c";
+      return;
+    }
+    msg.textContent = "Showing the sky from your coordinates."; msg.style.color = "";
+    pickPlace({ name: "Custom location", lat, lon }, -1);
+  };
+
+  // Step 2: month
+  const monthGrid = $("#monthGrid");
+  const monthBtns = MONTHS.map((m, i) => {
+    const b = document.createElement("button");
+    b.className = "month-btn";
+    b.innerHTML = `${m.m}<i>${"★".repeat(m.rating)}</i>`;
+    b.title = `${m.full}: ${m.weather}`;
+    b.onclick = () => {
+      const y = Sky.uaeParts(Sky.state.ms).y;
+      Sky.setTime(Sky.fromUae(y, i, 15, +timeIn.value));
+    };
+    monthGrid.appendChild(b);
+    return b;
+  });
+
+  // Step 3: time of night
+  timeIn.oninput = () => {
+    const p = Sky.uaeParts(Sky.state.ms);
+    Sky.setTime(Sky.fromUae(p.y, p.m, p.d, +timeIn.value));
+  };
+
+  // Summary: what this place and month mean for the sky
   function syncInputs(ms) {
-    const p = Sky.uaeParts(ms);
-    dateIn.value = `${p.y}-${pad(p.m + 1)}-${pad(p.d)}`;
+    const p = Sky.uaeParts(ms), place = Sky.state.place;
     timeIn.value = p.h * 60 + p.min;
     timeOut.textContent = `${pad(p.h)}:${pad(p.min)}`;
-    $("#skyClock").textContent = `${p.d} ${MONTHS[p.m].full} ${p.y} · ${pad(p.h)}:${pad(p.min)} UAE`;
-    $("#skyPlace").textContent = `${Sky.state.place.name} · ${Sky.state.place.lat.toFixed(2)}°N`;
+    monthBtns.forEach((b, i) => b.classList.toggle("active", i === p.m));
+    $("#skyClock").textContent = `${p.d} ${MONTHS[p.m].full} · ${pad(p.h)}:${pad(p.min)} UAE`;
+    $("#skyPlace").textContent = `${place.name} · ${place.lat.toFixed(2)}°N ${place.lon.toFixed(2)}°E`;
+
+    const up = CONSTELLATIONS.filter(c => Sky.visibility(c).alt > 0).length;
+    const polaris = place.lat, suhail = 90 - place.lat - 52.70, acrux = 90 - place.lat - 63.10;
+    const m = MONTHS[p.m];
+    $("#sumMain").innerHTML = `Sky from <strong>${place.name}</strong> (${place.lat.toFixed(2)}°N, ${place.lon.toFixed(2)}°E) on <strong>${p.d} ${m.full}</strong> at <strong>${pad(p.h)}:${pad(p.min)}</strong>`;
+    $("#sumFacts").innerHTML = `
+      <span><b>${up}</b> of ${CONSTELLATIONS.length} featured constellations above the horizon</span>
+      <span>Polaris: <b>${polaris.toFixed(1)}°</b> above due north</span>
+      <span>Suhail (Canopus) can reach <b>${suhail.toFixed(1)}°</b> high</span>
+      <span>Acrux (Southern Cross) can reach <b>${acrux.toFixed(1)}°</b> high</span>
+      <span>${m.full} conditions: <b>${"★".repeat(m.rating)}${"☆".repeat(5 - m.rating)}</b></span>`;
   }
-  function fromInputs() {
-    const [y, m, d] = dateIn.value.split("-").map(Number);
-    if (!y) return;
-    Sky.setTime(Sky.fromUae(y, m - 1, d, +timeIn.value));
-  }
-  dateIn.onchange = fromInputs;
-  timeIn.oninput = fromInputs;
 
   $("#nowBtn").onclick = () => Sky.setTime(Date.now());
   const playBtn = $("#playBtn");
@@ -169,7 +223,9 @@
     }
   });
 
-  // start at 21:00 tonight (UAE time)
+  // start at Al Qudra, 21:00 tonight (UAE time)
+  const q = LOCATIONS.findIndex(l => l.name === "Al Qudra Lakes");
+  pickPlace({ name: LOCATIONS[q].name, lat: LOCATIONS[q].lat, lon: LOCATIONS[q].lon }, q);
   const p = Sky.uaeParts(Date.now());
   Sky.setTime(Sky.fromUae(p.y, p.m, p.d, 21 * 60));
   addEventListener("load", () => Sky.resize());

@@ -51,7 +51,36 @@
       <div class="sec-head reveal">
         <span class="sec-num">01</span>
         <h2>Interactive Sky Explorer</h2>
-        <p>A live map of the whole sky above the UAE. The edge of the circle is the horizon and the centre is straight overhead. <strong>Drag the sky</strong> to turn time, <strong>click a constellation</strong> to learn about it, or switch on Quiz mode to test yourself.</p>
+        <p>The stars you can see depend on <strong>where you are</strong> and <strong>what time of year it is</strong>. Pick a place and a month first, then explore the sky. The edge of the circle is the horizon and the centre is straight overhead.</p>
+      </div>
+
+      <!-- Step selectors: place, month, time -->
+      <div class="sky-setup reveal">
+        <div class="setup-step glass">
+          <h3><span class="step-n">1</span> Where are you stargazing?</h3>
+          <div class="place-grid" id="placeGrid"></div>
+          <details class="custom-coords">
+            <summary>Or enter your own coordinates (UAE only)</summary>
+            <div class="coord-row">
+              <label>Latitude °N <input type="number" id="latIn" min="22.6" max="26.1" step="0.01" placeholder="24.45"></label>
+              <label>Longitude °E <input type="number" id="lonIn" min="51.5" max="56.4" step="0.01" placeholder="54.38"></label>
+              <button class="chip" id="coordBtn">Use these</button>
+            </div>
+            <p class="small" id="coordMsg">Latitude 22.6–26.1 °N, longitude 51.5–56.4 °E.</p>
+          </details>
+        </div>
+        <div class="setup-step glass">
+          <h3><span class="step-n">2</span> What month is it?</h3>
+          <div class="month-grid" id="monthGrid"></div>
+          <h3 class="mt"><span class="step-n">3</span> What time? <output id="timeOut">21:00</output></h3>
+          <input type="range" id="timeIn" min="0" max="1439" step="5" value="1260" aria-label="Time of night (UAE time)">
+          <div class="time-scale"><span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>24:00</span></div>
+        </div>
+      </div>
+
+      <div class="sky-summary glass reveal" id="skySummary">
+        <div class="sum-main" id="sumMain">--</div>
+        <div class="sum-facts" id="sumFacts"></div>
       </div>
 
       <div class="sky-wrap reveal">
@@ -69,13 +98,6 @@
 
         <aside class="sky-side">
           <div class="glass controls">
-            <label>Location
-              <select id="placeSel"></select>
-            </label>
-            <label>Date <input type="date" id="dateIn"></label>
-            <label>Time (UAE) <output id="timeOut">21:00</output>
-              <input type="range" id="timeIn" min="0" max="1439" step="5" value="1260">
-            </label>
             <div class="btn-row">
               <button class="chip" id="nowBtn">Now</button>
               <button class="chip" id="playBtn">▶ Play night</button>

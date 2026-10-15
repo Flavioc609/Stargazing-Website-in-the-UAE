@@ -14,7 +14,7 @@ Then go to http://localhost:8000.
 
 ## Sections
 
-1. **Sky Explorer**: live all-sky star map for UAE locations. You can drag it to change the time, click constellations for information, and use Quiz mode.
+1. **Sky Explorer**: pick a stargazing location (or your own UAE coordinates), a month and a time first; the live all-sky star map then shows the sky for that place and date. You can drag it to change the time, click constellations for information, and use Quiz mode.
 2. **Celestial Navigation**: five missions (find Polaris, Polaris = latitude, east/west with Orion, finding south, Suhail).
 3. **Celestial Coordinates**: flip cards plus a draggable altitude/azimuth dome.
 4. **UAE Map**: stargazing locations on a map, with a city light-glow layer.
