@@ -15,14 +15,14 @@ Then go to http://localhost:8000.
 ## Sections
 
 1. **Sky Explorer**: pick a stargazing location (or your own UAE coordinates), a month and a time first; the live all-sky star map then shows the sky for that place and date. You can drag it to change the time, click constellations for information, and use Quiz mode.
-2. **Celestial Navigation**: five missions (find Polaris, Polaris = latitude, east/west with Orion, finding south, Suhail).
+2. **Celestial Navigation**: five guided missions for beginners (find north, latitude from Polaris, east/west with Orion, finding south, Suhail). Each one explains key words, walks through steps that change the diagram, and ends with a check question.
 3. **Celestial Coordinates**: flip cards plus a draggable altitude/azimuth dome.
 4. **UAE Map**: stargazing locations on a map, with a city light-glow layer.
 5. **Light Pollution & Conditions**: Bortle-scale simulator plus UAE weather factors.
 6. **Sky Calendar**: month wheel showing what is visible, events and conditions.
 7. **Tools & Apps**
-8. **Skills Rubric**: placeholder, to be filled in.
-9. **About** and **Sources** (bibliography placeholder).
+
+8. **About** and **Sources** (bibliography placeholder).
 
 ## Editing content
 

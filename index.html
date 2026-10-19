@@ -127,16 +127,38 @@
       <div class="sec-head reveal">
         <span class="sec-num">02</span>
         <h2>Celestial Navigation</h2>
-        <p>Before GPS, sailors and desert travellers used the stars to find direction. Arab navigators of the Gulf were masters of this. Work through each mission below.</p>
+        <p>Before GPS, sailors and desert travellers used the stars to find their way. You do not need any prior knowledge: each mission explains the key words first, then guides you step by step. Finish with a quick question to check you understood.</p>
       </div>
       <div class="missions reveal">
         <div class="mission-tabs" role="tablist"></div>
         <div class="mission-body glass">
-          <svg id="navSvg" viewBox="0 0 600 380" role="img" aria-label="Navigation diagram"></svg>
+          <div class="mission-visual">
+            <svg id="navSvg" viewBox="0 0 600 380" role="img" aria-label="Navigation diagram"></svg>
+            <div id="mControls"></div>
+          </div>
           <div class="mission-text">
             <h3 id="mTitle"></h3>
-            <p id="mText"></p>
-            <div id="mControls"></div>
+            <p class="m-intro" id="mIntro"></p>
+            <div class="m-terms">
+              <span class="m-label">Key words · tap to read</span>
+              <div class="term-chips" id="mTerms"></div>
+              <div class="term-def" id="mTermDef" hidden></div>
+            </div>
+            <div class="m-step">
+              <div class="m-step-head"><span id="mStepNum"></span><div class="step-dots" id="mDots"></div></div>
+              <p id="mStepText"></p>
+              <div class="btn-row">
+                <button class="chip" id="mPrev">← Back</button>
+                <button class="chip next" id="mNext">Next step →</button>
+              </div>
+            </div>
+            <div class="m-quiz" id="mQuiz" hidden>
+              <span class="m-label">✔ Check yourself</span>
+              <p id="mQText"></p>
+              <div class="quiz-opts" id="mQOpts"></div>
+              <p class="quiz-fb" id="mQFb"></p>
+            </div>
+            <p class="m-tip" id="mTip"></p>
           </div>
         </div>
       </div>
@@ -248,33 +270,10 @@
       <div class="tool-grid reveal" id="toolGrid"></div>
     </section>
 
-    <!-- ============ 9. SKILLS RUBRIC (placeholder) ============ -->
-    <section id="rubric" class="section" data-title="Skills Rubric" data-icon="📈">
-      <div class="sec-head reveal">
-        <span class="sec-num">08</span>
-        <h2>My Astronomy Skills Rubric</h2>
-        <p>How my skills grew from the beginning to the end of the project.</p>
-      </div>
-      <div class="rubric-frame reveal">
-        <div class="rubric-orbs">
-          <div class="orb"><span>Celestial coordinates</span></div>
-          <div class="orb"><span>Constellation identification</span></div>
-          <div class="orb"><span>Constellation mapping</span></div>
-          <div class="orb"><span>Navigation using stars</span></div>
-        </div>
-        <div class="rubric-stages">
-          <div class="stage glass"><h4>Beginning</h4><p class="placeholder">Results coming soon</p></div>
-          <div class="stage glass"><h4>During</h4><p class="placeholder">Results coming soon</p></div>
-          <div class="stage glass"><h4>End</h4><p class="placeholder">Results coming soon</p></div>
-        </div>
-        <div class="coming">🛰 Under construction. This section will be filled in with the skills rubric.</div>
-      </div>
-    </section>
-
     <!-- ============ 10. ABOUT ============ -->
     <section id="about" class="section" data-title="About" data-icon="🪐">
       <div class="sec-head reveal">
-        <span class="sec-num">09</span>
+        <span class="sec-num">08</span>
         <h2>About This Project</h2>
       </div>
       <div class="about-grid reveal">
@@ -296,7 +295,7 @@
     <!-- ============ 11. SOURCES (placeholder) ============ -->
     <section id="sources" class="section" data-title="Sources" data-icon="📚">
       <div class="sec-head reveal">
-        <span class="sec-num">10</span>
+        <span class="sec-num">09</span>
         <h2>Sources</h2>
         <p>The full bibliography will be added here.</p>
       </div>
