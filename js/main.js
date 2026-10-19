@@ -75,7 +75,7 @@
   const timeIn = $("#timeIn"), timeOut = $("#timeOut");
   const pad = n => String(n).padStart(2, "0");
 
-  // Step 1: place (stargazing sites from the map, or custom coordinates)
+  // Step 1: place (UAE stargazing sites, or custom coordinates)
   const placeGrid = $("#placeGrid");
   const placeBtns = LOCATIONS.map((l, i) => {
     const b = document.createElement("button");
@@ -85,15 +85,21 @@
     placeGrid.appendChild(b);
     return b;
   });
+  const bortleColor = b => `hsl(${130 - (b - 1) * 16}, 80%, 55%)`;
   function pickPlace(place, index) {
     Sky.setPlace(place);
     placeBtns.forEach((b, k) => b.classList.toggle("active", k === index));
+    const info = $("#placeInfo"), l = LOCATIONS[index];
+    info.innerHTML = l ? `
+      <div class="pi-head"><strong>${l.name}</strong>
+        <span class="bortle-pill" style="color:${bortleColor(l.bortle)};border-color:${bortleColor(l.bortle)}">Darkness: Bortle ≈ ${l.bortle}</span></div>
+      <p>${l.why}</p>
+      <p><b>Elevation:</b> ${l.elev} · <b>Getting there:</b> ${l.drive}</p>
+      <p><b>Tip:</b> ${l.tips}</p>
+      <p class="small">Bortle scale: 1 = darkest sky, 9 = city centre (see Light Pollution below). Ratings are approximate.</p>`
+      : `<p>Custom location: ${place.lat.toFixed(2)}°N, ${place.lon.toFixed(2)}°E.</p>`;
+    info.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300 });
   }
-  window.viewSkyFrom = i => {
-    const l = LOCATIONS[i];
-    pickPlace({ name: l.name, lat: l.lat, lon: l.lon }, i);
-    document.getElementById("sky").scrollIntoView({ behavior: "smooth" });
-  };
   $("#coordBtn").onclick = () => {
     const lat = parseFloat($("#latIn").value), lon = parseFloat($("#lonIn").value), msg = $("#coordMsg");
     if (!(lat >= 22.6 && lat <= 26.1 && lon >= 51.5 && lon <= 56.4)) {

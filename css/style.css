@@ -245,6 +245,11 @@ input[type=range] { accent-color: var(--accent); width: 100%; }
 .place-card span { color: var(--accent); font-size: 11px; font-family: var(--display); letter-spacing: .03em; }
 .place-card:hover { transform: translateY(-3px); border-color: var(--accent); }
 .place-card.active { background: linear-gradient(135deg, rgba(124,242,255,.22), rgba(183,140,255,.22)); border-color: var(--accent); box-shadow: 0 0 22px rgba(124,242,255,.3); }
+.place-info { margin-top: 14px; padding: 14px 16px; border-radius: 14px; background: rgba(124,242,255,.05); border: 1px solid rgba(124,242,255,.2); font-size: 14px; }
+.place-info p { margin: 6px 0; }
+.pi-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.pi-head strong { color: var(--gold); font-family: var(--display); font-size: 15px; }
+.bortle-pill { font-family: var(--display); font-size: 11px; padding: 4px 10px; border-radius: 10px; border: 1px solid; }
 .custom-coords { margin-top: 14px; font-size: 14px; }
 .custom-coords summary { cursor: pointer; color: var(--accent); }
 .coord-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; margin-top: 10px; }
@@ -349,32 +354,6 @@ input[type=range] { accent-color: var(--accent); width: 100%; }
 .dome-read span { display: block; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; }
 .dome-read strong { font-family: var(--display); color: var(--gold); font-size: 22px; }
 
-/* ---------- MAP ---------- */
-.map-wrap { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 20px; }
-.loc-list { display: flex; flex-direction: column; gap: 10px; max-height: 600px; overflow: auto; padding-right: 4px; }
-.loc {
-  text-align: left; cursor: pointer; color: var(--ink);
-  background: var(--glass); border: 1px solid var(--glass-b); border-radius: 14px; padding: 12px 14px;
-  transition: all .25s; display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; align-items: center;
-}
-.loc:hover, .loc.active { border-color: var(--accent); transform: translateX(6px); box-shadow: 0 0 20px rgba(124,242,255,.2); }
-.loc strong { font-size: 15px; }
-.loc small { color: var(--muted); grid-column: 1; }
-.bortle-pill { grid-row: 1 / span 2; grid-column: 2; font-family: var(--display); font-size: 12px; padding: 6px 10px; border-radius: 10px; }
-.map-box { position: relative; padding: 8px; height: 600px; }
-#uaeMap { width: 100%; height: 100%; border-radius: 14px; background: #05060f; }
-.map-toggle { position: absolute; top: 18px; right: 18px; z-index: 500; background: rgba(0,0,0,.7); padding: 6px 12px; border-radius: 10px; font-size: 13px; cursor: pointer; }
-.leaflet-popup-content-wrapper, .leaflet-popup-tip { background: #0b1030; color: var(--ink); border: 1px solid var(--glass-b); }
-.leaflet-popup-content { font-family: var(--font); font-size: 13px; line-height: 1.5; }
-.leaflet-popup-content h4 { font-family: var(--display); color: var(--gold); margin: 0 0 4px; font-size: 15px; }
-.leaflet-container a.leaflet-popup-close-button { color: var(--ink); }
-.star-pin { width: 22px; height: 22px; display: grid; place-items: center; }
-.star-pin i {
-  width: 12px; height: 12px; border-radius: 50%; background: var(--gold);
-  box-shadow: 0 0 0 4px rgba(255,207,122,.25), 0 0 18px var(--gold); animation: pinPulse 2s infinite;
-}
-@keyframes pinPulse { 50% { box-shadow: 0 0 0 10px rgba(255,207,122,0), 0 0 24px var(--gold); } }
-
 /* ---------- LIGHT POLLUTION ---------- */
 .lp-wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; align-items: start; }
 .lp-sky { position: relative; height: 460px; overflow: hidden; padding: 0; }
@@ -447,10 +426,7 @@ input[type=range] { accent-color: var(--accent); width: 100%; }
 /* ---------- Responsive ---------- */
 @media (max-width: 1000px) {
   .mission-visual { top: 6px; z-index: 3; background: #070a1c; border-radius: 14px; padding-bottom: 6px; }
-  .sky-setup, .sky-wrap, .mission-body, .coord-grid, .map-wrap, .lp-wrap, .cal-wrap { grid-template-columns: 1fr; }
-  .loc-list { max-height: none; flex-direction: row; overflow-x: auto; }
-  .loc { min-width: 240px; }
-  .map-box { height: 460px; }
+  .sky-setup, .sky-wrap, .mission-body, .coord-grid, .lp-wrap, .cal-wrap { grid-template-columns: 1fr; }
   .about-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {

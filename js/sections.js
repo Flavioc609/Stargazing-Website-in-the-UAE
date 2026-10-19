@@ -1,5 +1,5 @@
 /* =========================================================
-   SECTIONS — navigation missions, coordinates, map,
+   SECTIONS — navigation missions, coordinates,
    light pollution, calendar, tools
    ========================================================= */
 const $ = (s, el = document) => el.querySelector(s);
@@ -496,60 +496,6 @@ const Nav = (() => {
   svg.addEventListener("pointermove", e => { if (dragging) setPos(...pt(e)); });
   svg.addEventListener("pointerup", () => { dragging = false; });
   setPos(C - 50, C + 50);
-})();
-
-/* ---------------------------------------------------------
-   UAE MAP (Leaflet)
-   --------------------------------------------------------- */
-const UAEMap = (() => {
-  const list = $("#locList");
-  const bortleColor = b => `hsl(${130 - (b - 1) * 16}, 80%, 55%)`;
-  let map = null, markers = [], glow = null;
-
-  LOCATIONS.forEach((l, i) => {
-    const b = document.createElement("button");
-    b.className = "loc";
-    b.innerHTML = `<strong>${l.name}</strong><small>${l.emirate} · ${l.drive}</small>
-      <span class="bortle-pill" style="background:${bortleColor(l.bortle)}22;color:${bortleColor(l.bortle)};border:1px solid ${bortleColor(l.bortle)}">B${l.bortle}</span>`;
-    b.onclick = () => focus(i);
-    list.appendChild(b);
-  });
-
-  function popup(l) {
-    return `<h4>${l.name}</h4><b>${l.emirate}</b> · Bortle ≈ ${l.bortle}<br>
-      <b>Elevation:</b> ${l.elev}<br><b>Getting there:</b> ${l.drive}<br>
-      <p>${l.why}</p><p><b>Tip:</b> ${l.tips}</p>
-      <button class="chip" onclick="viewSkyFrom(${LOCATIONS.indexOf(l)})">✶ See the sky from here</button>`;
-  }
-
-  function init() {
-    if (map || typeof L === "undefined") return;
-    map = L.map("uaeMap", { zoomControl: true, scrollWheelZoom: false }).setView([24.4, 54.6], 7);
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
-      subdomains: "abcd", maxZoom: 18
-    }).addTo(map);
-
-    glow = L.layerGroup(CITY_GLOW.flatMap(c => [1, 0.6, 0.3].map(f => L.circle([c.lat, c.lon], {
-      radius: c.r * (1.6 - f), stroke: false, fillColor: "#ffb347", fillOpacity: 0.12 * f + 0.04, interactive: false
-    })))).addTo(map);
-
-    const icon = L.divIcon({ className: "star-pin", html: "<i></i>", iconSize: [22, 22] });
-    markers = LOCATIONS.map((l, i) => L.marker([l.lat, l.lon], { icon, title: l.name }).addTo(map).bindPopup(popup(l)).on("click", () => highlight(i)));
-  }
-  function highlight(i) { $$(".loc", list).forEach((b, k) => b.classList.toggle("active", k === i)); }
-  function focus(i) {
-    init(); highlight(i);
-    if (!map) return;
-    const l = LOCATIONS[i];
-    map.flyTo([l.lat, l.lon], 10, { duration: 1.6 });
-    setTimeout(() => markers[i].openPopup(), 1650);
-  }
-  $("#glowToggle").onchange = e => { if (!map) return; e.target.checked ? glow.addTo(map) : map.removeLayer(glow); };
-
-  // build the map once it scrolls into view (Leaflet needs a visible box)
-  new IntersectionObserver((en, ob) => { if (en[0].isIntersecting) { init(); setTimeout(() => map && map.invalidateSize(), 300); ob.disconnect(); } }, { rootMargin: "200px" }).observe($("#uaeMap"));
-  return { focus };
 })();
 
 /* ---------------------------------------------------------

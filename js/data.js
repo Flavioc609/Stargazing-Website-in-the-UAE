@@ -325,17 +325,6 @@ const LOCATIONS = [
   }
 ];
 
-// City sky-glow sources (for the light-pollution map layer)
-const CITY_GLOW = [
-  { name: "Dubai", lat: 25.20, lon: 55.27, r: 38000 },
-  { name: "Abu Dhabi", lat: 24.47, lon: 54.37, r: 32000 },
-  { name: "Sharjah", lat: 25.35, lon: 55.42, r: 24000 },
-  { name: "Al Ain", lat: 24.21, lon: 55.74, r: 16000 },
-  { name: "Ras Al Khaimah", lat: 25.79, lon: 55.94, r: 13000 },
-  { name: "Fujairah", lat: 25.12, lon: 56.33, r: 10000 },
-  { name: "Ruwais", lat: 24.11, lon: 52.73, r: 9000 }
-];
-
 // Bortle dark-sky scale
 const BORTLE = [
   null,
