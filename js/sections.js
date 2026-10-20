@@ -24,14 +24,15 @@ const conById = id => CONSTELLATIONS.find(c => c.id === id);
 
 /* ---------------------------------------------------------
    CELESTIAL NAVIGATION MISSIONS
-   Each mission: an intro, key words, guided steps that
-   change the diagram, and a check-yourself question.
+   Each mission: an intro, key words, guided steps (what to do
+   + why), a picture legend, and a check-yourself question.
    --------------------------------------------------------- */
 const Nav = (() => {
   const svg = $("#navSvg"), tabs = $(".mission-tabs"), ctrl = $("#mControls");
   const el = {
     title: $("#mTitle"), intro: $("#mIntro"), terms: $("#mTerms"), def: $("#mTermDef"),
-    num: $("#mStepNum"), dots: $("#mDots"), text: $("#mStepText"), prev: $("#mPrev"), next: $("#mNext"),
+    num: $("#mStepNum"), dots: $("#mDots"), text: $("#mStepText"), why: $("#mStepWhy"),
+    prev: $("#mPrev"), next: $("#mNext"), view: $("#mView"), legend: $("#mLegend"),
     quiz: $("#mQuiz"), qText: $("#mQText"), qOpts: $("#mQOpts"), qFb: $("#mQFb"), tip: $("#mTip")
   };
   const done = new Set();
@@ -51,11 +52,18 @@ const Nav = (() => {
   function ring(g, x, y, r = 14, color = GOLD) {
     svgEl("circle", { cx: x, cy: y, r, fill: "none", stroke: color, "stroke-width": 2, class: "hl-ring" }, g);
   }
+  // a small boxed note with a pointer line, used to explain parts of the picture
+  function note(g, x, y, str, tx, ty, color = "#e9ecff") {
+    if (tx !== undefined) svgEl("line", { x1: x, y1: y, x2: tx, y2: ty, stroke: "rgba(233,236,255,.5)", "stroke-dasharray": "2 3" }, g);
+    const t = text(g, x, y, str, { fill: color, "font-size": 11.5 });
+    const b = t.getBBox();
+    const r = svgEl("rect", { x: b.x - 6, y: b.y - 3, width: b.width + 12, height: b.height + 6, rx: 6, fill: "rgba(5,7,22,.85)", stroke: "rgba(233,236,255,.25)" }, g);
+    g.insertBefore(r, t);
+  }
   function ground(g, y, labels = []) {
     svgEl("rect", { x: 0, y, width: 600, height: 380 - y, fill: "#0a0714" }, g);
     svgEl("line", { x1: 0, y1: y, x2: 600, y2: y, stroke: GOLD, "stroke-opacity": .6 }, g);
     labels.forEach(([lab, x]) => text(g, x, y + 22, lab, { fill: GOLD, "font-size": 14, "text-anchor": "middle", "font-family": "Orbitron" }));
-    text(g, 590, y - 6, "horizon", { fill: "rgba(255,207,122,.55)", "font-size": 10, "text-anchor": "end" });
   }
   function lines(g, c, pts, color, width = 1.2) {
     c.lines.forEach(ch => svgEl("polyline", { points: ch.map(i => pts[i].join(",")).join(" "), fill: "none", stroke: color, "stroke-width": width }, g));
@@ -67,11 +75,22 @@ const Nav = (() => {
   }
   const sByName = (c, n) => c.stars.findIndex(s => s[0] === n);
 
+  // legend swatches
+  const SW = {
+    star: '<i class="sw sw-star"></i>', gold: '<i class="sw sw-star gold"></i>', red: '<i class="sw sw-star red"></i>',
+    shape: '<i class="sw sw-line"></i>', goldline: '<i class="sw sw-line gold"></i>', dash: '<i class="sw sw-dash"></i>',
+    golddash: '<i class="sw sw-dash gold"></i>', hz: '<i class="sw sw-hz"></i>', ring: '<i class="sw sw-ring"></i>',
+    arrow: '<i class="sw sw-arrow">↓</i>', fist: '<i class="sw sw-fist">✊</i>', grid: '<i class="sw sw-grid"></i>',
+    dawn: '<i class="sw sw-dawn"></i>', person: '<i class="sw sw-fist">🧍</i>', slice: '<i class="sw sw-slice"></i>'
+  };
+  const HORIZON = [SW.hz, "<b>Gold line at the bottom</b> = the horizon, where the ground meets the sky. Letters under it are compass directions."];
+
   // ---------- missions ----------
   const missions = [
     {
       name: "Find north",
       title: "Mission 1 · Find north with the North Star",
+      view: "🔭 The picture shows: the northern part of the night sky",
       intro: "Polaris, the North Star, sits almost exactly above Earth’s North Pole. So while every other star moves across the sky during the night, Polaris stays in the same place, always in the north. Find Polaris and you know which way north is.",
       terms: [
         ["Constellation", "A group of stars that people have joined into a picture or pattern, like a dot-to-dot drawing in the sky."],
@@ -80,11 +99,21 @@ const Nav = (() => {
         ["Pointer stars", "Dubhe and Merak: the two stars on the outer edge of the Big Dipper’s bowl. A line through them points to Polaris."]
       ],
       steps: [
-        "Face north and look for seven bright stars in the shape of a big spoon. This is the Big Dipper (highlighted in gold).",
-        "Find the two stars on the outer edge of the spoon’s bowl: Merak and Dubhe. These are the “pointer stars”.",
-        "Imagine a line from Merak through Dubhe, and keep going. Measure the gap between the two pointer stars, then count about 5 of those gaps along the line.",
-        "You reach a star on its own: Polaris. Drop a line straight down from Polaris to the horizon. That point on the horizon is due north.",
-        "Now drag the slider to move time. The whole sky turns around Polaris during the night, but the pointer stars always point at it."
+        { do: "Look at the picture. Each white dot is a star. Find the seven stars joined by gold lines, shaped like a big spoon. This is the Big Dipper.",
+          why: "The Big Dipper is one of the easiest star patterns to recognise, so stargazers use it as the starting point for finding the North Star.",
+          legend: [[SW.star, "<b>White dots</b> = stars. Bigger dots are brighter stars."], [SW.goldline, "<b>Gold lines</b> = the Big Dipper’s spoon shape. The lines are not in the real sky; they help you see the pattern."], [SW.shape, "<b>Faint blue lines</b> = other star patterns nearby."]] },
+        { do: "Find the two stars circled in gold, at the outer edge of the spoon’s bowl. They are called Merak and Dubhe.",
+          why: "These two are the “pointer stars”: a straight line through them points almost exactly at the North Star.",
+          legend: [[SW.ring, "<b>Pulsing gold circles</b> = the stars to look at in this step."], [SW.goldline, "<b>Gold lines</b> = the Big Dipper."]] },
+        { do: "Follow the blue dashed line from Merak, through Dubhe, and onwards. Each numbered dot is one “gap”: the distance between Merak and Dubhe. Count 5 gaps.",
+          why: "Measuring in gaps needs no tools and works at any time of night, because the gap stays the same size even as the stars move.",
+          legend: [[SW.dash, "<b>Blue dashed line</b> = the imaginary line from the pointer stars."], [SW.star, "<b>Numbers 1–5</b> = how many gaps you have counted."]] },
+        { do: "At the end of the line is Polaris, the North Star (in gold). The gold arrow drops straight down from Polaris to the horizon.",
+          why: "The spot on the horizon under Polaris is due north. Once you know north, you know the rest: south is behind you, east is on your right and west is on your left.",
+          legend: [[SW.gold, "<b>Gold star</b> = Polaris, the North Star."], [SW.arrow, "<b>Gold arrow</b> = straight down to the horizon, showing due north."]] },
+        { do: "Drag the slider under the picture. It moves time forward through the night.",
+          why: "Watch the whole sky turn around Polaris while the pointer stars keep pointing at it. This proves the method works at any time of night. The W-shaped pattern is Cassiopeia, a backup when the Big Dipper is low.",
+          legend: [[SW.gold, "<b>Polaris</b> stays still in the middle while everything turns around it."], [SW.shape, "<b>W shape</b> = Cassiopeia, on the other side of Polaris."]] }
       ],
       quiz: {
         q: "Why is Polaris useful for finding north?",
@@ -96,7 +125,7 @@ const Nav = (() => {
       state: { rot: 20 },
       controls(s, render) {
         const lab = document.createElement("label");
-        lab.innerHTML = 'Move time through the night <input type="range" min="0" max="360" value="20">';
+        lab.innerHTML = '👆 Drag to move time through the night <input type="range" min="0" max="360" value="20">';
         lab.querySelector("input").oninput = e => { s.rot = +e.target.value; render(); };
         return [{ el: lab, from: 4 }];
       },
@@ -112,34 +141,41 @@ const Nav = (() => {
         ca.stars.forEach((x, i) => star(g, caP[i][0], caP[i][1], x[3]));
         um.stars.forEach((x, i) => star(g, umP[i][0], umP[i][1], x[3]));
         if (step >= 4) { const c = caP[2]; text(g, c[0] + 12, c[1] + 18, "Cassiopeia (W)", { fill: "#aab4e8", "font-size": 11 }); }
-        if (step === 0) { const c = umP[3]; text(g, c[0] + 10, c[1] - 14, "Big Dipper", { fill: GOLD, "font-size": 14, "font-family": "Orbitron" }); }
+        if (step === 0) {
+          const c = umP[3]; text(g, c[0] + 10, c[1] - 14, "Big Dipper", { fill: GOLD, "font-size": 14, "font-family": "Orbitron" });
+          const bx = (umP[0][0] + umP[1][0] + umP[2][0] + umP[3][0]) / 4, by = (umP[0][1] + umP[1][1] + umP[2][1] + umP[3][1]) / 4;
+          note(g, 60, 240, "the bowl of the spoon", bx, by);
+          note(g, 420, 130, "the handle", umP[6][0], umP[6][1]);
+        }
         const dub = umP[sByName(um, "Dubhe")], mer = umP[sByName(um, "Merak")], pol = unP[0];
         if (step >= 1) {
-          if (step === 1) { ring(g, dub[0], dub[1]); ring(g, mer[0], mer[1]); }
+          if (step === 1) { ring(g, dub[0], dub[1]); ring(g, mer[0], mer[1]); note(g, 40, 230, "the 2 pointer stars", mer[0] - 6, mer[1] + 6); }
           text(g, dub[0] + 12, dub[1] + 4, "Dubhe", { fill: CYAN });
           text(g, mer[0] - 12, mer[1] + 4, "Merak", { fill: CYAN, "text-anchor": "end" });
         }
         if (step >= 2) {
-          const gap = Math.hypot(dub[0] - mer[0], dub[1] - mer[1]);
-          const ux = (pol[0] - mer[0]) / Math.hypot(pol[0] - mer[0], pol[1] - mer[1]), uy = (pol[1] - mer[1]) / Math.hypot(pol[0] - mer[0], pol[1] - mer[1]);
+          const gap = Math.hypot(dub[0] - mer[0], dub[1] - mer[1]), L = Math.hypot(pol[0] - mer[0], pol[1] - mer[1]);
+          const ux = (pol[0] - mer[0]) / L, uy = (pol[1] - mer[1]) / L;
           svgEl("line", { x1: mer[0], y1: mer[1], x2: pol[0], y2: pol[1], stroke: CYAN, "stroke-width": 2, "stroke-dasharray": "6 6", class: "march" }, g);
           for (let n = 1; n <= 5; n++) {
             const tx = dub[0] + ux * gap * n, ty = dub[1] + uy * gap * n;
             svgEl("circle", { cx: tx, cy: ty, r: 3, fill: CYAN }, g);
             text(g, tx - uy * 12, ty + ux * 12, String(n), { fill: CYAN, "font-size": 11, "text-anchor": "middle" });
           }
+          if (step === 2) note(g, 40, 300, "1 gap = distance from Merak to Dubhe", dub[0] - 4, dub[1] + 6, CYAN);
         }
         if (step >= 3) {
           if (step === 3) ring(g, pol[0], pol[1], 16);
           text(g, pol[0] + 12, pol[1] - 10, "Polaris (North Star)", { fill: GOLD, "font-size": 13 });
           arrow(g, pol[0], pol[1] + 12, pol[0], 345, GOLD);
-          text(g, pol[0], 365, "N  (due north)", { fill: GOLD, "font-size": 14, "text-anchor": "middle", "font-family": "Orbitron" });
+          text(g, pol[0], 365, "N  (due north on the horizon)", { fill: GOLD, "font-size": 13, "text-anchor": "middle", "font-family": "Orbitron" });
         }
       }
     },
     {
       name: "Your latitude",
       title: "Mission 2 · Find your latitude from one star",
+      view: "🔭 The picture shows: a side view of you looking north at Polaris",
       intro: "Latitude tells you how far north or south of the equator you are. The UAE is about 23° to 26° north. Sailors could work out their latitude at night, with no GPS, just by measuring how high Polaris was.",
       terms: [
         ["Latitude", "How far north or south of the equator a place is, measured in degrees. The equator is 0°, the North Pole is 90° N. Abu Dhabi is about 24.5° N."],
@@ -148,10 +184,18 @@ const Nav = (() => {
         ["Horizon", "The line where the ground (or sea) seems to meet the sky."]
       ],
       steps: [
-        "First find Polaris, the North Star (see Mission 1). It is in the north, part-way up the sky.",
-        "Now measure its height. Stretch your arm out straight and make a fist. At arm’s length, one fist covers about 10° of the sky. This works for adults and children because longer arms come with bigger fists.",
-        "Stack fists from the horizon up to Polaris. From the UAE, Polaris is about 2½ fists up: roughly 25°.",
-        "Here is the rule: the height of Polaris equals your latitude. Tap the places below to see how Polaris sits higher the further north you go."
+        { do: "This picture is a side view, as if someone were watching you from the side. You are the small figure on the left, looking north. The gold dot is Polaris. The dashed line is the direction your eyes look to see it.",
+          why: "To measure how high a star is, you measure the angle between looking straight ahead at the horizon and looking up at the star. That angle is called the altitude.",
+          legend: [[SW.person, "<b>The figure</b> = you, standing on the ground."], [SW.gold, "<b>Gold dot</b> = Polaris, the North Star."], [SW.dash, "<b>Dashed line</b> = your line of sight to Polaris."], HORIZON] },
+        { do: "Stretch one arm out straight in front of you and make a fist. The shaded slice in the picture shows how much sky one fist covers: about 10°.",
+          why: "You do not need any equipment: your fist is a built-in measuring tool. People with longer arms also have bigger fists, so it works for nearly everyone.",
+          legend: [[SW.slice, "<b>Shaded slice</b> = the part of the sky covered by one fist (about 10°)."], [SW.fist, "<b>Fist symbol</b> = one fist at arm’s length."]] },
+        { do: "Count fists from the horizon up to Polaris, putting one fist on top of the other. From the UAE you need about 2½ fists.",
+          why: "2½ fists × 10° per fist ≈ 25°. So Polaris is about 25° above the horizon in the UAE.",
+          legend: [[SW.slice, "<b>Each coloured slice</b> = one fist (10°). The last slice may be part of a fist."]] },
+        { do: "Tap the place buttons under the picture and watch Polaris move up or down.",
+          why: "The height of Polaris in degrees is the same number as your latitude. The further north you go, the higher Polaris is. Navigators used this to know how far north they were without a map.",
+          legend: [[SW.goldline, "<b>Gold arc and number</b> = the angle of Polaris above the horizon, which equals your latitude."]] }
       ],
       quiz: {
         q: "From Abu Dhabi, Polaris is about 24.5° high. If you saw Polaris 51° high, where could you be?",
@@ -163,6 +207,7 @@ const Nav = (() => {
       state: { lat: 24.5 },
       controls(s, render) {
         const wrap = document.createElement("div"); wrap.className = "btn-row";
+        wrap.innerHTML = '<span class="ctrl-label">👆 Tap a place:</span>';
         [["Liwa", 23.1], ["Abu Dhabi", 24.5], ["Dubai", 25.2], ["Ras Al Khaimah", 25.8], ["London", 51.5], ["Equator", 0]].forEach(([n, lat]) => {
           const b = document.createElement("button"); b.className = "chip"; b.textContent = n;
           b.onclick = () => { const from = s.lat; s.lat = lat; tween(from, lat, 700, v => render(v)); };
@@ -173,10 +218,9 @@ const Nav = (() => {
       draw(g, step, s, latOverride) {
         const lat = latOverride ?? s.lat;
         const ox = 110, oy = 300, L = 380, a = lat * D2R;
-        ground(g, oy, [["N  (looking north)", 470]]);
+        ground(g, oy, [["N  (you are facing north)", 450]]);
         const sx = ox + L * Math.cos(a), sy = oy - L * Math.sin(a);
         if (step >= 1) {
-          // fists: one wedge per 10°
           const full = step === 1 ? 1 : lat / 10, R = 170;
           for (let i = 0; i < Math.ceil(full); i++) {
             const a0 = i * 10 * D2R, a1 = Math.min(full, i + 1) * 10 * D2R;
@@ -187,22 +231,28 @@ const Nav = (() => {
           }
           text(g, 300, 36, step === 1 ? "One fist at arm’s length ≈ 10°" : `≈ ${(lat / 10).toFixed(1)} fists ≈ ${lat.toFixed(1)}°`, { fill: GOLD, "font-size": 16, "text-anchor": "middle", "font-family": "Orbitron" });
         }
-        svgEl("line", { x1: ox, y1: oy, x2: sx, y2: sy, stroke: CYAN, "stroke-dasharray": "5 5", "stroke-width": 1.5, opacity: step >= 2 ? 1 : .4 }, g);
+        svgEl("line", { x1: ox, y1: oy, x2: sx, y2: sy, stroke: CYAN, "stroke-dasharray": "5 5", "stroke-width": 1.5 }, g);
+        svgEl("line", { x1: ox, y1: oy - 2, x2: 560, y2: oy - 2, stroke: "rgba(255,255,255,.25)", "stroke-dasharray": "2 4" }, g);
         if (step >= 3) {
           const ar = 70;
           svgEl("path", { d: `M${ox + ar},${oy} A${ar},${ar} 0 0 0 ${ox + ar * Math.cos(a)},${oy - ar * Math.sin(a)}`, fill: "none", stroke: GOLD, "stroke-width": 2 }, g);
           text(g, ox + 200, oy - 10, `angle ${lat.toFixed(1)}° = latitude`, { fill: GOLD, "font-size": 14 });
         }
         star(g, sx, sy, 0.6, "Polaris", GOLD, GOLD);
-        if (step === 0) ring(g, sx, sy, 16);
         svgEl("circle", { cx: ox, cy: oy - 26, r: 7, fill: "#e9ecff" }, g);
         svgEl("line", { x1: ox, y1: oy - 19, x2: ox, y2: oy, stroke: "#e9ecff", "stroke-width": 3 }, g);
         text(g, ox, oy + 22, "you", { fill: "#e9ecff", "text-anchor": "middle", "font-size": 12 });
+        if (step === 0) {
+          ring(g, sx, sy, 16);
+          note(g, 250, 140, "your line of sight to Polaris", (ox + sx) / 2, (oy + sy) / 2, CYAN);
+          note(g, 330, 270, "looking straight ahead (0°)", 330, oy - 2);
+        }
       }
     },
     {
       name: "East & west",
       title: "Mission 3 · Find east and west with Orion",
+      view: "🔭 The picture shows: the eastern horizon, where stars rise",
       intro: "Earth spins, so stars rise in the east and set in the west, just like the Sun. Most stars rise somewhere north or south of due east, but one star in Orion rises almost exactly due east. That makes it a natural compass.",
       terms: [
         ["Orion", "A large, bright constellation shaped like a hunter. Easy to see from the UAE on winter evenings (December to March)."],
@@ -212,10 +262,18 @@ const Nav = (() => {
         ["Due east", "Exactly east: 90° on a compass. Due west is exactly west, 270°."]
       ],
       steps: [
-        "Find Orion: look for three bright stars close together in a short, straight row. This is Orion’s Belt (in gold).",
-        "Find Mintaka, the end star of the belt. Mintaka sits almost exactly on the celestial equator, the imaginary line above Earth’s equator (dashed line).",
-        "Stars on the celestial equator rise due east. Watch Orion rise over the eastern horizon, or move the slider yourself.",
-        "So when Orion is rising, Mintaka shows you due east. When Orion is setting later in the night, Mintaka shows you due west."
+        { do: "You are facing east, looking at the horizon. Find three stars close together in a short, straight row (in gold). This is Orion’s Belt. The other stars joined by blue lines make up the rest of Orion.",
+          why: "Orion’s Belt is the easiest part of Orion to spot: very few places in the sky have three bright stars so close together in a line.",
+          legend: [[SW.goldline, "<b>Gold line</b> = Orion’s Belt (3 stars in a row)."], [SW.shape, "<b>Blue lines</b> = the rest of Orion, the hunter."], [SW.red, "<b>Orange star</b> = Betelgeuse, Orion’s shoulder. <b>Blue-white</b> = Rigel, his foot."], HORIZON] },
+        { do: "Look at the circled star at the end of the belt: Mintaka. The gold dashed line is the celestial equator, an imaginary line in the sky above Earth’s equator.",
+          why: "Every star on the celestial equator rises exactly in the east. Mintaka sits almost exactly on this line, which is what makes it useful.",
+          legend: [[SW.ring, "<b>Circled star</b> = Mintaka."], [SW.golddash, "<b>Gold dashed line</b> = the celestial equator (the path Mintaka follows)."]] },
+        { do: "Watch Orion rise from the horizon. You can also drag the slider under the picture to move time yourself.",
+          why: "Notice that Mintaka comes up exactly from the point marked E. Stars rise at a slant, not straight up, because the UAE is north of the equator.",
+          legend: [[SW.golddash, "<b>Gold dashed line</b> = the slanted path Mintaka follows as it rises."]] },
+        { do: "The blue arrow marks where Mintaka rose: due east.",
+          why: "Remember where Orion rose and you have an east–west line for the whole night. When Orion sets later in the night, Mintaka goes down due west.",
+          legend: [[SW.arrow, "<b>Blue arrow</b> = due east on the horizon."]] }
       ],
       quiz: {
         q: "Orion is just rising. In which direction is Mintaka?",
@@ -227,13 +285,13 @@ const Nav = (() => {
       state: { t: 30 },
       controls(s, render) {
         const lab = document.createElement("label");
-        lab.innerHTML = 'Time after Orion rises <input type="range" min="-12" max="45" value="30">';
+        lab.innerHTML = '👆 Drag to move time after Orion rises <input type="range" min="-12" max="45" value="30">';
         lab.querySelector("input").oninput = e => { s.t = +e.target.value; render(); };
         s._slider = lab.querySelector("input");
         return [{ el: lab, from: 2 }];
       },
       enter(step, s, render) {
-        if (step === 2) { tween(-10, 18, 2200, v => { s.t = v; if (s._slider) s._slider.value = v; render(); }); }
+        if (step === 2) tween(-10, 18, 2600, v => { s.t = v; if (s._slider) s._slider.value = v; render(); });
       },
       draw(g, step, s) {
         const phi = 24.5 * D2R, k = 6, E = [300, 300];
@@ -249,15 +307,22 @@ const Nav = (() => {
         svgEl("polyline", { points: ["Mintaka", "Alnilam", "Alnitak"].map(n => pts[sByName(ori, n)].join(",")).join(" "), fill: "none", stroke: GOLD, "stroke-width": step === 0 ? 3 : 1.6 }, g);
         ori.stars.forEach((st, i) => star(g, pts[i][0], pts[i][1], st[3], "", st[4] || "#fff"));
         const mi = pts[sByName(ori, "Mintaka")];
-        if (step === 0) { const al = pts[sByName(ori, "Alnilam")]; text(g, al[0] + 16, al[1] + 4, "Orion’s Belt", { fill: GOLD, "font-family": "Orbitron", "font-size": 13 }); }
+        if (step === 0) {
+          const al = pts[sByName(ori, "Alnilam")], be = pts[sByName(ori, "Betelgeuse")], ri = pts[sByName(ori, "Rigel")];
+          note(g, 440, 110, "Orion’s Belt: 3 stars in a row", al[0] + 6, al[1] - 4, GOLD);
+          note(g, 40, 120, "Betelgeuse (orange)", be[0] - 6, be[1] - 4);
+          note(g, 440, 200, "Rigel (blue-white)", ri[0] + 6, ri[1] - 2);
+        }
         if (step >= 1) { if (step === 1) ring(g, mi[0], mi[1]); text(g, mi[0] + 10, mi[1] - 8, "Mintaka", { fill: CYAN }); }
         ground(g, 300, [["NE", 30], ["E", 300], ["SE", 570]]);
+        if (step === 0) note(g, 380, 335, "you are facing east", 300, 312);
         if (step >= 3) { arrow(g, 300, 250, 300, 296, CYAN); text(g, 300, 352, "due east (90°)", { fill: CYAN, "text-anchor": "middle", "font-size": 13 }); }
       }
     },
     {
       name: "Find south",
       title: "Mission 4 · Find south",
+      view: "🔭 The picture shows: the southern horizon",
       intro: "There is no bright “South Star”. Instead, you use the way stars move. Stars that rise in the south-east travel in an arc and reach their highest point exactly when they are due south, then set in the south-west.",
       terms: [
         ["Scorpius", "A constellation shaped like a scorpion with a long curved tail. Look for a hook or J shape with a bright red star, Antares. Best on UAE summer evenings (June to August)."],
@@ -266,9 +331,15 @@ const Nav = (() => {
         ["South celestial pole", "The point in the sky directly above Earth’s South Pole. From the UAE it is below the horizon, under due south."]
       ],
       steps: [
-        "On a summer evening, look for a curved line of stars shaped like a hook, with a bright red star near the top. This is Scorpius, and the red star is Antares.",
-        "Scorpius rises in the south-east, climbs in an arc, and sets in the south-west. At the top of its arc it is exactly due south.",
-        "In spring there is another option: the Southern Cross, just above the southern horizon. Its long bar points down towards the south celestial pole, so following it down to the horizon shows you south."
+        { do: "You are facing south on a summer evening. Find the curved line of stars shaped like a hook, with a red star near the top (circled). This is Scorpius; the red star is Antares.",
+          why: "Scorpius is bright and has a shape that is easy to recognise, and its red star makes it stand out. That makes it a good guide to south in summer.",
+          legend: [[SW.red, "<b>Red star (circled)</b> = Antares, the heart of the scorpion."], [SW.shape, "<b>Blue lines</b> = the shape of Scorpius: body and curved tail."], HORIZON] },
+        { do: "Follow the gold dashed curve: it is the path Scorpius takes during the night. It rises on the left (south-east), climbs, and sets on the right (south-west).",
+          why: "The top of the curve is exactly above due south. So when Scorpius is at its highest, the point on the horizon below it is south.",
+          legend: [[SW.golddash, "<b>Gold dashed curve</b> = the path Scorpius follows during the night."], [SW.arrow, "<b>Arrows</b> = the direction it moves: from left to right."]] },
+        { do: "Now it is spring. Find the small cross of four stars just above the horizon: the Southern Cross. Follow the blue dashed line down from its long bar to the horizon.",
+          why: "The long bar points towards the south celestial pole, which is below the horizon. Following it down shows you roughly where south is.",
+          legend: [[SW.shape, "<b>Small cross</b> = the Southern Cross. Its long bar runs from Gacrux (top) to Acrux (bottom)."], [SW.dash, "<b>Blue dashed line</b> = the long bar extended down towards south."]] }
       ],
       quiz: {
         q: "Scorpius is at the highest point of its arc. Which way are you facing when you look at it?",
@@ -291,7 +362,8 @@ const Nav = (() => {
           arrow(g, 120, hy - 70, 150, hy - 98, GOLD); arrow(g, 450, hy - 98, 480, hy - 70, GOLD);
           text(g, 70, hy - 40, "rises SE", { fill: GOLD, "font-size": 12 });
           text(g, 470, hy - 40, "sets SW", { fill: GOLD, "font-size": 12 });
-          text(g, 300, peak + 34, "highest = due south", { fill: CYAN, "font-size": 13, "text-anchor": "middle" });
+          text(g, 300, peak + 34, "highest point = due south", { fill: CYAN, "font-size": 13, "text-anchor": "middle" });
+          svgEl("line", { x1: 300, y1: peak + 42, x2: 300, y2: hy, stroke: "rgba(124,242,255,.5)", "stroke-dasharray": "2 4" }, g);
         }
         if (id === "crux") {
           const ga = pts[0], ac = pts[1], ex = [ga[0] + (ac[0] - ga[0]) * 4.5, ga[1] + (ac[1] - ga[1]) * 4.5];
@@ -299,7 +371,12 @@ const Nav = (() => {
         }
         lines(g, c, pts, "rgba(150,170,255,.6)", 1.4);
         c.stars.forEach((st, i) => star(g, pts[i][0], pts[i][1], st[3], ["Antares", "Acrux", "Gacrux"].includes(st[0]) ? st[0] : "", st[4] || "#fff"));
-        if (step === 0) { const an = pts[sByName(c, "Antares")]; ring(g, an[0], an[1], 15); text(g, pts[8][0] - 90, pts[8][1] + 6, "Scorpius", { fill: GOLD, "font-family": "Orbitron" }); }
+        if (step === 0) {
+          const an = pts[sByName(c, "Antares")]; ring(g, an[0], an[1], 15);
+          text(g, an[0] - 30, an[1] - 22, "Scorpius", { fill: GOLD, "font-family": "Orbitron", "text-anchor": "end" });
+          note(g, 380, 210, "the curved tail (the hook)", pts[12][0] + 4, pts[12][1]);
+          note(g, 420, 90, "the head and claws", pts[1][0] + 6, pts[1][1]);
+        }
         if (id === "crux") text(g, pts[3][0] - 40, pts[0][1] - 4, "Southern Cross", { fill: GOLD, "font-family": "Orbitron", "text-anchor": "end" });
         ground(g, hy, [["SE", 60], ["S", 300], ["SW", 540]]);
         if (id === "crux") text(g, 300, 372, "(heights enlarged: the cross is only a few degrees high)", { fill: CYAN, "font-size": 11, "text-anchor": "middle" });
@@ -308,16 +385,23 @@ const Nav = (() => {
     {
       name: "Suhail",
       title: "Mission 5 · Suhail, the star of the seasons",
-      intro: "Canopus, known in Arabic as Suhail, is the second-brightest star in the night sky after Sirius. For centuries people in Arabia have used it to mark the seasons, and sailors used it to steer by.",
+      view: "🔭 The picture shows: the southern horizon, low down",
+      intro: "Canopus, known in Arabic as Suhail, is the second-brightest star in the night sky after Sirius. For centuries people in Arabia have used it to mark the seasons, and sailors used it to steer by. From the UAE it always stays low in the south, so you need to know exactly where to look.",
       terms: [
         ["Suhail (Canopus)", "A very bright star in the southern sky. From the UAE it never climbs high: it always stays low above the southern horizon."],
-        ["Altitude", "How high something is in the sky, in degrees. 0° is on the horizon and 90° is straight overhead."],
+        ["Altitude", "How high something is in the sky, in degrees. 0° is on the horizon and 90° is straight overhead. One fist at arm’s length ≈ 10°."],
         ["Rising before dawn", "The first mornings of the year when a star can be seen low in the sky just before sunrise, before the Sun’s light hides it."]
       ],
       steps: [
-        "Look towards due south. Suhail is very bright but always low, close to the horizon, so you need a clear view south.",
-        "How high it gets depends on where you are: the further south you go, the higher it climbs. Tap the places below to compare.",
-        "In late August, Suhail first appears low in the south-south-east just before dawn. Traditionally this is the sign that the hottest part of the summer is coming to an end."
+        { do: "You are facing due south, looking at the horizon (the gold line). The big bright star circled just above it is Suhail. The two faint lines across the picture mark heights of 10° and 20° above the horizon: one fist and two fists.",
+          why: "Suhail is the second-brightest star in the night sky, so it is easy to spot once you know where to look: due south, a little more than one fist above the horizon. Because it stays so low, buildings, hills or haze can easily hide it.",
+          legend: [[SW.gold, "<b>Big bright star (circled)</b> = Suhail (Canopus)."], [SW.grid, "<b>Faint lines</b> = height above the horizon: 10° (1 fist) and 20° (2 fists)."], HORIZON] },
+        { do: "Tap the place buttons under the picture, from Liwa (in the south of the UAE) to Ras Al Khaimah (in the north). Watch how high Suhail is in each place.",
+          why: "Suhail is a southern star, so the further south you are, the higher it climbs. It is the same idea as Polaris in Mission 2, but for the southern sky: the sky you see depends on where you are on Earth.",
+          legend: [[SW.gold, "<b>The number next to Suhail</b> = its highest altitude from that place."], [SW.grid, "<b>Faint lines</b> = 10° and 20° above the horizon."]] },
+        { do: "Now it is late August, just before sunrise. The orange glow is the dawn sky. Suhail is just rising, low in the south-south-east.",
+          why: "The first mornings Suhail can be seen each year (around late August in the UAE) are traditionally the sign that the hottest part of summer is ending. Long before printed calendars, people used the stars to keep track of the seasons.",
+          legend: [[SW.dawn, "<b>Orange glow</b> = dawn, just before sunrise."], [SW.gold, "<b>Suhail</b>, just above the horizon in the south-south-east."]] }
       ],
       quiz: {
         q: "Where in the UAE does Suhail climb highest?",
@@ -325,11 +409,12 @@ const Nav = (() => {
         answer: 1,
         explain: "Suhail is a southern star, so the further south you are, the higher it rises. Liwa is the furthest south of these places."
       },
-      tip: "<b>Try it outside:</b> Suhail is easiest to see on winter evenings in January and February, when it is at its highest in the south around 9–10 pm.",
+      tip: "<b>Try it outside:</b> Suhail is easiest to see on winter evenings in January and February, when it is at its highest in the south around 9–10 pm. Find a place with a clear, flat view to the south.",
       state: { lat: 24.5 },
       controls(s, render) {
         const wrap = document.createElement("div"); wrap.className = "btn-row";
-        [["Liwa", 23.1], ["Abu Dhabi", 24.5], ["Dubai", 25.2], ["Ras Al Khaimah", 25.8]].forEach(([n, lat]) => {
+        wrap.innerHTML = '<span class="ctrl-label">👆 Tap a place:</span>';
+        [["Liwa (south)", 23.1], ["Abu Dhabi", 24.5], ["Dubai", 25.2], ["Ras Al Khaimah (north)", 25.8]].forEach(([n, lat]) => {
           const b = document.createElement("button"); b.className = "chip"; b.textContent = n;
           b.onclick = () => { const from = s.lat; s.lat = lat; tween(from, lat, 700, v => render(v)); };
           wrap.appendChild(b);
@@ -346,18 +431,21 @@ const Nav = (() => {
           svgEl("rect", { x: 0, y: hy - 120, width: 600, height: 120, fill: "url(#dawn)" }, g);
           text(g, 300, 40, "Late August, just before sunrise", { fill: GOLD, "font-size": 15, "text-anchor": "middle", "font-family": "Orbitron" });
         }
-        if (step >= 1) {
-          [10, 20].forEach(a => {
-            svgEl("line", { x1: 40, y1: hy - a * k, x2: 560, y2: hy - a * k, stroke: "rgba(124,242,255,.15)" }, g);
-            text(g, 44, hy - a * k - 4, a + "° high", { fill: "rgba(124,242,255,.6)", "font-size": 11 });
-          });
-        }
+        [10, 20].forEach(a => {
+          svgEl("line", { x1: 40, y1: hy - a * k, x2: 560, y2: hy - a * k, stroke: "rgba(124,242,255,.18)" }, g);
+          text(g, 44, hy - a * k - 4, `${a}° high (${a / 10} fist${a > 10 ? "s" : ""})`, { fill: "rgba(124,242,255,.65)", "font-size": 11 });
+        });
         const x = step === 2 ? 240 : 300, y = step === 2 ? hy - 3 * k : hy - alt * k;
         star(g, x, y, -0.74, "", "#fff6dc");
         svgEl("circle", { cx: x, cy: y, r: 26, fill: "rgba(255,246,220,.15)" }, g);
         if (step === 0) ring(g, x, y, 18);
         text(g, x + 30, y + 5, step === 2 ? "Suhail, just rising" : `Suhail · ${alt.toFixed(1)}° high`, { fill: GOLD, "font-size": 15, "font-family": "Orbitron" });
-        ground(g, hy, step === 2 ? [["SSE", 240], ["S", 300]] : [["S", 300]]);
+        ground(g, hy, step === 2 ? [["SE", 120], ["SSE", 240], ["S", 300]] : [["SE", 60], ["S", 300], ["SW", 540]]);
+        if (step === 0) {
+          note(g, 360, 90, "the brightest star in this part of the sky", x + 4, y - 20);
+          note(g, 380, 345, "you are facing due south", 300, 312);
+        }
+        if (step === 1) note(g, 360, 90, "further south = Suhail sits higher", x + 4, y - 20);
       }
     }
   ];
@@ -371,25 +459,26 @@ const Nav = (() => {
   }
   function showStep(i, animate = true) {
     step = i;
-    const last = m.steps.length - 1;
+    const last = m.steps.length - 1, st = m.steps[i];
     el.num.textContent = `STEP ${i + 1} OF ${m.steps.length}`;
-    el.text.textContent = m.steps[i];
+    el.text.textContent = st.do;
+    el.why.textContent = st.why;
+    el.legend.innerHTML = '<span class="m-label">What’s in the picture</span>' + st.legend.map(([sw, t]) => `<div class="lg-row">${sw}<span>${t}</span></div>`).join("");
     $$("i", el.dots).forEach((d, k) => { d.className = k === i ? "on" : k < i ? "past" : ""; });
     el.prev.disabled = i === 0;
-    el.next.disabled = false;
     el.next.textContent = i === last ? "Now check yourself ↓" : "Next step →";
     controls.forEach(c => { c.el.hidden = i < c.from; });
     el.quiz.hidden = i !== last;
     render();
     if (m.enter) m.enter(i, m.state, render);
-    if (animate) el.text.animate([{ opacity: 0, transform: "translateX(10px)" }, { opacity: 1, transform: "none" }], { duration: 300 });
+    if (animate) [el.text, el.why].forEach(e => e.animate([{ opacity: 0, transform: "translateX(10px)" }, { opacity: 1, transform: "none" }], { duration: 300 }));
   }
   function open(i) {
     m = missions[i];
     el.title.textContent = m.title;
+    el.view.textContent = m.view;
     el.intro.textContent = m.intro;
     el.tip.innerHTML = m.tip;
-    // key words
     el.terms.innerHTML = ""; el.def.hidden = true;
     m.terms.forEach(([t, d]) => {
       const b = document.createElement("button");
@@ -402,13 +491,10 @@ const Nav = (() => {
       };
       el.terms.appendChild(b);
     });
-    // steps
     el.dots.innerHTML = m.steps.map(() => "<i></i>").join("");
-    // controls
     ctrl.innerHTML = "";
     controls = m.controls(m.state, render);
     controls.forEach(c => ctrl.appendChild(c.el));
-    // quiz
     el.qText.textContent = m.quiz.q; el.qFb.textContent = "";
     el.qOpts.innerHTML = "";
     m.quiz.options.forEach((o, k) => {
@@ -417,7 +503,7 @@ const Nav = (() => {
       b.onclick = () => {
         const ok = k === m.quiz.answer;
         b.classList.add(ok ? "right" : "wrong");
-        el.qFb.innerHTML = (ok ? "✅ <b>Correct!</b> " : "❌ <b>Not quite.</b> ") + m.quiz.explain;
+        el.qFb.innerHTML = (ok ? "✅ <b>Correct!</b> " : "❌ <b>Not quite. Try another answer.</b> ") + (ok ? m.quiz.explain : "");
         if (ok) { done.add(i); refreshTabs(); }
       };
       el.qOpts.appendChild(b);

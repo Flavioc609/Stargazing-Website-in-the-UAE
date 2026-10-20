@@ -122,7 +122,7 @@ const Sky = (() => {
       const pts = c.stars.map(s => project(s[1], s[2]));
       screen[c.id] = pts;
       if (pts.every(p => p[2] < 0)) return;
-      const active = state.hover === c.id || state.selected === c.id;
+      const active = state.hover === c.id || state.selected === c.id || state.hint === c.id;
       const flash = state.flash && state.flash.id === c.id ? state.flash : null;
       if (state.lines || active || flash) {
         ctx.lineWidth = active || flash ? 2.2 : 1;
@@ -306,7 +306,8 @@ const Sky = (() => {
     toggle(key, v) { state[key] = v; },
     play(v) { state.playing = v; },
     quizStart() { state.quiz = { target: null, score: 0, total: 0 }; state.selected = null; quizNext(); },
-    quizStop() { state.quiz = null; emit("quiz", null); },
+    quizStop() { state.quiz = null; state.hint = null; emit("quiz", null); },
+    hint() { if (!state.quiz) return; state.hint = state.quiz.target; clearTimeout(state._hintT); state._hintT = setTimeout(() => { state.hint = null; }, 2000); },
     resize
   };
 })();

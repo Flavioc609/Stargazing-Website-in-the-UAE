@@ -91,19 +91,24 @@
 
       <div class="guide reveal">
         <div class="guide-why"><span class="g-label">💡 Why this is here</span><p>This map shows exactly which stars and constellations are above you at the place and time you chose. Recognising constellations is the first skill every stargazer needs: once you know them, you can use them to find your direction, find planets and plan what to look at.</p></div>
-        <div class="guide-how"><span class="g-label">👆 How to use it</span><ol><li>Read the map as the sky above you: the <b>outer circle is the horizon</b> and the <b>centre is straight above your head</b>. The letters N, E, S, W around the edge are the directions.</li><li>Outside, face the direction you want to look and turn the map so that direction’s letter is at the bottom. The bottom half of the map then matches the sky in front of you.</li><li><b>Click a constellation</b> (or a name button under the map) to read what it is, where to look and how it helps you navigate.</li><li><b>Drag the sky in a circle</b> or press <b>▶ Play night</b> to watch the stars move during the night.</li><li>Press <b>🎯 Quiz mode</b> to test yourself: click the constellation named at the bottom of the map.</li></ol></div>
+        <div class="guide-how"><span class="g-label">👆 How to use it</span><ol><li>Read the map as the sky above you: the <b>outer circle is the horizon</b> and the <b>centre is straight above your head</b>. The letters N, E, S, W around the edge are the directions.</li><li>Outside, face the direction you want to look and turn the map so that direction’s letter is at the bottom. The bottom half of the map then matches the sky in front of you.</li><li><b>Click a constellation</b> (or a name button under the map) to read what it is, where to look and how it helps you navigate.</li><li><b>Drag the sky in a circle</b> or press <b>▶ Play night</b> to watch the stars move during the night.</li><li>Press <b>🎯 Quiz mode</b> to test yourself: click the constellation named under the map.</li></ol></div>
       </div>
       <div class="sky-wrap reveal">
+        <div class="sky-col">
         <div class="sky-stage glass">
           <canvas id="planisphere" aria-label="Star map of the sky above the UAE"></canvas>
           <div class="sky-hud">
             <span id="skyClock">--</span>
             <span id="skyPlace">--</span>
           </div>
-          <div class="quiz-banner" id="quizBanner" hidden>
-            <span>Click on: <strong id="quizTarget">—</strong></span>
-            <span>Score: <strong id="quizScore">0 / 0</strong></span>
-          </div>
+
+        </div>
+
+        <div class="quiz-banner" id="quizBanner" hidden>
+          <span>Click on: <strong id="quizTarget">—</strong></span>
+          <span>Score: <strong id="quizScore">0 / 0</strong></span>
+          <button class="chip" id="hintBtn">💡 Hint</button>
+        </div>
         </div>
 
         <aside class="sky-side">
@@ -149,8 +154,10 @@
         <div class="mission-tabs" role="tablist"></div>
         <div class="mission-body glass">
           <div class="mission-visual">
+            <div class="m-view" id="mView"></div>
             <svg id="navSvg" viewBox="0 0 600 380" role="img" aria-label="Navigation diagram"></svg>
             <div id="mControls"></div>
+            <div class="m-legend" id="mLegend"></div>
           </div>
           <div class="mission-text">
             <h3 id="mTitle"></h3>
@@ -162,7 +169,8 @@
             </div>
             <div class="m-step">
               <div class="m-step-head"><span id="mStepNum"></span><div class="step-dots" id="mDots"></div></div>
-              <p id="mStepText"></p>
+              <p class="m-do"><span class="m-tag do">What to do</span><span id="mStepText"></span></p>
+              <p class="m-why"><span class="m-tag why">Why</span><span id="mStepWhy"></span></p>
               <div class="btn-row">
                 <button class="chip" id="mPrev">← Back</button>
                 <button class="chip next" id="mNext">Next step →</button>

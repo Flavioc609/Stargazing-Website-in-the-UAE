@@ -167,9 +167,20 @@
   // quiz
   const quizBtn = $("#quizBtn"), banner = $("#quizBanner");
   quizBtn.onclick = () => {
-    if (Sky.state.quiz) { Sky.quizStop(); quizBtn.classList.remove("active"); quizBtn.textContent = "🎯 Quiz mode"; }
-    else { Sky.quizStart(); quizBtn.classList.add("active"); quizBtn.textContent = "✖ End quiz"; }
+    if (Sky.state.quiz) {
+      Sky.quizStop(); quizBtn.classList.remove("active"); quizBtn.textContent = "🎯 Quiz mode";
+      card.innerHTML = `<div class="info-empty"><div class="pulse-star">✶</div><p><b>Click a constellation</b> on the star map, or tap one of the names below the map, to learn about it here.</p></div>`;
+    }
+    else {
+      Sky.quizStart(); quizBtn.classList.add("active"); quizBtn.textContent = "✖ End quiz";
+      card.innerHTML = `<h3>🎯 Quiz mode</h3>
+        <p><b>What to do:</b> the name of a constellation appears under the star map. Find its shape on the map and click it.</p>
+        <p><b>Why:</b> names are hidden, so you have to recognise the star pattern itself, just like outside under the real sky.</p>
+        <p><b>Stuck?</b> Press <b>💡 Hint</b> and the constellation lights up for 2 seconds. Get it wrong and the right answer flashes, then a new one appears.</p>
+        <p>Press <b>✖ End quiz</b> to stop.</p>`;
+    }
   };
+  $("#hintBtn").onclick = () => Sky.hint();
 
   // constellation chips
   const chips = $("#conChips");
