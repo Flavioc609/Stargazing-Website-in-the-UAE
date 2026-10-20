@@ -328,13 +328,13 @@ const LOCATIONS = [
 // Bortle dark-sky scale
 const BORTLE = [
   null,
-  { name: "Excellent dark sky", limit: 7.8, uae: "Deep in the Empty Quarter, far from any road or settlement.", text: "The Milky Way casts shadows. Zodiacal light is obvious. Thousands of stars are visible." },
-  { name: "Truly dark sky", limit: 7.2, uae: "Remote desert, e.g. south of Liwa.", text: "The Milky Way is highly structured. Clouds look like black holes in the sky." },
-  { name: "Rural sky", limit: 6.7, uae: "Mountain sites such as Jebel Jais, away from the summit lights.", text: "Some light glow on the horizon, but the Milky Way still looks detailed." },
-  { name: "Rural / suburban transition", limit: 6.2, uae: "Al Qudra, Mleiha, Hatta.", text: "Light domes are visible over towns. The Milky Way is visible but lacks detail." },
-  { name: "Suburban sky", limit: 5.7, uae: "The edges of the cities.", text: "The Milky Way is weak or invisible near the horizon. Only bright constellations stand out." },
-  { name: "Bright suburban sky", limit: 5.3, uae: "Residential areas outside city centres.", text: "The Milky Way is only visible near the zenith, if at all. The sky has a grey glow." },
-  { name: "Suburban / urban transition", limit: 4.8, uae: "Most of Sharjah and Abu Dhabi island.", text: "The whole sky has a grey-white glow. The main constellation patterns are still recognisable." },
+  { name: "Excellent dark sky", limit: 7.8, uae: "Deep in the Empty Quarter, far from any road or settlement.", text: "The darkest possible sky. Thousands of stars are visible, and the Milky Way is so bright it can cast faint shadows on the ground." },
+  { name: "Truly dark sky", limit: 7.2, uae: "Remote desert, e.g. south of Liwa.", text: "Very dark. The Milky Way shows clear detail, with dark lanes of dust. Clouds look like black patches blocking the stars." },
+  { name: "Rural sky", limit: 6.7, uae: "Mountain sites such as Jebel Jais, away from the summit lights.", text: "Dark, with a little glow from towns low on the horizon. The Milky Way is still bright and easy to see." },
+  { name: "Rural / suburban transition", limit: 6.2, uae: "Al Qudra, Mleiha, Hatta.", text: "Domes of light glow over nearby towns. The Milky Way is visible overhead but looks faint and washed out." },
+  { name: "Suburban sky", limit: 5.7, uae: "The edges of the cities.", text: "The Milky Way is very faint overhead and invisible near the horizon. Only the brighter constellations stand out clearly." },
+  { name: "Bright suburban sky", limit: 5.3, uae: "Residential areas outside city centres.", text: "The sky has a grey glow. The Milky Way is hard or impossible to see; the main constellation shapes are still clear." },
+  { name: "Suburban / urban transition", limit: 4.8, uae: "Most of Sharjah and Abu Dhabi island.", text: "The whole sky glows grey-white. You can still make out the main constellation patterns, but few faint stars." },
   { name: "City sky", limit: 4.3, uae: "Large parts of Dubai.", text: "The sky glows orange-grey. Only the brightest stars and planets are easy to see." },
   { name: "Inner-city sky", limit: 3.8, uae: "Downtown Dubai and Dubai Marina.", text: "Only the Moon, planets and a handful of the brightest stars are visible." }
 ];
@@ -357,14 +357,14 @@ const MONTHS = [
 
 // Key terms for the "Celestial Coordinates" flip cards
 const TERMS = [
-  { t: "Celestial sphere", icon: "◯", d: "An imaginary sphere around Earth on which all stars appear to sit. Astronomers use it to describe positions, even though stars are at very different distances." },
-  { t: "Declination (Dec)", icon: "↕", d: "The sky’s version of latitude. Measured in degrees north (+) or south (−) of the celestial equator. Polaris is at about +89°." },
-  { t: "Right Ascension (RA)", icon: "↔", d: "The sky’s version of longitude. Measured in hours (0h–24h) eastwards along the celestial equator. Orion is around 5–6h." },
-  { t: "Altitude", icon: "⦨", d: "How high an object is above your horizon, from 0° (on the horizon) to 90° (straight overhead). A fist at arm’s length covers about 10°." },
-  { t: "Azimuth", icon: "🧭", d: "The compass direction of an object, measured from north (0°) through east (90°), south (180°) and west (270°)." },
-  { t: "Zenith", icon: "⬆", d: "The point directly above your head (altitude 90°). It changes depending on where you stand." },
-  { t: "Celestial equator", icon: "═", d: "Earth’s equator projected onto the sky (Dec 0°). From the UAE it arcs from due east, through the south, to due west." },
-  { t: "Ecliptic", icon: "☉", d: "The yearly path of the Sun across the sky. The Moon and planets always stay close to it, passing through the zodiac constellations." }
+  { t: "Celestial sphere", icon: "◯", d: "Imagine the sky as a giant ball around Earth with all the stars stuck on the inside. That imaginary ball is the celestial sphere. Stars are really at very different distances, but this idea makes it easy to describe where they are." },
+  { t: "Declination (Dec)", icon: "↕", d: "A star’s north–south position on the sky, like latitude on Earth. Measured in degrees: + is north of the celestial equator, − is south. Polaris is at about +89°, almost at the top." },
+  { t: "Right Ascension (RA)", icon: "↔", d: "A star’s east–west position on the sky, like longitude on Earth. Measured in hours (0h to 24h) because the sky turns once a day. Orion is at about 5–6h." },
+  { t: "Altitude", icon: "⦨", d: "How high something is above the horizon. 0° = on the horizon, 90° = straight overhead. Quick measure: a fist held at arm’s length covers about 10°." },
+  { t: "Azimuth", icon: "🧭", d: "The compass direction you face to see something. North = 0°, east = 90°, south = 180°, west = 270°." },
+  { t: "Zenith", icon: "⬆", d: "The point in the sky directly above your head (altitude 90°). Everyone has their own zenith, depending on where they stand." },
+  { t: "Celestial equator", icon: "═", d: "An imaginary line on the sky directly above Earth’s equator (declination 0°). From the UAE it runs from due east, up through the southern sky, to due west." },
+  { t: "Ecliptic", icon: "☉", d: "The path the Sun appears to follow across the sky during a year. The Moon and planets always stay close to this line, so it is where to look for planets." }
 ];
 
 // Astronomy tools and apps

@@ -182,6 +182,13 @@
 
   // info card
   const card = $("#infoCard");
+  const DIRS = { N: "north", NNE: "north-north-east", NE: "north-east", ENE: "east-north-east", E: "east", ESE: "east-south-east", SE: "south-east", SSE: "south-south-east",
+    S: "south", SSW: "south-south-west", SW: "south-west", WSW: "west-south-west", W: "west", WNW: "west-north-west", NW: "north-west", NNW: "north-north-west" };
+  function badgeText(v) {
+    if (v.alt <= 0) return "○ Not visible at this time (below the horizon). Press “Jump to best viewing time”.";
+    const fists = Math.max(0.5, Math.round(v.alt / 10 * 2) / 2);
+    return `● Visible now: look ${DIRS[v.dir]}, about ${Math.round(v.alt)}° up (≈ ${fists} fist${fists === 1 ? "" : "s"} above the horizon) for ${v.star}.`;
+  }
   function renderInfo(c) {
     if (!c) return;
     const v = Sky.visibility(c);
@@ -189,14 +196,12 @@
     card.innerHTML = `
       <h3>${c.name}</h3>
       <div class="ar">${c.arabic}</div>
-      <span class="now-badge ${up ? "up" : "down"}">${up
-        ? `● Above the horizon: ${v.star} is ${Math.round(v.alt)}° high in the ${v.dir}`
-        : `○ Below the horizon at this time`}</span>
+      <span class="now-badge ${up ? "up" : "down"}">${badgeText(v)}</span>
       <dl>
         <dt>Best seen from the UAE</dt><dd>${c.best}</dd>
         <dt>Where to look</dt><dd>${c.where}</dd>
         <dt>Key stars</dt><dd>${c.keyStars}</dd>
-        <dt>Navigation</dt><dd>${c.navigation}</dd>
+        <dt>How it helps you navigate</dt><dd>${c.navigation}</dd>
         <dt>Did you know?</dt><dd>${c.fact}</dd>
       </dl>
       <div class="btn-row" style="margin-top:14px"><button class="chip" id="bestBtn">⏱ Jump to best viewing time</button></div>`;
@@ -211,7 +216,7 @@
         const c = CONSTELLATIONS.find(k => k.id === Sky.state.selected), v = Sky.visibility(c), badge = $(".now-badge", card);
         if (badge) {
           badge.className = "now-badge " + (v.alt > 0 ? "up" : "down");
-          badge.textContent = v.alt > 0 ? `● Above the horizon: ${v.star} is ${Math.round(v.alt)}° high in the ${v.dir}` : "○ Below the horizon at this time";
+          badge.textContent = badgeText(v);
         }
       }
     }
