@@ -663,7 +663,7 @@ const Nav = (() => {
     dust: "🌪 <b>Dust & haze.</b> Fine desert dust hangs in the air, especially during windy spells in spring and summer. It dims stars near the horizon most of all. The clearest nights often come after rain or once the wind drops.",
     moon: "🌕 <b>The Moon.</b> A full Moon lights up the sky almost like light pollution and hides the Milky Way. Plan trips for the days around the new Moon, or wait until a crescent Moon has set.",
     heat: "🌡 <b>Heat.</b> Summer nights can stay above 30 °C. Rising warm air makes stars twinkle more and blurs telescope views. High places such as Jebel Jais are cooler and steadier.",
-    eyes: "👁 <b>Dark-adapted eyes.</b> Your eyes need about 20–30 minutes in darkness to see the faintest stars. Use a red torch and avoid looking at bright phone screens, which resets your night vision.<span class=\"src-link\">📖 Source: <a href=\"https://www.astronomy.com/observing/michaels-miscellany-dark-adaption\" target=\"_blank\" rel=\"noopener\">Bakich, “Michael’s Miscellany: Dark Adaption,” <i>Astronomy</i></a></span>"
+    eyes: "👁 <b>Dark-adapted eyes.</b> Your eyes need about 20–30 minutes in darkness to see the faintest stars. Use a red torch and avoid looking at bright phone screens, which resets your night vision."
   };
   $$(".factor").forEach(b => b.onclick = () => {
     $$(".factor").forEach(x => x.classList.toggle("active", x === b));
