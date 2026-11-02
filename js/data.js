@@ -283,7 +283,7 @@ const LOCATIONS = [
   },
   {
     name: "Al Qudra Lakes", emirate: "Dubai", lat: 24.83, lon: 55.37,
-    bortle: 4, drive: "≈ 45 min from central Dubai",
+    bortle: 4, drive: "≈ 45–60 min from central Dubai",
     elev: "≈ 70 m",
     why: "The closest well-known dark desert area to Dubai. The sky to the south is much darker than towards the city.",
     tips: "Look south and east, away from the Dubai sky glow. Good for beginners and families."
@@ -291,14 +291,14 @@ const LOCATIONS = [
   {
     name: "Jebel Jais", emirate: "Ras Al Khaimah", lat: 25.94, lon: 56.13,
     bortle: 3, drive: "≈ 2 h from Dubai",
-    elev: "≈ 1,900 m (highest peak in the UAE)",
+    elev: "≈ 1,900 m (the UAE’s highest mountain area; the true summit is just across the border in Oman)",
     why: "High altitude puts you above much of the dust and humidity near the ground, and temperatures are 10°C or more cooler than the coast.",
     tips: "The coast and RAK city add glow to the west. Look north-east and up. Check the weather: clouds can form around the summit."
   },
   {
     name: "Jebel Hafeet", emirate: "Abu Dhabi (Al Ain)", lat: 24.06, lon: 55.78,
     bortle: 4, drive: "≈ 30 min from Al Ain city",
-    elev: "≈ 1,240 m",
+    elev: "≈ 1,250 m (Abu Dhabi’s highest peak)",
     why: "A mountain rising out of the desert, giving a high viewpoint with open views to the south.",
     tips: "Al Ain’s lights are to the north, so the best views are towards the south and overhead."
   },
@@ -333,10 +333,10 @@ const BORTLE = [
   { name: "Rural sky", limit: 6.7, uae: "Mountain sites such as Jebel Jais, away from the summit lights.", text: "Dark, with a little glow from towns low on the horizon. The Milky Way is still bright and easy to see." },
   { name: "Rural / suburban transition", limit: 6.2, uae: "Al Qudra, Mleiha, Hatta.", text: "Domes of light glow over nearby towns. The Milky Way is visible overhead but looks faint and washed out." },
   { name: "Suburban sky", limit: 5.7, uae: "The edges of the cities.", text: "The Milky Way is very faint overhead and invisible near the horizon. Only the brighter constellations stand out clearly." },
-  { name: "Bright suburban sky", limit: 5.3, uae: "Residential areas outside city centres.", text: "The sky has a grey glow. The Milky Way is hard or impossible to see; the main constellation shapes are still clear." },
-  { name: "Suburban / urban transition", limit: 4.8, uae: "Most of Sharjah and Abu Dhabi island.", text: "The whole sky glows grey-white. You can still make out the main constellation patterns, but few faint stars." },
-  { name: "City sky", limit: 4.3, uae: "Large parts of Dubai.", text: "The sky glows orange-grey. Only the brightest stars and planets are easy to see." },
-  { name: "Inner-city sky", limit: 3.8, uae: "Downtown Dubai and Dubai Marina.", text: "Only the Moon, planets and a handful of the brightest stars are visible." }
+  { name: "Bright suburban sky", limit: 5.5, uae: "Residential areas outside city centres.", text: "The sky has a grey glow. The Milky Way is hard or impossible to see; the main constellation shapes are still clear." },
+  { name: "Suburban / urban transition", limit: 5.0, uae: "Most of Sharjah and Abu Dhabi island.", text: "The whole sky glows grey-white. You can still make out the main constellation patterns, but few faint stars." },
+  { name: "City sky", limit: 4.5, uae: "Large parts of Dubai.", text: "The sky glows orange-grey. Only the brightest stars and planets are easy to see." },
+  { name: "Inner-city sky", limit: 4.0, uae: "Downtown Dubai and Dubai Marina.", text: "Only the Moon, planets and a handful of the brightest stars are visible." }
 ];
 
 // Monthly sky calendar (evening sky, around 21:00, from the UAE)
@@ -375,4 +375,41 @@ const TOOLS = [
   { name: "Sky Tonight", type: "Free · Mobile", icon: "🌙", d: "Shows what is visible tonight, with event alerts for meteor showers, eclipses and planets.", use: "Events & planning" },
   { name: "Light Pollution Map", type: "Free · Web", icon: "💡", d: "lightpollutionmap.info shows satellite light-pollution data and Bortle estimates. Useful for picking dark sites in the UAE.", use: "Choosing locations" },
   { name: "Clear Outside", type: "Free · Web, Mobile", icon: "☁️", d: "An hour-by-hour astronomy weather forecast: cloud layers, humidity, Moon phase and seeing.", use: "Weather" }
+];
+
+// Works cited (MLA 9th edition), shown in the Sources section.
+// "used" says which facts on the site each source supports.
+const SOURCES = [
+  { cite: "Bakich, Michael E. “Michael’s Miscellany: Dark Adaption.” <i>Astronomy</i>, www.astronomy.com/observing/michaels-miscellany-dark-adaption.", url: "https://www.astronomy.com/observing/michaels-miscellany-dark-adaption", used: "How long eyes take to adapt to the dark; red light" },
+  { cite: "Bortle, John E. “Gauging Light Pollution: The Bortle Dark-Sky Scale.” <i>Sky &amp; Telescope</i>, Feb. 2001, skyandtelescope.org/astronomy-resources/light-pollution-and-astronomy-the-bortle-dark-sky-scale/.", url: "https://skyandtelescope.org/astronomy-resources/light-pollution-and-astronomy-the-bortle-dark-sky-scale/", used: "Bortle scale classes and faintest visible stars" },
+  { cite: "“Computing Greenwich Apparent Sidereal Time.” <i>Astronomical Applications Department</i>, U.S. Naval Observatory, aa.usno.navy.mil/faq/GAST.", url: "https://aa.usno.navy.mil/faq/GAST", used: "Sidereal time formula used by the Sky Explorer star map" },
+  { cite: "“Constellation Names and Abbreviations.” <i>Sky &amp; Telescope</i>, skyandtelescope.org/astronomy-resources/constellation-names-and-abbreviations/.", url: "https://skyandtelescope.org/astronomy-resources/constellation-names-and-abbreviations/", used: "Official constellation names" },
+  { cite: "Falchi, Fabio, et al. “The New World Atlas of Artificial Night Sky Brightness.” <i>Science Advances</i>, vol. 2, no. 6, 2016, e1600377, https://doi.org/10.1126/sciadv.1600377.", url: "https://doi.org/10.1126/sciadv.1600377", used: "How light pollution hides the stars and the Milky Way" },
+  { cite: "“Helping Establish the Wadi Wurayah National Park.” <i>Emirates Nature–WWF</i>, emiratesnaturewwf.ae/page/helping-establish-the-wadi-wurayah-national-park.", url: "https://emiratesnaturewwf.ae/page/helping-establish-the-wadi-wurayah-national-park", used: "Wadi Wurayah as a protected mountain area in Fujairah" },
+  { cite: "IAU Working Group on Star Names. “IAU Catalog of Star Names.” <i>International Astronomical Union</i>, exopla.net.", url: "https://exopla.net", used: "Official star names" },
+  { cite: "“Intense Summer Heat to Begin in UAE as Pleiades Star Rises on June 7.” <i>Khaleej Times</i>, www.khaleejtimes.com/uae/weather/uae-intense-summer-heat-begin-pleiades-star.", url: "https://www.khaleejtimes.com/uae/weather/uae-intense-summer-heat-begin-pleiades-star", used: "Al-Thurayyā (the Pleiades) as a seasonal marker in the UAE" },
+  { cite: "Kunitzsch, Paul, and Tim Smart. <i>A Dictionary of Modern Star Names: A Short Guide to 254 Star Names and Their Derivations</i>. Sky Publishing, 2006.", url: "", used: "Arabic origins of star names (Rigel, Aldebaran, Deneb, Vega, Shaula, etc.)" },
+  { cite: "“Mars Faces Off with Its Night Sky Rival, Antares.” <i>Astronomy</i>, www.astronomy.com/observing/mars-faces-off-with-its-night-sky-rival-antares/.", url: "https://www.astronomy.com/observing/mars-faces-off-with-its-night-sky-rival-antares/", used: "Meaning of the name Antares" },
+  { cite: "“Measuring the Sky by Hand.” <i>Time and Date</i>, www.timeanddate.com/astronomy/measuring-the-sky-by-hand.html.", url: "https://www.timeanddate.com/astronomy/measuring-the-sky-by-hand.html", used: "A fist at arm’s length covers about 10°" },
+  { cite: "Meeus, Jean. <i>Astronomical Algorithms</i>. 2nd ed., Willmann-Bell, 1998.", url: "", used: "Formulas for converting star positions to altitude and azimuth" },
+  { cite: "“Meteor Shower Calendar 2026-2027.” <i>American Meteor Society</i>, www.amsmeteors.org/meteor-showers/meteor-shower-calendar/.", url: "https://www.amsmeteors.org/meteor-showers/meteor-shower-calendar/", used: "Meteor shower peak dates" },
+  { cite: "“Mleiha Archaeological Ctr Launches Mobile Stargazing Experience.” <i>Sharjah24</i>, 8 July 2021, sharjah24.ae/en/Articles/2021/07/08/Mleiha-Archaeological-Ctr-launches-Mobile-Stargazing-Experience.", url: "https://sharjah24.ae/en/Articles/2021/07/08/Mleiha-Archaeological-Ctr-launches-Mobile-Stargazing-Experience", used: "Stargazing at Mleiha, Sharjah" },
+  { cite: "“Orion’s Belt and the Celestial Bridge.” <i>EarthSky</i>, earthsky.org/tonight/orions-belt-and-the-celestial-bridge/.", url: "https://earthsky.org/tonight/orions-belt-and-the-celestial-bridge/", used: "Mintaka rises due east and sets due west" },
+  { cite: "“6 Free Spots in the UAE to Watch Perseids Meteor Showers.” <i>Gulf News</i>, gulfnews.com/uae/6-free-spots-in-the-uae-to-watch-perseids-meteor-showers-1.500638627.", url: "https://gulfnews.com/uae/6-free-spots-in-the-uae-to-watch-perseids-meteor-showers-1.500638627", used: "Darker stargazing spots in the UAE, such as Al Qudra and Jebel Jais" },
+  { cite: "“Suhail Star Rises August 24: UAE Calendar Signals Cooler Weather Ahead.” <i>Khaleej Times</i>, www.khaleejtimes.com/uae/weather/suhail-star-rises-august-24-uae-cooler-weather.", url: "https://www.khaleejtimes.com/uae/weather/suhail-star-rises-august-24-uae-cooler-weather", used: "Suhail (Canopus) rising in late August and its meaning for UAE summer" },
+  { cite: "“UAE National Day: Five Top Activities to Do at Jebel Jais.” <i>Gulf News</i>, gulfnews.com/living-in-uae/ask-us/uae-national-day-five-top-activities-to-do-at-jebel-jais-1.1669900057295.", url: "https://gulfnews.com/living-in-uae/ask-us/uae-national-day-five-top-activities-to-do-at-jebel-jais-1.1669900057295", used: "Jebel Jais, Ras Al Khaimah: height and location" },
+  { cite: "“Vega.” <i>Encyclopædia Britannica</i>, www.britannica.com/print/article/624530.", url: "https://www.britannica.com/print/article/624530", used: "Vega becoming a pole star again because of precession" },
+  { cite: "Wenger, M., et al. “The SIMBAD Astronomical Database: The CDS Reference Database for Astronomical Objects.” <i>Astronomy and Astrophysics Supplement Series</i>, vol. 143, 2000, pp. 9–22, https://doi.org/10.1051/aas:2000332.", url: "https://simbad.cds.unistra.fr/simbad/", used: "Star positions, brightness (magnitude) and distances" },
+  { cite: "“What Exactly Is the North Star?” <i>Scientific American</i>, www.scientificamerican.com/article/what-exactly-is-the-north/.", url: "https://www.scientificamerican.com/article/what-exactly-is-the-north/", used: "Polaris, the North Star, and why it marks north" },
+  { cite: "“When Thuraya Rises.” <i>Star Calendar Blog</i>, University of Arizona, June 2017, onesky.arizona.edu/2017/06/when-thuraya-rises.", url: "https://onesky.arizona.edu/2017/06/when-thuraya-rises", used: "Traditional Arabian star calendars" },
+  { cite: "“Winter Season Starts in UAE, with Cooler Weather, Varied Conditions: NCM.” <i>Emirates News Agency (WAM)</i>, www.wam.ae/en/article/15xmr4h-winter-season-starts-uae-with-cooler-weather.", url: "https://www.wam.ae/en/article/15xmr4h-winter-season-starts-uae-with-cooler-weather", used: "UAE winter weather, humidity and fog (National Center of Meteorology)" }
+];
+
+// Official websites of the tools listed in the Tools & Apps section
+const TOOL_SOURCES = [
+  { cite: "<i>Clear Outside</i>. First Light Optics, clearoutside.com.", url: "https://clearoutside.com" },
+  { cite: "Stare, Jurij. <i>Light Pollution Map</i>. www.lightpollutionmap.info.", url: "https://www.lightpollutionmap.info" },
+  { cite: "<i>SkySafari</i>. Simulation Curriculum, skysafariastronomy.com.", url: "https://skysafariastronomy.com" },
+  { cite: "<i>Star Walk 2</i> and <i>Sky Tonight</i>. Vito Technology, starwalk.space.", url: "https://starwalk.space" },
+  { cite: "<i>Stellarium</i>. Stellarium Astronomy Software, stellarium.org.", url: "https://stellarium.org" }
 ];

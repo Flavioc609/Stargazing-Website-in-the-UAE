@@ -20,7 +20,7 @@ Then go to http://localhost:8000.
 4. **Light Pollution & Conditions**: Bortle-scale simulator plus UAE weather factors.
 5. **Sky Calendar**: month wheel showing what is visible, events and conditions.
 6. **Tools & Apps**
-7. **About** and **Sources** (bibliography placeholder).
+7. **About** and **Sources** (MLA 9 works cited; edit the `SOURCES` list in `js/data.js`).
 
 ## Editing content
 

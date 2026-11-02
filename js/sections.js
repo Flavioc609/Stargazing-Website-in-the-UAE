@@ -727,3 +727,12 @@ const Nav = (() => {
     grid.appendChild(a);
   });
 })();
+
+/* ---------------------------------------------------------
+   SOURCES (MLA works cited)
+   --------------------------------------------------------- */
+(() => {
+  const item = src => `<li>${src.url ? `<a href="${src.url}" target="_blank" rel="noopener">${src.cite}</a>` : src.cite}${src.used ? `<span class="used">Used for: ${src.used}</span>` : ""}</li>`;
+  $("#worksCited").innerHTML = SOURCES.map(item).join("");
+  $("#toolsCited").innerHTML = TOOL_SOURCES.map(item).join("");
+})();
