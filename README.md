@@ -35,4 +35,4 @@ Location darkness (Bortle) values are approximate and should be checked against 
 - `js/background.js`: animated starfield
 - `js/planisphere.js`: the Sky Explorer star map
 - `js/sections.js`: navigation missions, coordinates, light pollution, calendar, tools
-- `js/main.js`: menus, scrolling effects, Sky Explorer controls
+- `js/main.js`: section tabs, Sky Explorer controls

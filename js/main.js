@@ -4,58 +4,40 @@
 (() => {
   const sections = $$(".section");
 
-  /* ---------- side dots + orbital menu ---------- */
-  const dots = $(".dots"), orbit = $(".orbit-items"), menu = $("#orbitMenu"), toggle = $("#orbitToggle");
-  sections.forEach((s, i) => {
-    const a = document.createElement("a");
-    a.href = "#" + s.id; a.innerHTML = `<span>${s.dataset.title}</span>`;
-    a.setAttribute("aria-label", s.dataset.title);
-    dots.appendChild(a);
-
-    const li = document.createElement("li");
-    li.innerHTML = `<a href="#${s.id}">${s.dataset.icon}<span>${s.dataset.title}</span></a>`;
-    // two arcs: inner ring for the first 5, outer ring for the rest
-    const inner = i < 5, n = inner ? 5 : sections.length - 5, k = inner ? i : i - 5;
-    const r = inner ? 105 : 175, ang = (n === 1 ? 45 : (k / (n - 1)) * 90) * Math.PI / 180;
-    li.dataset.x = -r * Math.cos(ang); li.dataset.y = -r * Math.sin(ang);
-    li.style.transitionDelay = `${i * 25}ms`;
-    li.querySelector("a").onclick = () => setMenu(false);
-    orbit.appendChild(li);
+  /* ---------- tabs: one section on screen at a time ---------- */
+  const tabbar = $("#tabbar"), view = $("#view");
+  const tabs = sections.map(s => {
+    const b = document.createElement("button");
+    b.className = "tab"; b.setAttribute("role", "tab");
+    b.innerHTML = `<span class="tab-ic">${s.dataset.icon}</span>${s.dataset.title}`;
+    b.onclick = () => showTab(s.id);
+    tabbar.appendChild(b);
+    return b;
   });
-  function setMenu(open) {
-    menu.classList.toggle("open", open);
-    toggle.setAttribute("aria-expanded", open);
-    $$("li", orbit).forEach(li => {
-      li.style.transform = open ? `translate(calc(50% + ${li.dataset.x}px), calc(50% + ${li.dataset.y}px)) scale(1)` : "translate(50%, 50%) scale(0)";
-      li.style.opacity = open ? 1 : 0;
-    });
+  function showTab(id) {
+    const i = Math.max(0, sections.findIndex(s => s.id === id));
+    sections.forEach((s, k) => s.classList.toggle("active", k === i));
+    tabs.forEach((t, k) => { t.classList.toggle("active", k === i); t.setAttribute("aria-selected", k === i); });
+    tabs[i].scrollIntoView({ block: "nearest", inline: "center" });
+    view.scrollTop = 0;
+    // replay the entrance animation for the section that just opened
+    const rv = $$(".reveal", sections[i]);
+    rv.forEach(el => el.classList.remove("in"));
+    requestAnimationFrame(() => rv.forEach((el, k) => setTimeout(() => el.classList.add("in"), 60 * k)));
+    // canvases measure their size, so let them re-measure now that the section is visible
+    dispatchEvent(new Event("resize"));
+    history.replaceState(null, "", "#" + sections[i].id);
   }
-  toggle.onclick = () => setMenu(!menu.classList.contains("open"));
-  addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
-
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(en => {
-      if (!en.isIntersecting) return;
-      const i = sections.indexOf(en.target);
-      $$("a", dots).forEach((a, k) => a.classList.toggle("on", k === i));
-    });
-  }, { threshold: 0.35 });
-  sections.forEach(s => io.observe(s));
-
-  /* ---------- reveal on scroll ---------- */
-  const rv = new IntersectionObserver(entries => entries.forEach(en => {
-    if (en.isIntersecting) { en.target.classList.add("in"); rv.unobserve(en.target); }
-  }), { threshold: 0.12 });
-  $$(".reveal").forEach(el => rv.observe(el));
+  window.showTab = showTab;
+  showTab((location.hash || "#home").slice(1));
 
   /* ---------- hero launch ---------- */
   $("#launch").onclick = e => {
     e.currentTarget.classList.add("go");
     Space.warp(1300);
-    setTimeout(() => document.getElementById("sky").scrollIntoView({ behavior: "smooth" }), 700);
-    setTimeout(() => e.currentTarget && $("#launch").classList.remove("go"), 2000);
+    setTimeout(() => showTab("sky"), 700);
+    setTimeout(() => $("#launch").classList.remove("go"), 2000);
   };
-  $("#toTop").onclick = () => scrollTo({ top: 0, behavior: "smooth" });
 
   /* ---------- cursor glow + tilt cards ---------- */
   const glow = $(".cursor-glow");
@@ -96,7 +78,7 @@
       <p>${l.why}</p>
       <p><b>Elevation:</b> ${l.elev} · <b>Getting there:</b> ${l.drive}</p>
       <p><b>Tip:</b> ${l.tips}</p>
-      <p class="small">Bortle scale: 1 = darkest sky, 9 = city centre (see Light Pollution below). Ratings are approximate.</p>`
+      <p class="small">Bortle scale: 1 = darkest sky, 9 = city centre (see the Light Pollution tab). Ratings are approximate.</p>`
       : `<p>Custom location: ${place.lat.toFixed(2)}°N, ${place.lon.toFixed(2)}°E.</p>`;
     info.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300 });
   }

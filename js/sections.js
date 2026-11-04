@@ -708,7 +708,7 @@ const Nav = (() => {
   $("#calView").onclick = () => {
     const y = Sky.uaeParts(Sky.state.ms).y;
     Sky.setTime(Sky.fromUae(y, sel, 15, 21 * 60));
-    document.getElementById("sky").scrollIntoView({ behavior: "smooth" });
+    showTab("sky");
   };
   addEventListener("resize", layout);
   pick(sel);
