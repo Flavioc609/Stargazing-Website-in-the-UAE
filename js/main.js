@@ -74,22 +74,22 @@
     const info = $("#placeInfo"), l = LOCATIONS[index];
     info.innerHTML = l ? `
       <div class="pi-head"><strong>${l.name}</strong>
-        <span class="bortle-pill" style="color:${bortleColor(l.bortle)};border-color:${bortleColor(l.bortle)}">Darkness: Bortle ≈ ${l.bortle}</span></div>
+        <span class="bortle-pill" style="color:${bortleColor(l.bortle)};border-color:${bortleColor(l.bortle)}">Darkness: Bortle ~${l.bortle}</span></div>
       <p>${l.why}</p>
-      <p><b>Elevation:</b> ${l.elev} · <b>Getting there:</b> ${l.drive}</p>
+      <p><b>Elevation:</b> ${l.elev} · <b>Travel time:</b> ${l.drive}</p>
       <p><b>Tip:</b> ${l.tips}</p>
-      <p class="small">Bortle scale: 1 = darkest sky, 9 = city centre (see the Light Pollution tab). Ratings are approximate.</p>`
+      <p class="small">The Bortle scale gives a rough estimate of how dark the sky will be: 1 is the darkest sky and 9 is a city centre. More details are in the Light Pollution tab.</p>`
       : `<p>Custom location: ${place.lat.toFixed(2)}°N, ${place.lon.toFixed(2)}°E.</p>`;
     info.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300 });
   }
   $("#coordBtn").onclick = () => {
     const lat = parseFloat($("#latIn").value), lon = parseFloat($("#lonIn").value), msg = $("#coordMsg");
     if (!(lat >= 22.6 && lat <= 26.1 && lon >= 51.5 && lon <= 56.4)) {
-      msg.textContent = "Those coordinates are outside the UAE. Use latitude 22.6–26.1 °N and longitude 51.5–56.4 °E.";
+      msg.textContent = "Your location is outside the UAE. Please choose latitude 22.6–26.1 °N and longitude 51.5–56.4 °E.";
       msg.style.color = "#ff9c9c";
       return;
     }
-    msg.textContent = "Showing the sky from your coordinates."; msg.style.color = "";
+    msg.textContent = "Displaying the sky for your coordinates."; msg.style.color = "";
     pickPlace({ name: "Custom location", lat, lon }, -1);
   };
 
@@ -126,13 +126,13 @@
     const up = CONSTELLATIONS.filter(c => Sky.visibility(c).alt > 0).length;
     const polaris = place.lat, suhail = 90 - place.lat - 52.70, acrux = 90 - place.lat - 63.10;
     const m = MONTHS[p.m];
-    $("#sumMain").innerHTML = `Sky from <strong>${place.name}</strong> (${place.lat.toFixed(2)}°N, ${place.lon.toFixed(2)}°E) on <strong>${p.d} ${m.full}</strong> at <strong>${pad(p.h)}:${pad(p.min)}</strong>`;
+    $("#sumMain").innerHTML = `Viewing the sky at <strong>${place.name}</strong> (${place.lat.toFixed(2)}°N, ${place.lon.toFixed(2)}°E) on <strong>${p.d} ${m.full}</strong> at <strong>${pad(p.h)}:${pad(p.min)}</strong>`;
     $("#sumFacts").innerHTML = `
-      <span><b>${up}</b> of ${CONSTELLATIONS.length} featured constellations above the horizon</span>
-      <span>Polaris: <b>${polaris.toFixed(1)}°</b> above due north</span>
-      <span>Suhail (Canopus) can reach <b>${suhail.toFixed(1)}°</b> high</span>
-      <span>Acrux (Southern Cross) can reach <b>${acrux.toFixed(1)}°</b> high</span>
-      <span>${m.full} conditions: <b>${"★".repeat(m.rating)}${"☆".repeat(5 - m.rating)}</b></span>`;
+      <span><b>${up}</b> of ${CONSTELLATIONS.length} constellations are visible above the horizon</span>
+      <span>Polaris: <b>${polaris.toFixed(1)}°</b> above north</span>
+      <span>Suhail (Canopus): can reach <b>${suhail.toFixed(1)}°</b> high</span>
+      <span>Acrux (Southern Cross): can reach <b>${acrux.toFixed(1)}°</b> high</span>
+      <span>Conditions for ${m.full}: <b>${"★".repeat(m.rating)}${"☆".repeat(5 - m.rating)}</b></span>`;
   }
 
   $("#nowBtn").onclick = () => Sky.setTime(Date.now());
@@ -151,15 +151,15 @@
   quizBtn.onclick = () => {
     if (Sky.state.quiz) {
       Sky.quizStop(); quizBtn.classList.remove("active"); quizBtn.textContent = "🎯 Quiz mode";
-      card.innerHTML = `<div class="info-empty"><div class="pulse-star">✶</div><p><b>Click a constellation</b> on the star map, or tap one of the names below the map, to learn about it here.</p></div>`;
+      card.innerHTML = `<div class="info-empty"><div class="pulse-star">✶</div><p><b>Click a constellation</b> on the star map, or tap one of the names underneath, to get information.</p></div>`;
     }
     else {
       Sky.quizStart(); quizBtn.classList.add("active"); quizBtn.textContent = "✖ End quiz";
       card.innerHTML = `<h3>🎯 Quiz mode</h3>
-        <p><b>What to do:</b> the name of a constellation appears under the star map. Find its shape on the map and click it.</p>
-        <p><b>Why:</b> names are hidden, so you have to recognise the star pattern itself, just like outside under the real sky.</p>
-        <p><b>Stuck?</b> Press <b>💡 Hint</b> and the constellation lights up for 2 seconds. Get it wrong and the right answer flashes, then a new one appears.</p>
-        <p>Press <b>✖ End quiz</b> to stop.</p>`;
+        <p><b>What to do:</b> a constellation name will appear underneath the star map. Find the constellation by looking for its shape, and click it.</p>
+        <p><b>Why:</b> the names have been hidden, so you need to identify the constellation from its stars, just like outside.</p>
+        <p><b>Struggling?</b> Press <b>💡 Hint</b> and the constellation will light up for 2 seconds. If you get it wrong, the correct answer flashes up and a new one appears.</p>
+        <p>Press <b>✖ End quiz</b> to finish.</p>`;
     }
   };
   $("#hintBtn").onclick = () => Sky.hint();
@@ -178,9 +178,9 @@
   const DIRS = { N: "north", NNE: "north-north-east", NE: "north-east", ENE: "east-north-east", E: "east", ESE: "east-south-east", SE: "south-east", SSE: "south-south-east",
     S: "south", SSW: "south-south-west", SW: "south-west", WSW: "west-south-west", W: "west", WNW: "west-north-west", NW: "north-west", NNW: "north-north-west" };
   function badgeText(v) {
-    if (v.alt <= 0) return "○ Not visible at this time (below the horizon). Press “Jump to best viewing time”.";
+    if (v.alt <= 0) return "○ Not visible at this time. Press “Jump to best viewing time”.";
     const fists = Math.max(0.5, Math.round(v.alt / 10 * 2) / 2);
-    return `● Visible now: look ${DIRS[v.dir]}, about ${Math.round(v.alt)}° up (≈ ${fists} fist${fists === 1 ? "" : "s"} above the horizon) for ${v.star}.`;
+    return `● Visible now. Look ${DIRS[v.dir]}: ${v.star} should be about ${Math.round(v.alt)}° high (≈ ${fists} fist${fists === 1 ? "" : "s"}).`;
   }
   function renderInfo(c) {
     if (!c) return;
@@ -191,11 +191,11 @@
       <div class="ar">${c.arabic}</div>
       <span class="now-badge ${up ? "up" : "down"}">${badgeText(v)}</span>
       <dl>
-        <dt>Best seen from the UAE</dt><dd>${c.best}</dd>
+        <dt>Best viewed from the UAE</dt><dd>${c.best}</dd>
         <dt>Where to look</dt><dd>${c.where}</dd>
         <dt>Key stars</dt><dd>${c.keyStars}</dd>
-        <dt>How it helps you navigate</dt><dd>${c.navigation}</dd>
-        <dt>Did you know?</dt><dd>${c.fact}</dd>
+        <dt>How to navigate</dt><dd>${c.navigation}</dd>
+        <dt>Fun fact</dt><dd>${c.fact}</dd>
       </dl>
       <div class="btn-row" style="margin-top:14px"><button class="chip" id="bestBtn">⏱ Jump to best viewing time</button></div>`;
     $("#bestBtn").onclick = () => Sky.showBest(c.id);

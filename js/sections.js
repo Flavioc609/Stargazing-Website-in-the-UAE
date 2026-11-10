@@ -83,7 +83,7 @@ const Nav = (() => {
     arrow: '<i class="sw sw-arrow">↓</i>', fist: '<i class="sw sw-fist">✊</i>', grid: '<i class="sw sw-grid"></i>',
     dawn: '<i class="sw sw-dawn"></i>', person: '<i class="sw sw-fist">🧍</i>', slice: '<i class="sw sw-slice"></i>'
   };
-  const HORIZON = [SW.hz, "<b>Gold line at the bottom</b> = the horizon, where the ground meets the sky. Letters under it are compass directions."];
+  const HORIZON = [SW.hz, "<b>Gold line</b> = the horizon, where the ground meets the sky. The letters underneath show the compass directions."];
 
   // ---------- missions ----------
   const missions = [
@@ -91,41 +91,41 @@ const Nav = (() => {
       name: "Find north",
       title: "Mission 1 · Find north with the North Star",
       view: "🔭 The picture shows: the northern part of the night sky",
-      intro: "Polaris, the North Star, sits almost exactly above Earth’s North Pole. So while every other star moves across the sky during the night, Polaris stays in the same place, always in the north. Find Polaris and you know which way north is.",
+      intro: "Polaris (the North Star) is almost directly above Earth’s North Pole. While all the other stars move across the sky at night, Polaris stays fixed in the north. Finding Polaris tells you the direction of north.",
       terms: [
-        ["Constellation", "A group of stars that people have joined into a picture or pattern, like a dot-to-dot drawing in the sky."],
-        ["Polaris", "Also called the North Star. A medium-bright star that always marks the direction north."],
-        ["Big Dipper", "Seven bright stars shaped like a big spoon or ladle (a bowl and a handle). It is part of the constellation Ursa Major, the Great Bear."],
-        ["Pointer stars", "Dubhe and Merak: the two stars on the outer edge of the Big Dipper’s bowl. A line through them points to Polaris."]
+        ["Constellation", "A group of stars that forms a picture or shape, like a connect-the-dots puzzle in the sky."],
+        ["Polaris", "Also known as the North Star. A star of average brightness that always shows the direction of north."],
+        ["Big Dipper", "Seven bright stars that form a large spoon or ladle shape. Part of the constellation Ursa Major (the Great Bear)."],
+        ["Pointer stars", "Dubhe and Merak, the two stars on the outer edge of the Big Dipper. If you draw a line through them, you can find Polaris."]
       ],
       steps: [
-        { do: "Look at the picture. Each white dot is a star. Find the seven stars joined by gold lines, shaped like a big spoon. This is the Big Dipper.",
-          why: "The Big Dipper is one of the easiest star patterns to recognise, so stargazers use it as the starting point for finding the North Star.",
-          legend: [[SW.star, "<b>White dots</b> = stars. Bigger dots are brighter stars."], [SW.goldline, "<b>Gold lines</b> = the Big Dipper’s spoon shape. The lines are not in the real sky; they help you see the pattern."], [SW.shape, "<b>Faint blue lines</b> = other star patterns nearby."]] },
-        { do: "Find the two stars circled in gold, at the outer edge of the spoon’s bowl. They are called Merak and Dubhe.",
-          why: "These two are the “pointer stars”: a straight line through them points almost exactly at the North Star.",
-          legend: [[SW.ring, "<b>Pulsing gold circles</b> = the stars to look at in this step."], [SW.goldline, "<b>Gold lines</b> = the Big Dipper."]] },
-        { do: "Follow the blue dashed line from Merak, through Dubhe, and onwards. Each numbered dot is one “gap”: the distance between Merak and Dubhe. Count 5 gaps.",
-          why: "Measuring in gaps needs no tools and works at any time of night, because the gap stays the same size even as the stars move.",
-          legend: [[SW.dash, "<b>Blue dashed line</b> = the imaginary line from the pointer stars."], [SW.star, "<b>Numbers 1–5</b> = how many gaps you have counted."]] },
-        { do: "At the end of the line is Polaris, the North Star (in gold). The gold arrow drops straight down from Polaris to the horizon.",
-          why: "The spot on the horizon under Polaris is due north. Once you know north, you know the rest: south is behind you, east is on your right and west is on your left.",
-          legend: [[SW.gold, "<b>Gold star</b> = Polaris, the North Star."], [SW.arrow, "<b>Gold arrow</b> = straight down to the horizon, showing due north."]] },
-        { do: "Drag the slider under the picture. It moves time forward through the night.",
-          why: "Watch the whole sky turn around Polaris while the pointer stars keep pointing at it. This proves the method works at any time of night. The W-shaped pattern is Cassiopeia, a backup when the Big Dipper is low.",
-          legend: [[SW.gold, "<b>Polaris</b> stays still in the middle while everything turns around it."], [SW.shape, "<b>W shape</b> = Cassiopeia, on the other side of Polaris."]] }
+        { do: "Look at the image. The white dots represent stars. Look for the seven stars joined together by gold lines. These form the shape of a large spoon. This is the Big Dipper.",
+          why: "The Big Dipper is one of the easiest star shapes to recognise. It is used as a starting point for finding the North Star.",
+          legend: [[SW.star, "<b>White dots</b> = stars. The larger the dot, the brighter the star."], [SW.goldline, "<b>Gold lines</b> = the shape of the Big Dipper. These are not actually in the sky; they are there to help you."], [SW.shape, "<b>Blue lines</b> = other star shapes."]] },
+        { do: "Find the two circled stars. These are Merak and Dubhe.",
+          why: "They are known as the pointer stars. If you draw a straight line through them, it will point almost directly to the North Star.",
+          legend: [[SW.ring, "<b>Pulsing gold circles</b> = the stars to look at."], [SW.goldline, "<b>Gold lines</b> = the Big Dipper."]] },
+        { do: "Follow the dotted blue line from Merak, through Dubhe and onwards. Each numbered dot marks one gap (the distance between Merak and Dubhe). Count 5 gaps.",
+          why: "This method does not need any equipment and can be used at any time during the night. The gaps stay the same size even though the stars move.",
+          legend: [[SW.dash, "<b>Dotted blue line</b> = the imaginary line from the pointer stars."], [SW.star, "<b>Numbered dots</b> = the number of gaps counted."]] },
+        { do: "Polaris (the North Star) is at the end of the line, shown in gold. A gold arrow goes from Polaris straight down to the horizon.",
+          why: "The point on the horizon directly below Polaris is north. Once you know where north is, you can work out the other directions: south is behind you, east is on your right and west is on your left.",
+          legend: [[SW.gold, "<b>Gold star</b> = Polaris (the North Star)."], [SW.arrow, "<b>Gold arrow</b> = straight down from Polaris to the horizon. This shows true north."]] },
+        { do: "Move the slider below the image to move time forwards.",
+          why: "Watch the entire sky move around Polaris. The pointer stars continue to point to Polaris, which proves the method works at any time during the night. The W shape is Cassiopeia. It can be used as a backup to the Big Dipper, as it is on the opposite side of Polaris.",
+          legend: [[SW.gold, "<b>Polaris</b> stays still in the centre while everything else moves."], [SW.shape, "<b>W shape</b> = Cassiopeia, on the other side of Polaris."]] }
       ],
       quiz: {
         q: "Why is Polaris useful for finding north?",
-        options: ["It is the brightest star in the sky", "It stays in almost the same place, above the North Pole", "It only appears in winter"],
+        options: ["It is the brightest star", "It stays in almost the same place above the North Pole", "It only appears in winter"],
         answer: 1,
-        explain: "Polaris is only around the 48th-brightest star. It is useful because it barely moves, so it always marks north."
+        explain: "Polaris is only about the 48th brightest star. It is useful because it does not move much, so it always shows north."
       },
-      tip: "<b>Try it outside:</b> from the UAE the Big Dipper is low on autumn and winter evenings and may be hidden. Then look for Cassiopeia, a W shape on the other side of Polaris. Its middle points roughly towards Polaris.",
+      tip: "<b>Try it outside:</b> from the UAE, the Big Dipper is low in the sky during autumn and winter, so you may need to look for Cassiopeia. It forms a W shape on the other side of Polaris. The middle of the W points roughly towards Polaris.",
       state: { rot: 20 },
       controls(s, render) {
         const lab = document.createElement("label");
-        lab.innerHTML = '👆 Drag to move time through the night <input type="range" min="0" max="360" value="20">';
+        lab.innerHTML = '👆 Drag to move time forwards <input type="range" min="0" max="360" value="20">';
         lab.querySelector("input").oninput = e => { s.rot = +e.target.value; render(); };
         return [{ el: lab, from: 4 }];
       },
@@ -144,8 +144,8 @@ const Nav = (() => {
         if (step === 0) {
           const c = umP[3]; text(g, c[0] + 10, c[1] - 14, "Big Dipper", { fill: GOLD, "font-size": 14, "font-family": "Orbitron" });
           const bx = (umP[0][0] + umP[1][0] + umP[2][0] + umP[3][0]) / 4, by = (umP[0][1] + umP[1][1] + umP[2][1] + umP[3][1]) / 4;
-          note(g, 60, 240, "the bowl of the spoon", bx, by);
-          note(g, 420, 130, "the handle", umP[6][0], umP[6][1]);
+          note(g, 60, 240, "the bowl of the Big Dipper", bx, by);
+          note(g, 420, 130, "the handle of the Big Dipper", umP[6][0], umP[6][1]);
         }
         const dub = umP[sByName(um, "Dubhe")], mer = umP[sByName(um, "Merak")], pol = unP[0];
         if (step >= 1) {
@@ -162,13 +162,13 @@ const Nav = (() => {
             svgEl("circle", { cx: tx, cy: ty, r: 3, fill: CYAN }, g);
             text(g, tx - uy * 12, ty + ux * 12, String(n), { fill: CYAN, "font-size": 11, "text-anchor": "middle" });
           }
-          if (step === 2) note(g, 40, 300, "1 gap = distance from Merak to Dubhe", dub[0] - 4, dub[1] + 6, CYAN);
+          if (step === 2) note(g, 40, 300, "1 gap = distance between Merak and Dubhe", dub[0] - 4, dub[1] + 6, CYAN);
         }
         if (step >= 3) {
           if (step === 3) ring(g, pol[0], pol[1], 16);
           text(g, pol[0] + 12, pol[1] - 10, "Polaris (North Star)", { fill: GOLD, "font-size": 13 });
           arrow(g, pol[0], pol[1] + 12, pol[0], 345, GOLD);
-          text(g, pol[0], 365, "N  (due north on the horizon)", { fill: GOLD, "font-size": 13, "text-anchor": "middle", "font-family": "Orbitron" });
+          text(g, pol[0], 365, "N  (true north on the horizon)", { fill: GOLD, "font-size": 13, "text-anchor": "middle", "font-family": "Orbitron" });
         }
       }
     },
@@ -176,38 +176,38 @@ const Nav = (() => {
       name: "Your latitude",
       title: "Mission 2 · Find your latitude from one star",
       view: "🔭 The picture shows: a side view of you looking north at Polaris",
-      intro: "Latitude tells you how far north or south of the equator you are. The UAE is about 23° to 26° north. Sailors could work out their latitude at night, with no GPS, just by measuring how high Polaris was.",
+      intro: "Latitude tells you how far north or south of the equator you are. The UAE is around 23–26 degrees north. Sailors could calculate their latitude at night without GPS, using just Polaris.",
       terms: [
-        ["Latitude", "How far north or south of the equator a place is, measured in degrees. The equator is 0°, the North Pole is 90° N. Abu Dhabi is about 24.5° N."],
-        ["Degree (°)", "A unit for measuring angles. A full circle is 360°, and from the horizon to straight overhead is 90°."],
-        ["Altitude", "How high something is in the sky, in degrees. 0° is on the horizon and 90° is straight above your head."],
-        ["Horizon", "The line where the ground (or sea) seems to meet the sky."]
+        ["Latitude", "How far north or south of the equator a place is. The equator is 0 degrees and the North Pole is 90 degrees north. Abu Dhabi is around 24.5 degrees north."],
+        ["Degree (°)", "A measurement of angles. 360 degrees make a full circle. Between the horizon and directly above you is 90 degrees."],
+        ["Altitude", "How high something is in the sky, measured in degrees. 0 degrees is on the horizon and 90 degrees is directly above you."],
+        ["Horizon", "Where the ground or sea appears to meet the sky."]
       ],
       steps: [
-        { do: "This picture is a side view, as if someone were watching you from the side. You are the small figure on the left, looking north. The gold dot is Polaris. The dashed line is the direction your eyes look to see it.",
-          why: "To measure how high a star is, you measure the angle between looking straight ahead at the horizon and looking up at the star. That angle is called the altitude.",
-          legend: [[SW.person, "<b>The figure</b> = you, standing on the ground."], [SW.gold, "<b>Gold dot</b> = Polaris, the North Star."], [SW.dash, "<b>Dashed line</b> = your line of sight to Polaris."], HORIZON] },
-        { do: "Stretch one arm out straight in front of you and make a fist. The shaded slice in the picture shows how much sky one fist covers: about 10°.",
-          why: "You do not need any equipment: your fist is a built-in measuring tool. People with longer arms also have bigger fists, so it works for nearly everyone.",
-          legend: [[SW.slice, "<b>Shaded slice</b> = the part of the sky covered by one fist (about 10°)."], [SW.fist, "<b>Fist symbol</b> = one fist at arm’s length."]] },
-        { do: "Count fists from the horizon up to Polaris, putting one fist on top of the other. From the UAE you need about 2½ fists.",
-          why: "2½ fists × 10° per fist ≈ 25°. So Polaris is about 25° above the horizon in the UAE.",
-          legend: [[SW.slice, "<b>Each coloured slice</b> = one fist (10°). The last slice may be part of a fist."]] },
-        { do: "Tap the place buttons under the picture and watch Polaris move up or down.",
-          why: "The height of Polaris in degrees is the same number as your latitude. The further north you go, the higher Polaris is. Navigators used this to know how far north they were without a map.",
-          legend: [[SW.goldline, "<b>Gold arc and number</b> = the angle of Polaris above the horizon, which equals your latitude."]] }
+        { do: "This image is a side view, as if someone were looking at you from the side. The small person on the left represents you, looking north. The gold dot is Polaris. The dashed line shows where your eyes are looking.",
+          why: "The altitude of a star is the number of degrees between looking straight ahead (at the horizon) and looking up at the star.",
+          legend: [[SW.person, "<b>Person</b> = you, standing on the ground."], [SW.gold, "<b>Gold dot</b> = Polaris (the North Star)."], [SW.dash, "<b>Dashed line</b> = your line of sight to Polaris."], HORIZON] },
+        { do: "Hold your arm out straight and make a fist. The shaded section shows how much of the sky one fist covers: around 10 degrees.",
+          why: "No equipment is needed: your fist acts as a measuring device. People with longer arms also have larger fists, so it works for almost everybody.",
+          legend: [[SW.slice, "<b>Shaded section</b> = how much of the sky one fist covers (around 10 degrees)."], [SW.fist, "<b>Fist</b> = one fist at arm’s length."]] },
+        { do: "Count how many fists fit between the horizon and Polaris, stacking them on top of each other. From the UAE there should be around 2.5 fists.",
+          why: "2.5 fists × 10 degrees = around 25 degrees. Polaris is around 25 degrees above the horizon from the UAE.",
+          legend: [[SW.slice, "<b>Each coloured section</b> = 1 fist (10 degrees). The last section may not be a full fist."]] },
+        { do: "Tap the location buttons below the image. Watch Polaris go up or down.",
+          why: "The height of Polaris in degrees is the same as your latitude. The further north you go, the higher Polaris will be. Navigators used this to know how far north they were without a map.",
+          legend: [[SW.goldline, "<b>Gold arc and number</b> = how many degrees Polaris is above the horizon. This is your latitude."]] }
       ],
       quiz: {
-        q: "From Abu Dhabi, Polaris is about 24.5° high. If you saw Polaris 51° high, where could you be?",
-        options: ["Near the equator", "Near London, which is about 51° N", "At the North Pole"],
+        q: "From Abu Dhabi, Polaris is around 24.5 degrees high. If Polaris was 51 degrees high, where could you be?",
+        options: ["Close to the equator", "Close to London (around 51 degrees north)", "At the North Pole"],
         answer: 1,
-        explain: "The height of Polaris equals your latitude, so 51° means about 51° N, like London. At the equator it is on the horizon (0°); at the North Pole it is overhead (90°)."
+        explain: "The height of Polaris in degrees is the same as your latitude. If it is 51 degrees, you are around 51 degrees north, similar to London. At the equator it would be on the horizon (0 degrees). At the North Pole it would be directly above you (90 degrees)."
       },
-      tip: "<b>Try it outside:</b> to make the measurement more accurate, stack your fists one on top of the other without gaps, and keep your arm fully straight.",
+      tip: "<b>Try it outside:</b> for more accuracy, stack your fists on top of each other with no gaps, and make sure your arm is fully straight.",
       state: { lat: 24.5 },
       controls(s, render) {
         const wrap = document.createElement("div"); wrap.className = "btn-row";
-        wrap.innerHTML = '<span class="ctrl-label">👆 Tap a place:</span>';
+        wrap.innerHTML = '<span class="ctrl-label">👆 Tap a location:</span>';
         [["Liwa", 23.1], ["Abu Dhabi", 24.5], ["Dubai", 25.2], ["Ras Al Khaimah", 25.8], ["London", 51.5], ["Equator", 0]].forEach(([n, lat]) => {
           const b = document.createElement("button"); b.className = "chip"; b.textContent = n;
           b.onclick = () => { const from = s.lat; s.lat = lat; tween(from, lat, 700, v => render(v)); };
@@ -253,39 +253,39 @@ const Nav = (() => {
       name: "East & west",
       title: "Mission 3 · Find east and west with Orion",
       view: "🔭 The picture shows: the eastern horizon, where stars rise",
-      intro: "Earth spins, so stars rise in the east and set in the west, just like the Sun. Most stars rise somewhere north or south of due east, but one star in Orion rises almost exactly due east. That makes it a natural compass.",
+      intro: "As Earth rotates, stars rise in the east and set in the west, like the Sun. Most stars rise just north or south of true east, but one star in Orion rises almost exactly due east. This can act like a natural compass.",
       terms: [
-        ["Orion", "A large, bright constellation shaped like a hunter. Easy to see from the UAE on winter evenings (December to March)."],
-        ["Orion’s Belt", "Three bright stars in a short, straight row in the middle of Orion. They are the easiest part of Orion to recognise."],
-        ["Mintaka", "The right-hand (westernmost) star of Orion’s Belt when Orion is high in the south."],
-        ["Celestial equator", "An imaginary line across the sky, directly above Earth’s equator. Any star on this line rises exactly due east and sets exactly due west, wherever you are on Earth."],
-        ["Due east", "Exactly east: 90° on a compass. Due west is exactly west, 270°."]
+        ["Orion", "A large, bright constellation shaped like a hunter. Easy to see from the UAE during the winter months (December to March)."],
+        ["Orion’s Belt", "Three bright stars in a short, straight line. This is the easiest part of Orion to spot."],
+        ["Mintaka", "The right-hand (westernmost) star in Orion’s Belt when Orion is high in the south."],
+        ["Celestial equator", "An imaginary line across the sky, directly above Earth’s equator. Any star on this line rises exactly east and sets exactly west, no matter where you are on Earth."],
+        ["True east", "Directly east: 90 degrees on a compass. True west is directly west: 270 degrees."]
       ],
       steps: [
-        { do: "You are facing east, looking at the horizon. Find three stars close together in a short, straight row (in gold). This is Orion’s Belt. The other stars joined by blue lines make up the rest of Orion.",
-          why: "Orion’s Belt is the easiest part of Orion to spot: very few places in the sky have three bright stars so close together in a line.",
-          legend: [[SW.goldline, "<b>Gold line</b> = Orion’s Belt (3 stars in a row)."], [SW.shape, "<b>Blue lines</b> = the rest of Orion, the hunter."], [SW.red, "<b>Orange star</b> = Betelgeuse, Orion’s shoulder. <b>Blue-white</b> = Rigel, his foot."], HORIZON] },
-        { do: "Look at the circled star at the end of the belt: Mintaka. The gold dashed line is the celestial equator, an imaginary line in the sky above Earth’s equator.",
-          why: "Every star on the celestial equator rises exactly in the east. Mintaka sits almost exactly on this line, which is what makes it useful.",
-          legend: [[SW.ring, "<b>Circled star</b> = Mintaka."], [SW.golddash, "<b>Gold dashed line</b> = the celestial equator (the path Mintaka follows)."]] },
-        { do: "Watch Orion rise from the horizon. You can also drag the slider under the picture to move time yourself.",
-          why: "Notice that Mintaka comes up exactly from the point marked E. Stars rise at a slant, not straight up, because the UAE is north of the equator.",
-          legend: [[SW.golddash, "<b>Gold dashed line</b> = the slanted path Mintaka follows as it rises."]] },
-        { do: "The blue arrow marks where Mintaka rose: due east.",
-          why: "Remember where Orion rose and you have an east–west line for the whole night. When Orion sets later in the night, Mintaka goes down due west.",
-          legend: [[SW.arrow, "<b>Blue arrow</b> = due east on the horizon."]] }
+        { do: "You are facing east. Look for three stars close together in a short, straight line (in gold). This is Orion’s Belt. The other stars joined by blue lines make up the rest of Orion.",
+          why: "This is the easiest part of Orion to spot. There are very few places in the sky with 3 bright stars in a line.",
+          legend: [[SW.goldline, "<b>Gold line</b> = Orion’s Belt, 3 stars in a line."], [SW.shape, "<b>Blue lines</b> = the rest of Orion (the hunter)."], [SW.red, "<b>Orange star</b> = Betelgeuse (Orion’s shoulder). <b>Blue-white star</b> = Rigel (Orion’s foot)."], HORIZON] },
+        { do: "Look at the circled star at the end of the belt. This is Mintaka. The dashed gold line shows the celestial equator, an imaginary line in the sky above Earth’s equator.",
+          why: "All stars on the celestial equator rise due east. Mintaka is almost exactly on this line, which makes it useful.",
+          legend: [[SW.ring, "<b>Circled star</b> = Mintaka."], [SW.golddash, "<b>Dashed gold line</b> = Mintaka’s path (the celestial equator)."]] },
+        { do: "Watch Orion rise from the horizon. You can also move time yourself by dragging the slider below the image.",
+          why: "Notice how Mintaka rises exactly from the E point. Stars do not rise straight up, because the UAE is north of the equator.",
+          legend: [[SW.golddash, "<b>Dashed gold line</b> = Mintaka’s slanted path."]] },
+        { do: "The blue arrow shows where Mintaka rose: true east.",
+          why: "Remember where Orion rose and you have an east–west line for the whole night. Later in the night, when Orion sets, Mintaka will set due west.",
+          legend: [[SW.arrow, "<b>Blue arrow</b> = true east on the horizon."]] }
       ],
       quiz: {
-        q: "Orion is just rising. In which direction is Mintaka?",
-        options: ["Due north", "Due east", "Due south"],
+        q: "Orion is rising. In which direction is Mintaka?",
+        options: ["True north", "True east", "True south"],
         answer: 1,
-        explain: "Mintaka lies on the celestial equator, so it rises almost exactly due east and sets almost exactly due west."
+        explain: "Mintaka is on the celestial equator. This means it rises almost exactly due east and sets almost exactly due west."
       },
-      tip: "<b>Try it outside:</b> in the UAE, Orion rises in the early evening in December. By around 9 pm in January it is high in the south.",
+      tip: "<b>Try it outside:</b> from the UAE, Orion rises in the early evening in December. It is high in the south around 9 pm in January.",
       state: { t: 30 },
       controls(s, render) {
         const lab = document.createElement("label");
-        lab.innerHTML = '👆 Drag to move time after Orion rises <input type="range" min="-12" max="45" value="30">';
+        lab.innerHTML = '👆 Drag to move time after Orion has risen <input type="range" min="-12" max="45" value="30">';
         lab.querySelector("input").oninput = e => { s.t = +e.target.value; render(); };
         s._slider = lab.querySelector("input");
         return [{ el: lab, from: 2 }];
@@ -309,45 +309,45 @@ const Nav = (() => {
         const mi = pts[sByName(ori, "Mintaka")];
         if (step === 0) {
           const al = pts[sByName(ori, "Alnilam")], be = pts[sByName(ori, "Betelgeuse")], ri = pts[sByName(ori, "Rigel")];
-          note(g, 440, 110, "Orion’s Belt: 3 stars in a row", al[0] + 6, al[1] - 4, GOLD);
+          note(g, 440, 110, "Orion’s Belt: 3 stars in a line", al[0] + 6, al[1] - 4, GOLD);
           note(g, 40, 120, "Betelgeuse (orange)", be[0] - 6, be[1] - 4);
           note(g, 440, 200, "Rigel (blue-white)", ri[0] + 6, ri[1] - 2);
         }
         if (step >= 1) { if (step === 1) ring(g, mi[0], mi[1]); text(g, mi[0] + 10, mi[1] - 8, "Mintaka", { fill: CYAN }); }
         ground(g, 300, [["NE", 30], ["E", 300], ["SE", 570]]);
         if (step === 0) note(g, 380, 335, "you are facing east", 300, 312);
-        if (step >= 3) { arrow(g, 300, 250, 300, 296, CYAN); text(g, 300, 352, "due east (90°)", { fill: CYAN, "text-anchor": "middle", "font-size": 13 }); }
+        if (step >= 3) { arrow(g, 300, 250, 300, 296, CYAN); text(g, 300, 352, "true east (90°)", { fill: CYAN, "text-anchor": "middle", "font-size": 13 }); }
       }
     },
     {
       name: "Find south",
       title: "Mission 4 · Find south",
       view: "🔭 The picture shows: the southern horizon",
-      intro: "There is no bright “South Star”. Instead, you use the way stars move. Stars that rise in the south-east travel in an arc and reach their highest point exactly when they are due south, then set in the south-west.",
+      intro: "There is no bright “South Star”, but you can use the movement of the stars. Stars rising in the south-east follow an arc and reach their highest point exactly when they are due south. They then set in the south-west.",
       terms: [
-        ["Scorpius", "A constellation shaped like a scorpion with a long curved tail. Look for a hook or J shape with a bright red star, Antares. Best on UAE summer evenings (June to August)."],
-        ["Antares", "The bright red star in the heart of Scorpius. Its colour makes it easy to spot."],
-        ["Southern Cross (Crux)", "A small, bright cross of four stars. From the UAE it only just rises above the southern horizon, in spring (April to May)."],
-        ["South celestial pole", "The point in the sky directly above Earth’s South Pole. From the UAE it is below the horizon, under due south."]
+        ["Scorpius", "A scorpion-shaped constellation. Look out for the hook or ‘J’ shape and the bright red star Antares. Best observed in the evening during the UAE summer (June to August)."],
+        ["Antares", "A bright red star in the centre of Scorpius. It is easy to identify because of its red colour."],
+        ["Southern Cross (Crux)", "A small, bright cross of four stars. It is only just visible above the southern horizon from the UAE. The best time to view it is in spring (April to May)."],
+        ["South celestial pole", "The point in the sky directly above Earth’s South Pole. From the UAE it is below the horizon."]
       ],
       steps: [
-        { do: "You are facing south on a summer evening. Find the curved line of stars shaped like a hook, with a red star near the top (circled). This is Scorpius; the red star is Antares.",
-          why: "Scorpius is bright and has a shape that is easy to recognise, and its red star makes it stand out. That makes it a good guide to south in summer.",
+        { do: "Face south and look for a curved line of stars (a hook) with a red star near the top (circled). This is Scorpius, and the red star is Antares.",
+          why: "Scorpius is a bright constellation with a shape that is easy to identify, and its red star makes it stand out. This makes it easy to find south in summer.",
           legend: [[SW.red, "<b>Red star (circled)</b> = Antares, the heart of the scorpion."], [SW.shape, "<b>Blue lines</b> = the shape of Scorpius: body and curved tail."], HORIZON] },
-        { do: "Follow the gold dashed curve: it is the path Scorpius takes during the night. It rises on the left (south-east), climbs, and sets on the right (south-west).",
-          why: "The top of the curve is exactly above due south. So when Scorpius is at its highest, the point on the horizon below it is south.",
-          legend: [[SW.golddash, "<b>Gold dashed curve</b> = the path Scorpius follows during the night."], [SW.arrow, "<b>Arrows</b> = the direction it moves: from left to right."]] },
-        { do: "Now it is spring. Find the small cross of four stars just above the horizon: the Southern Cross. Follow the blue dashed line down from its long bar to the horizon.",
-          why: "The long bar points towards the south celestial pole, which is below the horizon. Following it down shows you roughly where south is.",
-          legend: [[SW.shape, "<b>Small cross</b> = the Southern Cross. Its long bar runs from Gacrux (top) to Acrux (bottom)."], [SW.dash, "<b>Blue dashed line</b> = the long bar extended down towards south."]] }
+        { do: "Follow the gold dotted line: this is the path Scorpius takes during the night. Scorpius rises on the left (SE), climbs in the sky and sets on the right (SW).",
+          why: "The top of the curve is directly above south. When Scorpius is at its highest point, south is the point directly below it on the horizon.",
+          legend: [[SW.golddash, "<b>Gold dotted line</b> = the path Scorpius takes during the night."], [SW.arrow, "<b>Arrows</b> = the direction of movement, from left to right."]] },
+        { do: "Now it is spring. Look for the small cross of 4 stars just above the horizon: the Southern Cross. Follow the dotted blue line along the long bar of the cross down to the horizon.",
+          why: "The long bar of the Southern Cross points to the south celestial pole. As that point is below the horizon, follow the line down to see roughly where south is.",
+          legend: [[SW.shape, "<b>Small cross</b> = the Southern Cross. Its long bar runs from Gacrux to Acrux."], [SW.dash, "<b>Dotted blue line</b> = the long bar continued down towards south."]] }
       ],
       quiz: {
-        q: "Scorpius is at the highest point of its arc. Which way are you facing when you look at it?",
+        q: "When Scorpius is at the highest point in its arc, which direction are you facing?",
         options: ["North", "South", "East"],
         answer: 1,
-        explain: "Stars that rise in the south-east and set in the south-west are highest when they are due south."
+        explain: "Stars that rise in the SE and set in the SW are highest when they are due south."
       },
-      tip: "<b>Try it outside:</b> the Southern Cross is only a few degrees high from the UAE, so go somewhere with a flat, dark southern horizon, like the desert near Liwa.",
+      tip: "<b>Try it outside:</b> as the Southern Cross is only a few degrees high from the UAE, look for a flat, dark area to the south, like the desert near Liwa.",
       state: {},
       controls() { return []; },
       draw(g, step) {
@@ -360,8 +360,8 @@ const Nav = (() => {
           const an = pts[sByName(c, "Antares")], peak = an[1] + 30;
           svgEl("path", { d: `M40,${hy} Q300,${2 * peak - hy} 560,${hy}`, fill: "none", stroke: "rgba(255,207,122,.6)", "stroke-dasharray": "5 6", "stroke-width": 2 }, g);
           arrow(g, 120, hy - 70, 150, hy - 98, GOLD); arrow(g, 450, hy - 98, 480, hy - 70, GOLD);
-          text(g, 70, hy - 40, "rises SE", { fill: GOLD, "font-size": 12 });
-          text(g, 470, hy - 40, "sets SW", { fill: GOLD, "font-size": 12 });
+          text(g, 70, hy - 40, "rises in the SE", { fill: GOLD, "font-size": 12 });
+          text(g, 470, hy - 40, "sets in the SW", { fill: GOLD, "font-size": 12 });
           text(g, 300, peak + 34, "highest point = due south", { fill: CYAN, "font-size": 13, "text-anchor": "middle" });
           svgEl("line", { x1: 300, y1: peak + 42, x2: 300, y2: hy, stroke: "rgba(124,242,255,.5)", "stroke-dasharray": "2 4" }, g);
         }
@@ -374,46 +374,46 @@ const Nav = (() => {
         if (step === 0) {
           const an = pts[sByName(c, "Antares")]; ring(g, an[0], an[1], 15);
           text(g, an[0] - 30, an[1] - 22, "Scorpius", { fill: GOLD, "font-family": "Orbitron", "text-anchor": "end" });
-          note(g, 380, 210, "the curved tail (the hook)", pts[12][0] + 4, pts[12][1]);
+          note(g, 380, 210, "the curved tail (hook)", pts[12][0] + 4, pts[12][1]);
           note(g, 420, 90, "the head and claws", pts[1][0] + 6, pts[1][1]);
         }
         if (id === "crux") text(g, pts[3][0] - 40, pts[0][1] - 4, "Southern Cross", { fill: GOLD, "font-family": "Orbitron", "text-anchor": "end" });
         ground(g, hy, [["SE", 60], ["S", 300], ["SW", 540]]);
-        if (id === "crux") text(g, 300, 372, "(heights enlarged: the cross is only a few degrees high)", { fill: CYAN, "font-size": 11, "text-anchor": "middle" });
+        if (id === "crux") text(g, 300, 372, "(scale increased: the cross is only a few degrees high)", { fill: CYAN, "font-size": 11, "text-anchor": "middle" });
       }
     },
     {
       name: "Suhail",
       title: "Mission 5 · Suhail, the star of the seasons",
-      view: "🔭 The picture shows: the southern horizon, low down",
-      intro: "Canopus, known in Arabic as Suhail, is the second-brightest star in the night sky after Sirius. For centuries people in Arabia have used it to mark the seasons, and sailors used it to steer by. From the UAE it always stays low in the south, so you need to know exactly where to look.",
+      view: "🔭 The picture shows: the low southern horizon",
+      intro: "Canopus (Suhail in Arabic) is the second brightest star in the night sky. People in Arabia have used it for centuries to mark the seasons, and sailors have also used it for navigation. From the UAE it is always low in the south, so you must know exactly where to look.",
       terms: [
-        ["Suhail (Canopus)", "A very bright star in the southern sky. From the UAE it never climbs high: it always stays low above the southern horizon."],
-        ["Altitude", "How high something is in the sky, in degrees. 0° is on the horizon and 90° is straight overhead. One fist at arm’s length ≈ 10°."],
-        ["Rising before dawn", "The first mornings of the year when a star can be seen low in the sky just before sunrise, before the Sun’s light hides it."]
+        ["Suhail (Canopus)", "A very bright star in the south. From the UAE it is never high in the sky; it is always low on the southern horizon."],
+        ["Altitude", "How high something is in the sky, measured in degrees. 0 degrees is the horizon and 90 degrees is directly overhead. One fist held at arm’s length is approximately 10 degrees."],
+        ["Rising before dawn", "The first few mornings of the year when the star can be seen low on the horizon just before sunrise."]
       ],
       steps: [
-        { do: "You are facing due south, looking at the horizon (the gold line). The big bright star circled just above it is Suhail. The two faint lines across the picture mark heights of 10° and 20° above the horizon: one fist and two fists.",
-          why: "Suhail is the second-brightest star in the night sky, so it is easy to spot once you know where to look: due south, a little more than one fist above the horizon. Because it stays so low, buildings, hills or haze can easily hide it.",
-          legend: [[SW.gold, "<b>Big bright star (circled)</b> = Suhail (Canopus)."], [SW.grid, "<b>Faint lines</b> = height above the horizon: 10° (1 fist) and 20° (2 fists)."], HORIZON] },
-        { do: "Tap the place buttons under the picture, from Liwa (in the south of the UAE) to Ras Al Khaimah (in the north). Watch how high Suhail is in each place.",
-          why: "Suhail is a southern star, so the further south you are, the higher it climbs. It is the same idea as Polaris in Mission 2, but for the southern sky: the sky you see depends on where you are on Earth.",
-          legend: [[SW.gold, "<b>The number next to Suhail</b> = its highest altitude from that place."], [SW.grid, "<b>Faint lines</b> = 10° and 20° above the horizon."]] },
-        { do: "Now it is late August, just before sunrise. The orange glow is the dawn sky. Suhail is just rising, low in the south-south-east.",
-          why: "The first mornings Suhail can be seen each year (around late August in the UAE) are traditionally the sign that the hottest part of summer is ending. Long before printed calendars, people used the stars to keep track of the seasons.",
-          legend: [[SW.dawn, "<b>Orange glow</b> = dawn, just before sunrise."], [SW.gold, "<b>Suhail</b>, just above the horizon in the south-south-east."]] }
+        { do: "You are looking due south at the horizon (the gold line). The large bright star just above the horizon (circled) is Suhail. The thin lines across the picture show 10 degrees (one fist) and 20 degrees (two fists) high.",
+          why: "As it is the second brightest star in the night sky, it is easy to identify once you know where to look: just over one fist high in the south. However, as it is so low, it can easily be hidden by buildings, hills or haze.",
+          legend: [[SW.gold, "<b>Large bright star (circled)</b> = Suhail (Canopus)."], [SW.grid, "<b>Thin lines</b> = 10 degrees (one fist) and 20 degrees (two fists) high."], HORIZON] },
+        { do: "Tap the location buttons underneath the picture, from Liwa (south of the UAE) to Ras Al Khaimah (north of the UAE). See how high the star is.",
+          why: "As it is a southern star, the further south you are, the higher it will be. It works like Polaris in Mission 2, but for the southern sky: the further south you are, the more of the southern sky you will see.",
+          legend: [[SW.gold, "<b>Number next to Suhail</b> = its highest altitude from this location."], [SW.grid, "<b>Thin lines</b> = 10 and 20 degrees high."]] },
+        { do: "It is late August, just before sunrise. The orange glow is the dawn. Suhail is just rising in the south-south-east.",
+          why: "Traditionally, the first few mornings the star can be seen (around late August in the UAE) mark the end of the hottest part of summer. Long before printed calendars, people used the stars to keep track of the seasons.",
+          legend: [[SW.dawn, "<b>Orange glow</b> = dawn."], [SW.gold, "<b>Suhail</b>, just above the horizon in the south-south-east."]] }
       ],
       quiz: {
-        q: "Where in the UAE does Suhail climb highest?",
-        options: ["Ras Al Khaimah, in the north", "Liwa, in the south", "It is the same height everywhere"],
+        q: "Where in the UAE will Suhail be highest?",
+        options: ["Ras Al Khaimah (north)", "Liwa (south)", "The same height everywhere"],
         answer: 1,
-        explain: "Suhail is a southern star, so the further south you are, the higher it rises. Liwa is the furthest south of these places."
+        explain: "As it is a southern star, the further south you are, the higher it will be. Liwa is the furthest south."
       },
-      tip: "<b>Try it outside:</b> Suhail is easiest to see on winter evenings in January and February, when it is at its highest in the south around 9–10 pm. Find a place with a clear, flat view to the south.",
+      tip: "<b>Try it outside:</b> Suhail is easiest to see on winter evenings (January and February), when it is highest in the south around 9–10 pm. Look for somewhere with a clear, flat view to the south.",
       state: { lat: 24.5 },
       controls(s, render) {
         const wrap = document.createElement("div"); wrap.className = "btn-row";
-        wrap.innerHTML = '<span class="ctrl-label">👆 Tap a place:</span>';
+        wrap.innerHTML = '<span class="ctrl-label">👆 Tap a location:</span>';
         [["Liwa (south)", 23.1], ["Abu Dhabi", 24.5], ["Dubai", 25.2], ["Ras Al Khaimah (north)", 25.8]].forEach(([n, lat]) => {
           const b = document.createElement("button"); b.className = "chip"; b.textContent = n;
           b.onclick = () => { const from = s.lat; s.lat = lat; tween(from, lat, 700, v => render(v)); };
@@ -442,10 +442,10 @@ const Nav = (() => {
         text(g, x + 30, y + 5, step === 2 ? "Suhail, just rising" : `Suhail · ${alt.toFixed(1)}° high`, { fill: GOLD, "font-size": 15, "font-family": "Orbitron" });
         ground(g, hy, step === 2 ? [["SE", 120], ["SSE", 240], ["S", 300]] : [["SE", 60], ["S", 300], ["SW", 540]]);
         if (step === 0) {
-          note(g, 360, 90, "the brightest star in this part of the sky", x + 4, y - 20);
+          note(g, 360, 90, "the brightest star in this region of the sky", x + 4, y - 20);
           note(g, 380, 345, "you are facing due south", 300, 312);
         }
-        if (step === 1) note(g, 360, 90, "further south = Suhail sits higher", x + 4, y - 20);
+        if (step === 1) note(g, 360, 90, "further south = Suhail is higher", x + 4, y - 20);
       }
     }
   ];
@@ -503,7 +503,7 @@ const Nav = (() => {
       b.onclick = () => {
         const ok = k === m.quiz.answer;
         b.classList.add(ok ? "right" : "wrong");
-        el.qFb.innerHTML = (ok ? "✅ <b>Correct!</b> " : "❌ <b>Not quite. Try another answer.</b> ") + (ok ? m.quiz.explain : "");
+        el.qFb.innerHTML = (ok ? "✅ <b>Correct!</b> " : "❌ <b>Incorrect. Try again.</b> ") + (ok ? m.quiz.explain : "");
         if (ok) { done.add(i); refreshTabs(); }
       };
       el.qOpts.appendChild(b);
@@ -519,6 +519,8 @@ const Nav = (() => {
     if (step < m.steps.length - 1) showStep(step + 1);
     else { el.quiz.scrollIntoView({ behavior: "smooth", block: "center" }); el.quiz.animate([{ boxShadow: "0 0 0 0 rgba(255,207,122,.8)" }, { boxShadow: "0 0 0 14px rgba(255,207,122,0)" }], { duration: 900 }); }
   };
+  // the picture's notes measure their text, so redraw once the tab becomes visible
+  addEventListener("resize", () => { if (m && svg.getBoundingClientRect().width) render(); });
   missions.forEach((ms, i) => {
     const b = document.createElement("button");
     b.className = "mission-tab"; b.setAttribute("role", "tab");
@@ -659,11 +661,11 @@ const Nav = (() => {
   size(); update();
 
   const info = {
-    humidity: "💧 <b>Humidity.</b> Summer air on the UAE coast is very humid. Water vapour scatters light, so faint stars fade and city glow spreads further. Inland desert and mountain sites are drier, and winter nights are much clearer.",
-    dust: "🌪 <b>Dust & haze.</b> Fine desert dust hangs in the air, especially during windy spells in spring and summer. It dims stars near the horizon most of all. The clearest nights often come after rain or once the wind drops.",
-    moon: "🌕 <b>The Moon.</b> A full Moon lights up the sky almost like light pollution and hides the Milky Way. Plan trips for the days around the new Moon, or wait until a crescent Moon has set.",
-    heat: "🌡 <b>Heat.</b> Summer nights can stay above 30 °C. Rising warm air makes stars twinkle more and blurs telescope views. High places such as Jebel Jais are cooler and steadier.",
-    eyes: "👁 <b>Dark-adapted eyes.</b> Your eyes need about 20–30 minutes in darkness to see the faintest stars. Use a red torch and avoid looking at bright phone screens, which resets your night vision."
+    humidity: "💧 <b>Humidity.</b> Humidity is high during the summer months on the UAE coast. Water vapour in the air scatters more light, so faint stars disappear and the light from cities travels further. The desert and mountain regions inland are much drier, and winter has much clearer nights.",
+    dust: "🌪 <b>Dust & haze.</b> Fine dust particles from the desert float in the air during the windy months. This reduces the visibility of stars close to the horizon. The clearest nights often come after rainfall or when there is little wind.",
+    moon: "🌕 <b>The Moon.</b> A full Moon can create similar conditions to light pollution, making it difficult to see the Milky Way. Try to stargaze on the days around the new Moon, or after the crescent Moon has set.",
+    heat: "🌡 <b>Heat.</b> During the summer months, nights can be very hot, with temperatures above 30 °C. This causes more twinkling and blurs telescope views. Higher areas such as Jebel Jais are cooler.",
+    eyes: "👁 <b>Dark-adapted eyes.</b> To see the faintest stars, your eyes need 20–30 minutes in the dark to adapt. Use a red torch and avoid looking at bright phone screens, as this resets your night vision."
   };
   $$(".factor").forEach(b => b.onclick = () => {
     $$(".factor").forEach(x => x.classList.toggle("active", x === b));

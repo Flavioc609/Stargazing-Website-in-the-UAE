@@ -29,11 +29,11 @@ const CONSTELLATIONS = [
       ["Meissa", 5.585, 9.93, 3.4]
     ],
     lines: [[7, 0, 4, 5], [7, 1, 2, 6], [2, 3, 4]],
-    bestMonth: 0, best: "December – March (evenings)",
-    where: "High in the south on winter evenings.",
-    keyStars: "Betelgeuse (red supergiant), Rigel (blue-white supergiant), and the three belt stars Alnitak, Alnilam and Mintaka. Many of these names come from Arabic, e.g. Rigel from rijl, “foot”.",
-    navigation: "Mintaka, the westernmost belt star, sits almost exactly on the celestial equator, so it rises close to due east and sets close to due west. The belt also points down-left to Sirius and up-right to Aldebaran.",
-    fact: "The fuzzy patch in Orion’s sword is the Orion Nebula (M42), a star-forming cloud visible to the naked eye from a dark site."
+    bestMonth: 0, best: "December – March (evening)",
+    where: "High in the south during winter evenings.",
+    keyStars: "Betelgeuse (red supergiant), Rigel (blue-white supergiant), and Alnitak, Alnilam and Mintaka (the 3 stars that make up the belt). Many of the names come from Arabic. For example, Rigel comes from rijl, meaning “foot”.",
+    navigation: "Mintaka (the westernmost star in the belt) is almost on the celestial equator. This means it rises close to due east and sets close to due west. The belt can be used to find Sirius by looking down to the left, and Aldebaran by looking up to the right.",
+    fact: "The fuzzy patch in the sword of Orion is the Orion Nebula (M42). This is a star-forming cloud that can be seen with the naked eye from a dark location."
   },
   {
     id: "ursamajor", name: "Ursa Major (Big Dipper)", arabic: "Banāt Na‘sh",
@@ -47,11 +47,11 @@ const CONSTELLATIONS = [
       ["Alkaid", 13.792, 49.31, 1.86]
     ],
     lines: [[0, 1, 2, 3, 0], [3, 4, 5, 6]],
-    bestMonth: 3, best: "March – June (evenings)",
-    where: "In the north. From the UAE it sits low over the northern horizon in autumn and winter evenings, and parts of it set for a while.",
-    keyStars: "Dubhe and Merak (the “pointers”), Mizar and its faint companion Alcor.",
-    navigation: "Draw a line from Merak through Dubhe and extend it about five times that distance to reach Polaris, the North Star. “Arc to Arcturus” by following the curve of the handle.",
-    fact: "The Big Dipper is an asterism (a star pattern), not a full constellation. It is the brightest part of Ursa Major, the Great Bear."
+    bestMonth: 3, best: "March – June (evening)",
+    where: "North. From the UAE it is low on the northern horizon during autumn and winter evenings, and parts of it set.",
+    keyStars: "Dubhe and Merak (the pointers), and Mizar with its faint companion Alcor.",
+    navigation: "Draw a line from Merak to Dubhe and extend it about 5 times. This will point to Polaris (the North Star). “Arc to Arcturus” by following the curve of the handle.",
+    fact: "The Big Dipper is an asterism (a pattern of stars), not a full constellation. It is the brightest part of Ursa Major (the Great Bear)."
   },
   {
     id: "ursaminor", name: "Ursa Minor (Polaris)", arabic: "Al-Jadī (Polaris)",
@@ -65,11 +65,11 @@ const CONSTELLATIONS = [
       ["Eta UMi", 16.292, 75.76, 4.95]
     ],
     lines: [[0, 1, 2, 3, 4, 5, 6, 3]],
-    bestMonth: 5, best: "All year (never sets from the UAE)",
-    where: "Due north, about 24–26° above the horizon from the UAE.",
-    keyStars: "Polaris, the North Star, at the end of the Little Dipper’s handle. Kochab and Pherkad are the “Guardians of the Pole”, known to Arab astronomers as al-Farqadān.",
-    navigation: "Polaris stays almost fixed above the North Pole. Its height above the horizon is about equal to your latitude: roughly 24.5° in Abu Dhabi and 25.8° in Ras Al Khaimah.",
-    fact: "Polaris is not the brightest star in the sky (it is about 48th). It is useful because it barely moves."
+    bestMonth: 5, best: "All year (never sets)",
+    where: "Due north. It should be 24–26° above the horizon.",
+    keyStars: "Polaris (the North Star), at the end of the Little Dipper’s handle. Kochab and Pherkad (the Guardians of the Pole), known to Arab astronomers as al-Farqadān.",
+    navigation: "Polaris stays almost fixed above the North Pole. Its height above the horizon is roughly the same as your latitude: around 24.5° in Abu Dhabi and around 25.8° in Ras Al Khaimah.",
+    fact: "Polaris is not the brightest star in the sky; it is about the 48th brightest. It is helpful because it does not move much."
   },
   {
     id: "cassiopeia", name: "Cassiopeia", arabic: "Dhāt al-Kursī",
@@ -81,11 +81,11 @@ const CONSTELLATIONS = [
       ["Segin", 1.907, 63.67, 3.37]
     ],
     lines: [[0, 1, 2, 3, 4]],
-    bestMonth: 10, best: "October – January (evenings)",
-    where: "In the north, on the opposite side of Polaris from the Big Dipper.",
-    keyStars: "Schedar (from Arabic ṣadr, “chest”), Caph and Navi.",
-    navigation: "When the Big Dipper is low or hidden, the W of Cassiopeia is high. Both patterns circle Polaris, so either one can be used to find north.",
-    fact: "The W shape turns into an M as it rotates around Polaris during the night."
+    bestMonth: 10, best: "October – January (evening)",
+    where: "North, on the opposite side of Polaris from the Big Dipper.",
+    keyStars: "Schedar (from Arabic ṣadr, meaning “chest”), Caph and Navi.",
+    navigation: "When the Big Dipper is low or not visible, the W of Cassiopeia is high. Both can be used to find north, as they both circle around Polaris.",
+    fact: "The W shape turns into an M as it circles around Polaris during the night."
   },
   {
     id: "scorpius", name: "Scorpius", arabic: "Al-‘Aqrab",
@@ -106,11 +106,11 @@ const CONSTELLATIONS = [
       ["Shaula", 17.560, -37.10, 1.62]
     ],
     lines: [[0, 1, 2], [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]],
-    bestMonth: 6, best: "June – August (evenings)",
-    where: "Low in the south on summer evenings.",
-    keyStars: "Antares, a red supergiant whose name means “rival of Mars”. Shaula comes from Arabic al-shawlah, the raised stinger.",
-    navigation: "When Scorpius is at its highest it is due south, so it can be used to find south on summer nights.",
-    fact: "From the UAE, Scorpius climbs higher than it does from Europe, which makes the whole curved tail easy to see."
+    bestMonth: 6, best: "June – August (evening)",
+    where: "Low in the south during summer evenings.",
+    keyStars: "Antares (red supergiant), whose name means “rival of Mars”. Shaula (from Arabic al-shawlah, meaning “raised stinger”).",
+    navigation: "When Scorpius is at its highest, it is due south. It can be used to find south during summer.",
+    fact: "Scorpius rises higher from the UAE than from Europe. This makes the whole curved tail easy to see."
   },
   {
     id: "leo", name: "Leo", arabic: "Al-Asad",
@@ -126,11 +126,11 @@ const CONSTELLATIONS = [
       ["Denebola", 11.818, 14.57, 2.13]
     ],
     lines: [[0, 1, 2, 3, 4, 5], [2, 6, 8, 7, 0], [6, 7]],
-    bestMonth: 3, best: "March – May (evenings)",
-    where: "High in the south-east to south on spring evenings.",
-    keyStars: "Regulus, which lies almost on the ecliptic, and Denebola, from Arabic dhanab al-asad, “the lion’s tail”.",
-    navigation: "The “Sickle” (a backwards question mark) forms the lion’s head and mane.",
-    fact: "The Leonid meteor shower, which peaks around 17 November each year, appears to come from Leo."
+    bestMonth: 3, best: "March – May (evening)",
+    where: "High in the south-east to south during spring evenings.",
+    keyStars: "Regulus (almost on the ecliptic) and Denebola (from Arabic dhanab al-asad, meaning “the lion’s tail”).",
+    navigation: "The Sickle (a backwards question mark) forms the head and mane of the lion.",
+    fact: "The Leonid meteor shower appears to come from Leo. It peaks around 17 November each year."
   },
   {
     id: "cygnus", name: "Cygnus (Northern Cross)", arabic: "Al-Dajājah",
@@ -144,11 +144,11 @@ const CONSTELLATIONS = [
       ["Zeta Cyg", 21.216, 30.23, 3.2]
     ],
     lines: [[0, 1, 2, 3], [4, 1, 5, 6]],
-    bestMonth: 8, best: "July – October (evenings)",
-    where: "High overhead to the north-east on summer and autumn evenings, along the Milky Way.",
-    keyStars: "Deneb (from Arabic dhanab, “tail”), one corner of the Summer Triangle with Vega and Altair. Albireo is a colourful double star in a small telescope.",
-    navigation: "The Summer Triangle (Deneb, Vega, Altair) is one of the easiest patterns to find from cities.",
-    fact: "Deneb is one of the most luminous stars known, tens of thousands of times brighter than the Sun."
+    bestMonth: 8, best: "July – October (evening)",
+    where: "High above in the north-east during summer and autumn evenings, along the Milky Way.",
+    keyStars: "Deneb (from Arabic dhanab, meaning “tail”), one corner of the Summer Triangle (with Vega and Altair). Albireo is a colourful double star that can be seen in a small telescope.",
+    navigation: "The Summer Triangle (Deneb, Vega and Altair) is one of the easiest star patterns to find from cities.",
+    fact: "Deneb is one of the most luminous stars known. It is tens of thousands of times brighter than our Sun."
   },
   {
     id: "lyra", name: "Lyra", arabic: "Al-Nasr al-Wāqi‘",
@@ -161,11 +161,11 @@ const CONSTELLATIONS = [
       ["Sheliak", 18.835, 33.36, 3.5]
     ],
     lines: [[0, 1], [0, 2], [2, 3, 4, 5, 2]],
-    bestMonth: 7, best: "June – September (evenings)",
-    where: "High overhead on summer evenings.",
-    keyStars: "Vega, the fifth-brightest star in the night sky. Its name comes from Arabic al-nasr al-wāqi‘, “the swooping eagle”.",
+    bestMonth: 7, best: "June – September (evening)",
+    where: "High above during summer evenings.",
+    keyStars: "Vega (the 5th brightest star in the night sky). Its name comes from Arabic al-nasr al-wāqi‘, meaning “the swooping eagle”.",
     navigation: "Vega is the brightest corner of the Summer Triangle.",
-    fact: "Because Earth’s axis slowly wobbles (precession), Vega will be close to the north celestial pole again in about 12,000 years."
+    fact: "Vega will be close to the north celestial pole again in about 12,000 years, because Earth’s axis slowly wobbles (precession)."
   },
   {
     id: "taurus", name: "Taurus", arabic: "Al-Thawr",
@@ -181,10 +181,10 @@ const CONSTELLATIONS = [
       ["Pleiades", 3.791, 24.11, 2.87, "#cfe0ff"]
     ],
     lines: [[6, 0, 1, 2, 3, 4, 5], [2, 7]],
-    bestMonth: 0, best: "November – February (evenings)",
-    where: "High in the south on winter evenings, to the upper right of Orion.",
-    keyStars: "Aldebaran (from Arabic al-dabarān, “the follower”, because it follows the Pleiades across the sky). The Pleiades cluster is al-Thurayyā.",
-    navigation: "Follow Orion’s belt up and to the right to reach Aldebaran.",
+    bestMonth: 0, best: "November – February (evening)",
+    where: "High in the south during winter evenings, to the upper right of Orion.",
+    keyStars: "Aldebaran (from Arabic al-dabarān, meaning “the follower”, as it follows the Pleiades across the sky) and the Pleiades cluster (al-Thurayyā).",
+    navigation: "Follow the belt of Orion up and to the right to find Aldebaran.",
     fact: "The rising of al-Thurayyā (the Pleiades) was used in traditional Arabian calendars to mark the seasons."
   },
   {
@@ -198,11 +198,11 @@ const CONSTELLATIONS = [
       ["Alhena", 6.629, 16.40, 1.93]
     ],
     lines: [[0, 1], [0, 2, 3], [1, 4, 5]],
-    bestMonth: 1, best: "January – April (evenings)",
-    where: "High in the east to south on winter and spring evenings, to the upper left of Orion.",
-    keyStars: "The twins Castor and Pollux.",
-    navigation: "A line from Rigel through Betelgeuse points towards Castor and Pollux.",
-    fact: "The Geminid meteor shower (peak around 13–14 December) is one of the strongest showers of the year."
+    bestMonth: 1, best: "January – April (evening)",
+    where: "High in the east to south during winter and spring evenings, to the upper left of Orion.",
+    keyStars: "Castor and Pollux (the twins).",
+    navigation: "Draw a line from Rigel through Betelgeuse. It will point to Castor and Pollux.",
+    fact: "The Geminid meteor shower is one of the strongest of the year. It peaks around 13–14 December."
   },
   {
     id: "canismajor", name: "Canis Major", arabic: "Al-Kalb al-Akbar",
@@ -215,11 +215,11 @@ const CONSTELLATIONS = [
       ["Furud", 6.338, -30.06, 3.0]
     ],
     lines: [[1, 0, 2, 4], [2, 3, 5]],
-    bestMonth: 1, best: "January – March (evenings)",
-    where: "In the south-east to south on winter evenings, to the lower left of Orion.",
-    keyStars: "Sirius, the brightest star in the night sky, known in Arabic as al-Shi‘rā.",
-    navigation: "Follow Orion’s belt down and to the left to reach Sirius.",
-    fact: "Sirius is only about 8.6 light-years away, one of the closest stars to the Sun."
+    bestMonth: 1, best: "January – March (evening)",
+    where: "South-east to south during winter evenings, to the lower left of Orion.",
+    keyStars: "Sirius (the brightest star in the night sky), from Arabic al-Shi‘rā.",
+    navigation: "Follow the belt of Orion down and to the left to find Sirius.",
+    fact: "Sirius is only about 8.6 light-years away, one of the closest stars to our Sun."
   },
   {
     id: "crux", name: "Crux (Southern Cross)", arabic: "Al-Ṣalīb",
@@ -231,10 +231,10 @@ const CONSTELLATIONS = [
     ],
     lines: [[0, 1], [2, 3]],
     bestMonth: 4, best: "April – May (late evening, very low)",
-    where: "Just above the southern horizon. From the UAE, Acrux climbs only about 2–3° high, so you need a flat, dark southern horizon such as open desert.",
+    where: "Just above the southern horizon. From the UAE, Acrux only rises about 2–3° high, so you will need a flat, dark horizon to the south, like open desert.",
     keyStars: "Acrux, Mimosa and Gacrux.",
-    navigation: "Extending the long bar from Gacrux through Acrux about 4.5 times points towards the south celestial pole. From the UAE that point is below the horizon, but the line still shows you roughly where south is.",
-    fact: "Seeing the Southern Cross is a highlight for UAE stargazers, because it cannot be seen at all from most of Europe and North America."
+    navigation: "Draw a line from Gacrux through Acrux and extend it about 4.5 times. This points to the south celestial pole. From the UAE that point is below the horizon, but the line still gives you a general idea of where south is.",
+    fact: "Seeing the Southern Cross is a highlight for UAE stargazers, as it cannot be seen at all from most of Europe and North America."
   }
 ];
 
@@ -276,105 +276,105 @@ const EXTRA_STARS = [
 const LOCATIONS = [
   {
     name: "Liwa Oasis & Moreeb Dune", emirate: "Abu Dhabi", lat: 23.13, lon: 54.21,
-    bortle: 2, drive: "≈ 2.5–3 h from Abu Dhabi city",
-    elev: "≈ 100–300 m (dunes)",
-    why: "On the edge of the Rub’ al Khali (Empty Quarter). Very little artificial light and a wide, flat horizon in every direction.",
-    tips: "Best for the Milky Way and for spotting low southern objects like Canopus and the Southern Cross. Bring warm layers: desert nights get cold in winter."
+    bortle: 2, drive: "~2.5–3 hours from Abu Dhabi",
+    elev: "~100–300 m (dunes)",
+    why: "Located on the edge of the Rub’ al Khali (Empty Quarter). Minimal artificial light and a very large, flat horizon.",
+    tips: "Best for viewing the Milky Way. Good for seeing low southern objects like Canopus and the Southern Cross. Bring warm layers, as the desert can get cold at night in winter."
   },
   {
     name: "Al Qudra Lakes", emirate: "Dubai", lat: 24.83, lon: 55.37,
-    bortle: 4, drive: "≈ 45–60 min from central Dubai",
-    elev: "≈ 70 m",
-    why: "The closest well-known dark desert area to Dubai. The sky to the south is much darker than towards the city.",
-    tips: "Look south and east, away from the Dubai sky glow. Good for beginners and families."
+    bortle: 4, drive: "~45–60 minutes from central Dubai",
+    elev: "~70 m",
+    why: "The closest well-known dark area of desert to Dubai. The sky to the south is much darker than towards the city.",
+    tips: "Look to the south and east to avoid the city light. Great for beginners and families."
   },
   {
     name: "Jebel Jais", emirate: "Ras Al Khaimah", lat: 25.94, lon: 56.13,
-    bortle: 3, drive: "≈ 2 h from Dubai",
-    elev: "≈ 1,900 m (the UAE’s highest mountain area; the true summit is just across the border in Oman)",
-    why: "High altitude puts you above much of the dust and humidity near the ground, and temperatures are 10°C or more cooler than the coast.",
-    tips: "The coast and RAK city add glow to the west. Look north-east and up. Check the weather: clouds can form around the summit."
+    bortle: 3, drive: "~2 hours from Dubai",
+    elev: "~1,900 m (the highest mountains in the UAE; the true summit is just over the border in Oman)",
+    why: "The high elevation means you will be above a lot of the dust and humidity. Temperatures are 10 °C or more cooler than on the coast.",
+    tips: "Light pollution comes from the coast and RAK city, so look north-east and high up. The weather can be an issue, as clouds can form around the summit."
   },
   {
     name: "Jebel Hafeet", emirate: "Abu Dhabi (Al Ain)", lat: 24.06, lon: 55.78,
-    bortle: 4, drive: "≈ 30 min from Al Ain city",
-    elev: "≈ 1,250 m (Abu Dhabi’s highest peak)",
-    why: "A mountain rising out of the desert, giving a high viewpoint with open views to the south.",
-    tips: "Al Ain’s lights are to the north, so the best views are towards the south and overhead."
+    bortle: 4, drive: "~30 minutes from Al Ain",
+    elev: "~1,250 m (the highest peak in Abu Dhabi)",
+    why: "A mountain rising out of the desert. It is a high vantage point with clear views to the south.",
+    tips: "The lights of Al Ain are to the north, so the best views are to the south and overhead."
   },
   {
     name: "Mleiha", emirate: "Sharjah", lat: 25.12, lon: 55.88,
-    bortle: 4, drive: "≈ 1 h from Dubai or Sharjah",
-    elev: "≈ 150 m",
-    why: "Desert and rocky landscape inland, away from the coastal cities. The Mleiha Archaeological Centre runs organised stargazing nights.",
-    tips: "A good choice for a first guided night with telescopes."
+    bortle: 4, drive: "~1 hour from Dubai or Sharjah",
+    elev: "~150 m",
+    why: "A desert and rocky area away from the coastal cities. Organised stargazing nights are held at the Mleiha Archaeological Centre.",
+    tips: "Good for a first guided stargazing night."
   },
   {
     name: "Hatta", emirate: "Dubai", lat: 24.80, lon: 56.12,
-    bortle: 4, drive: "≈ 1.5 h from Dubai",
-    elev: "≈ 300–600 m",
-    why: "A mountain area in the Hajar Mountains with campsites and lower light pollution than the coast.",
-    tips: "Mountains can block low parts of the sky, so pick an open spot."
+    bortle: 4, drive: "~1.5 hours from Dubai",
+    elev: "~300–600 m",
+    why: "A mountain area in the Hajar Mountains. Campsites are available, and there is less light pollution than on the coast.",
+    tips: "Mountains may block some of the sky near the horizon, so choose an open area."
   },
   {
     name: "Wadi Wurayah", emirate: "Fujairah", lat: 25.40, lon: 56.28,
-    bortle: 3, drive: "≈ 2 h from Dubai",
-    elev: "≈ 200–500 m",
-    why: "A protected mountain area on the east side of the UAE, sheltered from most city lights.",
-    tips: "Parts of the reserve have restricted access, so check the rules before visiting."
+    bortle: 3, drive: "~2 hours from Dubai",
+    elev: "~200–500 m",
+    why: "A protected mountain area on the east side of the UAE, sheltered from most city light.",
+    tips: "Some parts of the reserve are restricted, so please check the rules before visiting."
   }
 ];
 
 // Bortle dark-sky scale
 const BORTLE = [
   null,
-  { name: "Excellent dark sky", limit: 7.8, uae: "Deep in the Empty Quarter, far from any road or settlement.", text: "The darkest possible sky. Thousands of stars are visible, and the Milky Way is so bright it can cast faint shadows on the ground." },
-  { name: "Truly dark sky", limit: 7.2, uae: "Remote desert, e.g. south of Liwa.", text: "Very dark. The Milky Way shows clear detail, with dark lanes of dust. Clouds look like black patches blocking the stars." },
-  { name: "Rural sky", limit: 6.7, uae: "Mountain sites such as Jebel Jais, away from the summit lights.", text: "Dark, with a little glow from towns low on the horizon. The Milky Way is still bright and easy to see." },
-  { name: "Rural / suburban transition", limit: 6.2, uae: "Al Qudra, Mleiha, Hatta.", text: "Domes of light glow over nearby towns. The Milky Way is visible overhead but looks faint and washed out." },
-  { name: "Suburban sky", limit: 5.7, uae: "The edges of the cities.", text: "The Milky Way is very faint overhead and invisible near the horizon. Only the brighter constellations stand out clearly." },
-  { name: "Bright suburban sky", limit: 5.5, uae: "Residential areas outside city centres.", text: "The sky has a grey glow. The Milky Way is hard or impossible to see; the main constellation shapes are still clear." },
-  { name: "Suburban / urban transition", limit: 5.0, uae: "Most of Sharjah and Abu Dhabi island.", text: "The whole sky glows grey-white. You can still make out the main constellation patterns, but few faint stars." },
-  { name: "City sky", limit: 4.5, uae: "Large parts of Dubai.", text: "The sky glows orange-grey. Only the brightest stars and planets are easy to see." },
-  { name: "Inner-city sky", limit: 4.0, uae: "Downtown Dubai and Dubai Marina.", text: "Only the Moon, planets and a handful of the brightest stars are visible." }
+  { name: "Excellent dark sky", limit: 7.8, uae: "Deep in the Empty Quarter, far from any roads or settlements.", text: "The darkest sky possible. Thousands of stars are visible, and the Milky Way is so bright it creates faint shadows on the ground." },
+  { name: "Truly dark sky", limit: 7.2, uae: "Remote desert (e.g. south of Liwa).", text: "Very dark. The Milky Way is very detailed, with dark streaks of dust. Clouds look black." },
+  { name: "Rural sky", limit: 6.7, uae: "Mountain locations (e.g. Jebel Jais), away from the lights on the summit.", text: "Dark, with some glow from towns on the horizon. The Milky Way is still bright and easy to see." },
+  { name: "Rural / suburban sky", limit: 6.2, uae: "Al Qudra, Mleiha, Hatta.", text: "Domes of light glow over nearby towns. The Milky Way is visible but faint and washed out." },
+  { name: "Suburban sky", limit: 5.7, uae: "The edges of the cities.", text: "The Milky Way is very faint and not visible near the horizon. Only the brightest constellations stand out." },
+  { name: "Bright suburban sky", limit: 5.5, uae: "Residential areas outside city centres.", text: "The sky glows a greyish colour. The Milky Way is hard or impossible to see, but the main constellation shapes are still visible." },
+  { name: "Suburban / urban sky", limit: 5.0, uae: "Most of Sharjah and Abu Dhabi Island.", text: "The entire sky glows a greyish white. The main constellation shapes are still visible, but there are not many faint stars." },
+  { name: "City sky", limit: 4.5, uae: "Large areas of Dubai.", text: "The sky glows an orange-grey colour. Only the brightest stars and planets are easy to see." },
+  { name: "Inner-city sky", limit: 4.0, uae: "Downtown Dubai and Dubai Marina.", text: "Only the Moon, the planets and a few of the brightest stars are visible." }
 ];
 
 // Monthly sky calendar (evening sky, around 21:00, from the UAE)
 const MONTHS = [
-  { m: "Jan", full: "January", rating: 5, cons: ["Orion", "Taurus", "Gemini", "Canis Major"], event: "Quadrantid meteors peak around 3–4 January.", weather: "Cool and usually clear. One of the best months, though fog can form near the coast." },
-  { m: "Feb", full: "February", rating: 5, cons: ["Orion", "Gemini", "Canis Major", "Canopus (Suhail)"], event: "Canopus is well placed, low in the south.", weather: "Cool, clear nights. Occasional rain or cloud fronts." },
-  { m: "Mar", full: "March", rating: 4, cons: ["Leo", "Gemini", "Ursa Major", "Orion (setting)"], event: "Around the March equinox, the Sun rises due east and sets due west.", weather: "Warming up. Windier, with more dust in the air." },
-  { m: "Apr", full: "April", rating: 4, cons: ["Leo", "Ursa Major", "Crux (low south)"], event: "Lyrid meteors peak around 22 April. Best month to try for the Southern Cross.", weather: "Warm. Haze from dust is common." },
-  { m: "May", full: "May", rating: 3, cons: ["Ursa Major", "Leo", "Crux (low south)", "Scorpius (rising)"], event: "The Milky Way core starts rising before midnight.", weather: "Hot. Humidity and haze rise near the coast." },
-  { m: "Jun", full: "June", rating: 2, cons: ["Scorpius", "Lyra", "Ursa Major"], event: "Shortest nights of the year (summer solstice around 21 June).", weather: "Very hot and humid. Haze often hides faint stars; mountains help." },
-  { m: "Jul", full: "July", rating: 2, cons: ["Scorpius", "Lyra", "Cygnus"], event: "The Milky Way core is high in the south in the evening.", weather: "Very hot and humid. Best from high sites like Jebel Jais." },
-  { m: "Aug", full: "August", rating: 2, cons: ["Cygnus", "Lyra", "Scorpius"], event: "Perseid meteors peak around 12–13 August. Canopus (Suhail) first appears before dawn in late August.", weather: "Hottest and most humid month. In tradition, the rising of Suhail signals that the worst heat will soon end." },
-  { m: "Sep", full: "September", rating: 3, cons: ["Cygnus", "Lyra", "Summer Triangle"], event: "Around the September equinox, the Sun again rises due east.", weather: "Still hot, humidity slowly drops." },
-  { m: "Oct", full: "October", rating: 4, cons: ["Cassiopeia", "Cygnus", "Pegasus"], event: "Orionid meteors peak around 21 October.", weather: "Stargazing season begins. Nights become pleasant." },
-  { m: "Nov", full: "November", rating: 5, cons: ["Cassiopeia", "Taurus", "Pleiades (al-Thurayyā)"], event: "Leonid meteors peak around 17 November.", weather: "Cool, dry and clear. Excellent conditions." },
+  { m: "Jan", full: "January", rating: 5, cons: ["Orion", "Taurus", "Gemini", "Canis Major"], event: "Quadrantid meteors peak around 3–4 January.", weather: "Cool and typically clear. One of the best months to stargaze, although fog can form near the coast." },
+  { m: "Feb", full: "February", rating: 5, cons: ["Orion", "Gemini", "Canis Major", "Canopus (Suhail)"], event: "Canopus is well positioned, low in the south.", weather: "Cool, clear nights. Occasional rain or cloud fronts." },
+  { m: "Mar", full: "March", rating: 4, cons: ["Leo", "Gemini", "Ursa Major", "Orion (setting)"], event: "During the March equinox, the Sun rises due east and sets due west.", weather: "Getting warmer. Windier and more dusty." },
+  { m: "Apr", full: "April", rating: 4, cons: ["Leo", "Ursa Major", "Crux (low south)"], event: "Lyrid meteors peak around 22 April. The best month to try to see the Southern Cross.", weather: "Warm. Dust haze is common." },
+  { m: "May", full: "May", rating: 3, cons: ["Ursa Major", "Leo", "Crux (low south)", "Scorpius (rising)"], event: "The core of the Milky Way begins to rise before midnight.", weather: "Hot. Increasing humidity and dust haze near the coast." },
+  { m: "Jun", full: "June", rating: 2, cons: ["Scorpius", "Lyra", "Ursa Major"], event: "The shortest nights of the year (summer solstice around 21 June).", weather: "Very hot and humid. Dust haze often hides the fainter stars; mountains help." },
+  { m: "Jul", full: "July", rating: 2, cons: ["Scorpius", "Lyra", "Cygnus"], event: "The core of the Milky Way is high in the south during the evening.", weather: "Very hot and humid. Best from higher areas such as Jebel Jais." },
+  { m: "Aug", full: "August", rating: 2, cons: ["Cygnus", "Lyra", "Scorpius"], event: "Perseid meteors peak around 12–13 August. Canopus (Suhail) first appears before dawn in late August.", weather: "The hottest and most humid month. Traditionally, the rising of Suhail means that the worst heat will soon pass." },
+  { m: "Sep", full: "September", rating: 3, cons: ["Cygnus", "Lyra", "Summer Triangle"], event: "During the September equinox, the Sun again rises due east.", weather: "Still hot. Humidity begins to decrease." },
+  { m: "Oct", full: "October", rating: 4, cons: ["Cassiopeia", "Cygnus", "Pegasus"], event: "Orionid meteors peak around 21 October.", weather: "Stargazing season begins. Pleasant nights." },
+  { m: "Nov", full: "November", rating: 5, cons: ["Cassiopeia", "Taurus", "Pleiades (al-Thurayyā)"], event: "Leonid meteors peak around 17 November.", weather: "Cool, dry and clear. Perfect conditions." },
   { m: "Dec", full: "December", rating: 5, cons: ["Orion", "Taurus", "Cassiopeia", "Gemini"], event: "Geminid meteors peak around 13–14 December, one of the best showers of the year.", weather: "Cool and clear. Peak camping and stargazing season." }
 ];
 
 // Key terms for the "Celestial Coordinates" flip cards
 const TERMS = [
-  { t: "Celestial sphere", icon: "◯", d: "Imagine the sky as a giant ball around Earth with all the stars stuck on the inside. That imaginary ball is the celestial sphere. Stars are really at very different distances, but this idea makes it easy to describe where they are." },
-  { t: "Declination (Dec)", icon: "↕", d: "A star’s north–south position on the sky, like latitude on Earth. Measured in degrees: + is north of the celestial equator, − is south. Polaris is at about +89°, almost at the top." },
-  { t: "Right Ascension (RA)", icon: "↔", d: "A star’s east–west position on the sky, like longitude on Earth. Measured in hours (0h to 24h) because the sky turns once a day. Orion is at about 5–6h." },
-  { t: "Altitude", icon: "⦨", d: "How high something is above the horizon. 0° = on the horizon, 90° = straight overhead. Quick measure: a fist held at arm’s length covers about 10°." },
-  { t: "Azimuth", icon: "🧭", d: "The compass direction you face to see something. North = 0°, east = 90°, south = 180°, west = 270°." },
-  { t: "Zenith", icon: "⬆", d: "The point in the sky directly above your head (altitude 90°). Everyone has their own zenith, depending on where they stand." },
-  { t: "Celestial equator", icon: "═", d: "An imaginary line on the sky directly above Earth’s equator (declination 0°). From the UAE it runs from due east, up through the southern sky, to due west." },
-  { t: "Ecliptic", icon: "☉", d: "The path the Sun appears to follow across the sky during a year. The Moon and planets always stay close to this line, so it is where to look for planets." }
+  { t: "Celestial sphere", icon: "◯", d: "Imagine the whole sky as a huge ball around Earth, with all the stars stuck to the inside. This imaginary ball is called the celestial sphere. The stars are really at very different distances, but this idea makes them easy to locate." },
+  { t: "Declination (Dec)", icon: "↕", d: "Tells you how far north or south a star is in the sky, like latitude on Earth. Measured in degrees: positive is north of the celestial equator and negative is south. Polaris is at around +89 degrees, almost at the celestial pole." },
+  { t: "Right Ascension (RA)", icon: "↔", d: "Tells you how far east or west a star is in the sky, like longitude on Earth. Measured in hours (between 0h and 24h), as the sky turns once a day. Orion is at around 5–6h." },
+  { t: "Altitude", icon: "⦨", d: "Tells you how high something is above the horizon: 0 degrees = horizon, 90 degrees = directly overhead. A quick way to measure it is with your fist, which covers around 10 degrees at arm’s length." },
+  { t: "Azimuth", icon: "🧭", d: "Tells you which direction to face to see something. North = 0 degrees, east = 90 degrees, south = 180 degrees, west = 270 degrees." },
+  { t: "Zenith", icon: "⬆", d: "The point directly above your head (90 degrees altitude). Everyone has their own zenith." },
+  { t: "Celestial equator", icon: "═", d: "An imaginary line in the sky directly above Earth’s equator (0 degrees declination). From the UAE it runs from due east, up through the southern sky, to due west." },
+  { t: "Ecliptic", icon: "☉", d: "The path the Sun appears to take across the sky during the year. The Moon and planets always stay close to this line, so this is where you will find the planets." }
 ];
 
 // Astronomy tools and apps
 const TOOLS = [
-  { name: "Stellarium", type: "Free · Desktop, Web, Mobile", icon: "🌌", d: "A full planetarium that shows the real sky for any place and time. Good for planning a night and checking star positions.", use: "Planning & identification" },
-  { name: "Star Walk 2", type: "Mobile", icon: "📱", d: "Point your phone at the sky and the app labels stars, planets and constellations using the phone’s sensors.", use: "Identification on site" },
-  { name: "SkySafari", type: "Mobile", icon: "🔭", d: "A detailed star chart app with large star and deep-sky databases. Can control some telescopes.", use: "Telescope use" },
-  { name: "Sky Tonight", type: "Free · Mobile", icon: "🌙", d: "Shows what is visible tonight, with event alerts for meteor showers, eclipses and planets.", use: "Events & planning" },
-  { name: "Light Pollution Map", type: "Free · Web", icon: "💡", d: "lightpollutionmap.info shows satellite light-pollution data and Bortle estimates. Useful for picking dark sites in the UAE.", use: "Choosing locations" },
-  { name: "Clear Outside", type: "Free · Web, Mobile", icon: "☁️", d: "An hour-by-hour astronomy weather forecast: cloud layers, humidity, Moon phase and seeing.", use: "Weather" }
+  { name: "Stellarium", type: "Free", icon: "🌌", d: "A complete planetarium showing the real night sky wherever you are. Great for planning your night and knowing where stars are.", use: "Planning & identifying" },
+  { name: "Star Walk 2", type: "Mobile", icon: "📱", d: "Point your phone at the sky and the app uses your phone’s sensors to identify stars, planets and constellations.", use: "Identifying" },
+  { name: "SkySafari", type: "Mobile", icon: "🔭", d: "A detailed star chart app with large star and deep-sky databases. It can control some telescopes.", use: "Telescopes" },
+  { name: "Sky Tonight", type: "Free", icon: "🌙", d: "Shows you what you can see tonight, with alerts for events such as meteor showers, eclipses and planets.", use: "Events & planning" },
+  { name: "Light Pollution Map", type: "Free", icon: "💡", d: "lightpollutionmap.info shows light pollution data from satellites and Bortle estimates. Useful for finding dark areas within the UAE.", use: "Finding locations" },
+  { name: "Clear Outside", type: "Free", icon: "☁️", d: "An hourly astronomy weather forecast showing cloud layers, humidity, Moon phase and seeing.", use: "Weather" }
 ];
 
 // Works cited (MLA 9th edition), shown in the Sources section.

@@ -31,15 +31,15 @@
     <div class="hero-inner">
       <p class="eyebrow">MYP Personal Project</p>
       <h1 class="glitch" data-text="A Guide to Stargazing in the UAE">A Guide to Stargazing<br>in the <span class="grad">UAE</span></h1>
-      <p class="lead">A beginner’s guide to the night sky over the Emirates. No experience needed: every section tells you why it matters and exactly what to do.</p>
+      <p class="lead">A beginner’s guide to navigating the night sky in the Emirates. Every section explains why you need to do something, and how.</p>
       <ol class="start-steps">
-        <li><b>1</b> Pick your place and month</li>
+        <li><b>1</b> Choose your location and month</li>
         <li><b>2</b> Explore the live star map</li>
-        <li><b>3</b> Learn to find direction</li>
-        <li><b>4</b> Plan the best night out</li>
+        <li><b>3</b> Learn how to navigate</li>
+        <li><b>4</b> Plan the perfect night</li>
       </ol>
       <button class="btn-launch" id="launch"><span>Launch</span><i aria-hidden="true">🚀</i></button>
-      <p class="hint">or pick a tab at the top</p>
+      <p class="hint">Tip: you can either click Launch or choose a tab at the top.</p>
     </div>
   </header>
 
@@ -49,7 +49,7 @@
       <div class="sec-head reveal">
         <span class="sec-num">01</span>
         <h2>Interactive Sky Explorer</h2>
-        <p>See the night sky for any place in the UAE and any month of the year. The stars you can see depend on <strong>where you are</strong> and <strong>when you look</strong>, so start by choosing both.</p>
+        <p>Use this section to explore the night sky at any location in the UAE, for any month. Start by choosing your <strong>location</strong> and <strong>month</strong>.</p>
       </div>
 
       <!-- Step selectors: place, month, time -->
@@ -59,7 +59,7 @@
           <div class="place-grid" id="placeGrid"></div>
           <div class="place-info" id="placeInfo"></div>
           <details class="custom-coords">
-            <summary>Or enter your own coordinates (UAE only)</summary>
+            <summary>Or choose your own latitude and longitude (only works within the UAE)</summary>
             <div class="coord-row">
               <label>Latitude °N <input type="number" id="latIn" min="22.6" max="26.1" step="0.01" placeholder="24.45"></label>
               <label>Longitude °E <input type="number" id="lonIn" min="51.5" max="56.4" step="0.01" placeholder="54.38"></label>
@@ -83,8 +83,8 @@
       </div>
 
       <div class="guide reveal">
-        <div class="guide-why"><span class="g-label">💡 Why this is here</span><p>This map shows exactly which stars and constellations are above you at the place and time you chose. Recognising constellations is the first skill every stargazer needs: once you know them, you can use them to find your direction, find planets and plan what to look at.</p></div>
-        <div class="guide-how"><span class="g-label">👆 How to use it</span><ol><li>Read the map as the sky above you: the <b>outer circle is the horizon</b> and the <b>centre is straight above your head</b>. The letters N, E, S, W around the edge are the directions.</li><li>Outside, face the direction you want to look and turn the map so that direction’s letter is at the bottom. The bottom half of the map then matches the sky in front of you.</li><li><b>Click a constellation</b> (or a name button under the map) to read what it is, where to look and how it helps you navigate.</li><li><b>Drag the sky in a circle</b> or press <b>▶ Play night</b> to watch the stars move during the night.</li><li>Press <b>🎯 Quiz mode</b> to test yourself: click the constellation named under the map.</li></ol></div>
+        <div class="guide-why"><span class="g-label">💡 Why this is here</span><p>This shows you which stars and constellations are visible at your chosen location and time. Being able to identify constellations is the first thing you need to learn. Once you know the constellations, you will be able to navigate.</p></div>
+        <div class="guide-how"><span class="g-label">👆 How to use it</span><ol><li>Use the map to navigate the sky. The <b>outer ring represents the horizon</b> and the <b>middle is directly above your head</b>. The letters around the edge represent the compass points.</li><li>Go outside and face the direction you want to look. Rotate the map so the letter for that direction is at the bottom. The bottom half of the map will then match what you can see.</li><li><b>Click a constellation</b> or press one of the buttons underneath the map. This will give you information about the constellation.</li><li><b>Drag the sky</b> to rotate it, or press <b>▶ Play night</b> to see the stars move throughout the night.</li><li>Press <b>🎯 Quiz mode</b> to challenge yourself by clicking on the named constellation.</li></ol></div>
       </div>
       <div class="sky-wrap reveal">
         <div class="sky-col">
@@ -111,12 +111,12 @@
               <button class="chip" id="playBtn">▶ Play night</button>
               <button class="chip" id="quizBtn">🎯 Quiz mode</button>
             </div>
-            <p class="ctrl-help"><b>Now</b> shows the sky at this moment. <b>Play night</b> speeds up time. <b>Quiz mode</b> tests you.</p>
+            <p class="ctrl-help"><b>Now</b> shows you the sky in real time. To speed things up, press <b>Play night</b>. To challenge yourself, press <b>Quiz mode</b>.</p>
             <span class="g-label">Show on the map</span>
             <div class="toggles">
-              <label><input type="checkbox" id="tLines" checked> <span><b>Lines</b> join the stars into shapes</span></label>
+              <label><input type="checkbox" id="tLines" checked> <span><b>Lines</b> connect the stars to form constellations</span></label>
               <label><input type="checkbox" id="tNames" checked> <span><b>Names</b> of constellations and bright stars</span></label>
-              <label><input type="checkbox" id="tGrid"> <span><b>Height rings</b> at 30° and 60° above the horizon</span></label>
+              <label><input type="checkbox" id="tGrid"> <span><b>Height rings</b> show 30° and 60° high</span></label>
               <label><input type="checkbox" id="tEcl"> <span><b>Ecliptic</b>: the path of the Sun, Moon and planets</span></label>
             </div>
           </div>
@@ -124,7 +124,7 @@
           <div class="glass info-card" id="infoCard">
             <div class="info-empty">
               <div class="pulse-star">✶</div>
-              <p><b>Click a constellation</b> on the star map, or tap one of the names below the map, to learn about it here.</p>
+              <p><b>Click a constellation</b> on the star map, or tap one of the names underneath, to get information.</p>
             </div>
           </div>
         </aside>
@@ -137,11 +137,11 @@
       <div class="sec-head reveal">
         <span class="sec-num">02</span>
         <h2>Celestial Navigation</h2>
-        <p>Learn to find north, south, east and west using only the stars. No prior knowledge needed.</p>
+        <p>Learn how to find north, south, east and west using just the stars. No previous knowledge needed.</p>
       </div>
       <div class="guide reveal">
-        <div class="guide-why"><span class="g-label">💡 Why this is here</span><p>Before GPS, people crossing the desert or sailing the Gulf found their way using the stars. These skills still work today when your phone has no signal or battery. They also explain how the sky works: why stars move, why one star stays still, and why the sky looks different depending on where you are.</p></div>
-        <div class="guide-how"><span class="g-label">👆 How to use it</span><ol><li>Choose a mission tab. Start with <b>Mission 1</b>: each mission builds on the one before.</li><li>Read the short introduction. If you see a word you do not know, <b>tap it under “Key words”</b> to read what it means.</li><li>Press <b>Next step</b>. Each step adds one thing to the picture on the left, so follow along with your eyes.</li><li>At the last step, answer the <b>Check yourself</b> question. A ✓ appears on the tab when you get it right.</li></ol></div>
+        <div class="guide-why"><span class="g-label">💡 Why this is here</span><p>Before GPS, people used the stars to navigate across the desert or the Gulf. These skills can still be used today if your phone has no signal or battery. They will also help you understand how the sky works: why stars move, why one star does not move, and why the sky looks different depending on your location.</p></div>
+        <div class="guide-how"><span class="g-label">👆 How to use it</span><ol><li>Select a mission tab. Start with <b>Mission 1</b>, as the missions build on each other.</li><li>Read the short introduction. If you come across a word you do not understand, <b>tap it under “Key words”</b> to see what it means.</li><li>Press <b>Next step</b>. This will add one item to the picture on the left. Follow along.</li><li>Answer the <b>Check yourself</b> question at the last step. A ✓ will appear on the tab if you answer correctly.</li></ol></div>
       </div>
       <div class="missions reveal">
         <div class="mission-tabs" role="tablist"></div>
@@ -186,11 +186,11 @@
       <div class="sec-head reveal">
         <span class="sec-num">03</span>
         <h2>Celestial Coordinates</h2>
-        <p>Learn how astronomers describe exactly where a star is in the sky.</p>
+        <p>Find out how astronomers locate stars accurately.</p>
       </div>
       <div class="guide reveal">
-        <div class="guide-why"><span class="g-label">💡 Why this is here</span><p>To find a star you need to know where to look. Instructions like “look 30° up in the south-east” and every star app use the words on these cards. Altitude and azimuth tell you where to look from where you stand. Right ascension and declination are a fixed address for each star, used in star charts and catalogues.</p></div>
-        <div class="guide-how"><span class="g-label">👆 How to use it</span><ol><li><b>Tap a card</b> to flip it and read what the word means. Tap it again to flip it back.</li><li>In the dome on the right, <b>drag the star</b> with your mouse or finger.</li><li>Watch the two numbers change. <b>Altitude</b> is how high the star is (0° = on the horizon, 90° = straight up). <b>Azimuth</b> is its compass direction (0° = north, 90° = east, 180° = south, 270° = west).</li><li>Challenge: move the star to <b>45° altitude in the south-east (135°)</b>.</li></ol></div>
+        <div class="guide-why"><span class="g-label">💡 Why this is here</span><p>To locate a star, you need to know where to look. The terms on these cards are used in instructions like “look 30 degrees up in the south-east”, and all star apps use them too. <b>Altitude and azimuth</b> tell you where to look from your location. <b>Right ascension and declination</b> give a fixed location for each star, and are used in star charts and catalogues.</p></div>
+        <div class="guide-how"><span class="g-label">👆 How to use it</span><ol><li><b>Tap a card</b> to flip it over and read the meaning of the term. Tap it again to flip it back.</li><li><b>Drag the star</b> in the dome on the right.</li><li>Watch the numbers change. <b>Altitude</b> tells you how high the star is (0 degrees = horizon, 90 degrees = directly overhead). <b>Azimuth</b> tells you which compass direction you are facing (0 degrees = north, 90 degrees = east, 180 degrees = south, 270 degrees = west).</li><li>Challenge: move the star to <b>45 degrees altitude in the south-east (135 degrees)</b>.</li></ol></div>
       </div>
       <div class="coord-grid">
         <div class="flip-grid reveal" id="flipGrid"></div>
@@ -201,7 +201,7 @@
             <div><span>Altitude</span><strong id="altOut">45°</strong></div>
             <div><span>Azimuth</span><strong id="azOut">135° SE</strong></div>
           </div>
-          <p class="small">This is the sky seen from below, as if you were lying on your back with your head pointing north. The centre is straight above you (the zenith) and the edge is the horizon. East is on the left because you are looking up, not down at a map.</p>
+          <p class="small">This is what the sky looks like from below. Imagine you are lying on your back with your head pointing north. The centre is directly above you (the zenith) and the edge is the horizon. East is on the left because you are looking up.</p>
         </div>
       </div>
     </section>
@@ -211,11 +211,11 @@
       <div class="sec-head reveal">
         <span class="sec-num">04</span>
         <h2>Light Pollution & Conditions</h2>
-        <p>See how city lights hide the stars, and what else affects how much you can see.</p>
+        <p>See how the stars are hidden by city lights, and find out what else affects how much you can see.</p>
       </div>
       <div class="guide reveal">
-        <div class="guide-why"><span class="g-label">💡 Why this is here</span><p>Light from streets and buildings makes the sky glow and hides faint stars. Most people in the UAE live in bright coastal cities, so moving to a dark place is the biggest single thing you can do to see more stars. Astronomers measure sky darkness with the <b>Bortle scale</b>, from 1 (darkest desert) to 9 (city centre). Weather and the Moon matter too.</p></div>
-        <div class="guide-how"><span class="g-label">👆 How to use it</span><ol><li><b>Drag the slider</b> to the left, from the city (9) towards the desert (1).</li><li>Watch the picture: more stars appear, and the Milky Way shows up once the sky is dark enough.</li><li>Read the box under the slider: what the sky looks like at that level and where in the UAE you would find it.</li><li>Tap the <b>five buttons</b> below to learn about other things that affect what you see.</li></ol></div>
+        <div class="guide-why"><span class="g-label">💡 Why this is here</span><p>Light from roads and buildings makes the sky glow, so faint stars are difficult to see. Most people in the UAE live in bright coastal cities, so the best thing you can do to see more stars is to go somewhere dark. Astronomers use the <b>Bortle scale</b> to measure how dark the sky is, from 1 (darkest desert) to 9 (city centre). The weather and the Moon also affect how much you can see.</p></div>
+        <div class="guide-how"><span class="g-label">👆 How to use it</span><ol><li><b>Slide the bar</b> to the left, from the city (9) to the desert (1).</li><li>Watch the picture: more stars appear, and once the sky is dark enough you will see the Milky Way.</li><li>Read the text underneath the bar. It tells you what the sky looks like and where in the UAE you would find this.</li><li>Tap the <b>5 buttons</b> below to find out what else affects what you can see.</li></ol></div>
       </div>
       <div class="lp-wrap reveal">
         <div class="lp-sky glass">
@@ -229,7 +229,7 @@
             <p id="lpText"></p>
             <p><strong>UAE example:</strong> <span id="lpUae"></span></p>
             <p><strong>Faintest star you can see:</strong> magnitude <span id="lpLimit"></span></p>
-            <p class="small">Magnitude measures how bright a star looks: the lower the number, the brighter the star. The higher the faintest magnitude you can see, the more stars are visible.</p>
+            <p class="small">Magnitude tells you how bright a star appears: the lower the number, the brighter the star. The higher the faintest magnitude you can see, the more stars you will see.</p>
           </div>
           <div class="factors">
             <button class="factor" data-f="humidity">💧<span>Humidity</span></button>
@@ -238,7 +238,7 @@
             <button class="factor" data-f="heat">🌡<span>Heat</span></button>
             <button class="factor" data-f="eyes">👁<span>Dark-adapted eyes</span></button>
           </div>
-          <div class="glass factor-info" id="factorInfo">👆 Tap one of the buttons above to see how it affects stargazing in the UAE.</div>
+          <div class="glass factor-info" id="factorInfo">👆 Click the buttons above to discover how they affect stargazing in the UAE.</div>
         </div>
       </div>
     </section>
@@ -248,11 +248,11 @@
       <div class="sec-head reveal">
         <span class="sec-num">05</span>
         <h2>The UAE Sky Calendar</h2>
-        <p>Find out what you can see each month, and when the weather is best.</p>
+        <p>Discover what you can see each month and when the weather will be best.</p>
       </div>
       <div class="guide reveal">
-        <div class="guide-why"><span class="g-label">💡 Why this is here</span><p>The sky changes during the year because Earth travels around the Sun, so at night we face a different part of space each month. UAE weather changes a lot too: cool, clear winters are the best season, and hot, humid summers are the hardest. Knowing both helps you choose the best night to go out.</p></div>
-        <div class="guide-how"><span class="g-label">👆 How to use it</span><ol><li><b>Tap a month</b> on the wheel. The current month is selected when the page opens.</li><li>Read which constellations are up in the evening, any special event such as a meteor shower, and the usual weather.</li><li>The stars in the middle of the wheel rate the month for stargazing: <b>★★★★★ = best</b>.</li><li>Press <b>Open this sky in the Sky Explorer</b> to open the star map for that month.</li></ol></div>
+        <div class="guide-why"><span class="g-label">💡 Why this is here</span><p>The sky changes throughout the year as Earth orbits the Sun, so we face a different part of space each month. The UAE’s weather also changes a lot. The best time to stargaze is during the cool, clear winters, while the hottest and most humid months can be quite challenging. Knowing this helps you pick the best night to stargaze.</p></div>
+        <div class="guide-how"><span class="g-label">👆 How to use it</span><ol><li><b>Click on the month</b> you would like to view. The current month is highlighted when the page opens.</li><li>Discover which constellations are visible in the evening, whether there are any special events, and what the typical weather is.</li><li>The stars in the centre of the wheel show how good the month is for stargazing: <b>★★★★★ = best</b>.</li><li>Click <b>Open this sky in the Sky Explorer</b> to open the star map for that month.</li></ol></div>
       </div>
       <div class="cal-wrap reveal">
         <div class="wheel" id="wheel">
@@ -264,10 +264,10 @@
         </div>
         <div class="glass cal-info">
           <h3 id="calTitle"></h3>
-          <p><strong>Up in the evening (around 9 pm):</strong></p>
+          <p><strong>Evening (around 9 pm):</strong></p>
           <div class="tagline" id="calCons"></div>
           <p><strong>Special event:</strong> <span id="calEvent"></span></p>
-          <p><strong>Usual weather:</strong> <span id="calWeather"></span></p>
+          <p><strong>Typical weather:</strong> <span id="calWeather"></span></p>
           <button class="chip" id="calView">Open this sky in the Sky Explorer →</button>
         </div>
       </div>
@@ -278,11 +278,11 @@
       <div class="sec-head reveal">
         <span class="sec-num">06</span>
         <h2>Tools & Technology</h2>
-        <p>Free and paid apps and websites that help you find stars and plan a night out.</p>
+        <p>Free and paid apps and websites to help you locate stars and plan your night.</p>
       </div>
       <div class="guide reveal">
-        <div class="guide-why"><span class="g-label">💡 Why this is here</span><p>Modern astronomy relies on technology. Apps use your phone’s GPS and motion sensors to label the stars you point at. Websites forecast clear nights and map dark places. Tools like these let a beginner do in minutes what used to take years of practice, which is the <b>scientific and technical innovation</b> behind this project.</p></div>
-        <div class="guide-how"><span class="g-label">👆 How to use it</span><ol><li>Read each card to see what the tool does and what it is <b>best for</b>.</li><li>To start, try one planning tool (<b>Stellarium</b>) and one weather tool (<b>Clear Outside</b>).</li><li>Outside, switch on the app’s red or night mode if it has one, and turn your screen brightness down. Bright screens stop your eyes adjusting to the dark.</li></ol></div>
+        <div class="guide-why"><span class="g-label">💡 Why this is here</span><p>Technology plays a large role in modern astronomy. Apps use your phone’s GPS and motion sensors to identify the stars you are pointing at. Websites can predict clear nights and locate dark areas. This means beginners can do in minutes what used to take years to learn. This is a great example of the <b>scientific and technical innovation</b> behind this project.</p></div>
+        <div class="guide-how"><span class="g-label">👆 How to use it</span><ol><li>Read through each card to see what each tool does and what it is <b>best used for</b>.</li><li>Start by using one planning tool (<b>Stellarium</b>) and one weather tool (<b>Clear Outside</b>).</li><li>If you are using an app outside, switch it to red mode or night mode if available, and reduce your screen brightness. Bright screens stop your eyes adapting to the dark.</li></ol></div>
       </div>
       <div class="tool-grid reveal" id="toolGrid"></div>
     </section>
@@ -296,15 +296,15 @@
       <div class="about-grid reveal">
         <article class="glass tilt">
           <h3>🎯 Learning goal</h3>
-          <p>To deepen my knowledge of celestial navigation and constellation mapping across the UAE.</p>
+          <p>To increase my knowledge of celestial navigation and constellation mapping throughout the UAE.</p>
         </article>
         <article class="glass tilt">
           <h3>🌍 Global context</h3>
-          <p><strong>Scientific and technical innovation.</strong> This website uses digital tools to make scientific knowledge about the night sky easy to explore for anyone, even with no background in astronomy.</p>
+          <p><strong>Scientific and technical innovation.</strong> Digital tools are used to make scientific knowledge easy for everyone to access, so anyone can navigate the night sky.</p>
         </article>
         <article class="glass tilt">
           <h3>✨ Why the UAE?</h3>
-          <p>Star visibility in the UAE changes a lot with artificial light, buildings, location, humidity and dust. Comparing sites shows how the environment shapes what we can see.</p>
+          <p>The visibility of stars varies greatly across the UAE because of artificial lighting, buildings, location, humidity and dust. Comparing different locations shows how the environment affects what you can see.</p>
         </article>
       </div>
     </section>
@@ -314,11 +314,11 @@
       <div class="sec-head reveal">
         <span class="sec-num">08</span>
         <h2>Sources</h2>
-        <p>Every fact on this website was checked against these sources.</p>
+        <p>All the facts on this website have been checked against these sources.</p>
       </div>
       <div class="guide reveal">
-        <div class="guide-why"><span class="g-label">💡 Why this is here</span><p>Astronomy needs precise information, and a lot of what is online is wrong. These sources come from scientific organisations (the International Astronomical Union, the U.S. Naval Observatory, the CDS in Strasbourg), peer-reviewed research, respected astronomy magazines, official UAE organisations and established UAE newspapers. Listing them lets anyone check where the information came from.</p></div>
-        <div class="guide-how"><span class="g-label">👆 How to use it</span><ol><li>Sources are listed in alphabetical order in <b>MLA 9th edition</b> format.</li><li>Under each source, <b>“Used for”</b> tells you which facts on this website it supports.</li><li>Click a source to open it in a new tab.</li></ol></div>
+        <div class="guide-why"><span class="g-label">💡 Why this is here</span><p>Astronomy requires accurate information, and there is a lot of inaccurate information online. These sources come from scientific organisations (the International Astronomical Union, the U.S. Naval Observatory, the CDS in Strasbourg), peer-reviewed research, respected astronomy magazines, official UAE organisations and well-known UAE newspapers. This allows anyone to check where the information has come from.</p></div>
+        <div class="guide-how"><span class="g-label">👆 How to use it</span><ol><li>Sources are listed alphabetically in <b>MLA 9th edition</b> format.</li><li>Under each source, <b>“Used for”</b> shows which facts on this website it supports.</li><li>Click on a source to open it in a new tab.</li></ol></div>
       </div>
       <div class="glass sources-box reveal">
         <h3>Works Cited</h3>
